@@ -1,0 +1,2492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE SHOW by Viver de Som</title>
+    <style>
+        /* RESET E MODO ESCURO */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        /* WAVEFORM ANIMADO */
+
+        /* HEADER E CONTROLES DE SETUP */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .header h1 {
+            font-size: 22px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .header h1 span {
+            font-size: 12px;
+            color: #00d2ff;
+            letter-spacing: 1px;
+            font-weight: normal;
+        }
+        
+        /* GERENCIADOR DE SETLISTS */
+        .setlist-manager {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #222;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 1px solid #444;
+        }
+        .setlist-manager select {
+            background: #333;
+            color: white;
+            border: 1px solid #555;
+            padding: 5px;
+            border-radius: 4px;
+            outline: none;
+            font-weight: bold;
+        }
+        .btn-new-setlist {
+            background-color: #00d2ff;
+            color: #000;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-new-setlist:hover {
+            background-color: #55efc4;
+        }
+        .btn-del-setlist {
+            background-color: #ff4757;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-del-setlist:hover {
+            background-color: #ff6b81;
+        }
+
+        /* SELETOR DE IDIOMA */
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #222;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: 1px solid #444;
+        }
+        .language-selector select {
+            background: #333;
+            color: white;
+            border: 1px solid #555;
+            padding: 5px;
+            border-radius: 4px;
+            outline: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* ÍCONE DE CONFIGURAÇÕES */
+        .settings-icon {
+            background: #00d2ff;
+            color: #000;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .settings-icon:hover {
+            background: #55efc4;
+            transform: scale(1.1);
+        }
+
+        /* MODAL DE CONFIGURAÇÕES */
+        .settings-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .settings-modal.open { display: flex; }
+        .settings-content {
+            background-color: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            color: white;
+        }
+        .settings-content h2 {
+            margin-bottom: 30px;
+            color: #00d2ff;
+            font-size: 24px;
+            text-align: center;
+        }
+        .settings-group {
+            margin-bottom: 25px;
+        }
+        .settings-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: bold;
+            color: #ddd;
+            font-size: 14px;
+        }
+        .settings-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            background-color: #222;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .settings-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .settings-actions button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-close-settings {
+            background-color: #0984e3;
+            color: white;
+        }
+        .btn-close-settings:hover { 
+            background-color: #74b9ff; 
+        }
+
+        /* MODAL DE SOBRE */
+        .about-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        .about-modal.open { display: flex; }
+        .about-content {
+            background-color: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
+            color: white;
+            margin: 20px;
+        }
+        .about-content h2 {
+            color: #00d2ff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .about-content p {
+            color: #ddd;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .version-info {
+            background: #222;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #00d2ff;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #aaa;
+        }
+        .about-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .btn-about-action {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-donate {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        .btn-donate:hover { 
+            background-color: #ff8787; 
+        }
+        .btn-close-about {
+            background-color: #0984e3;
+            color: white;
+        }
+        .btn-close-about:hover { 
+            background-color: #74b9ff; 
+        }
+
+        /* MODAL DE DOAÇÃO */
+        .donate-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 2001;
+        }
+        .donate-modal.open { display: flex; }
+        .donate-content {
+            background-color: #1a1a1a;
+            border: 2px solid #ff6b6b;
+            border-radius: 12px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            color: white;
+        }
+        .donate-content h2 {
+            color: #ff6b6b;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .donate-content p {
+            color: #ddd;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .donate-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .donate-btn {
+            padding: 20px;
+            border: 2px solid #ff6b6b;
+            background-color: #2a0a0a;
+            color: #ff6b6b;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
+        }
+        .donate-btn:hover {
+            background-color: #3a1a1a;
+            border-color: #ff8787;
+            color: #ff8787;
+        }
+        .donate-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+        .btn-close-donate {
+            flex: 1;
+            padding: 12px;
+            background-color: #0984e3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-close-donate:hover { 
+            background-color: #74b9ff; 
+        }
+
+        .setup-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* TOGGLES (AUTO-PLAY E MOSTRAR TECLAS) */
+        .toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #ddd;
+            cursor: pointer;
+            background: #222;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            user-select: none;
+        }
+        .toggle-label input {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: #0984e3;
+        }
+
+        .btn-add, .btn-edit {
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-add { background-color: #0984e3; }
+        .btn-add:hover { background-color: #74b9ff; }
+        
+        .btn-edit { background-color: #e1b12c; color: #000; }
+        .btn-edit.active { background-color: #c23616; color: white; }
+
+        /* DISPLAY DE TEMPO CENTRALIZADO COM HIERARQUIA */
+        .display-container {
+            background-color: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .track-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00d2ff;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        .time-block {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            align-items: center;
+        }
+        .time-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .time-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        /* FONTES DOS TEMPOS */
+        .time-value { font-variant-numeric: tabular-nums; font-weight: bold; }
+        .time-value.large { font-size: 45px; }
+        .time-value.small { font-size: 30px; color: #ff4757; }
+        .time-value.remaining { color: #ddd; font-size: 45px; }
+
+        /* CONTROLES GERAIS */
+        .controls {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            justify-content: center;
+            transition: margin-bottom 0.3s;
+        }
+        .control-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .btn-control {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            min-width: 200px;
+        }
+        .btn-control:hover { background-color: #555; }
+        .btn-stop { background-color: #ff4757; }
+        .btn-stop:hover { background-color: #ff6b81; }
+        .btn-play-pause { background-color: #f39c12; }
+        .btn-play-pause:hover { background-color: #f1c40f; color: #000; }
+        .btn-play-pause.playing-state { background-color: #00b894; color: #000; }
+
+        /* GRID DA BOTOEIRA */
+        .botoeira-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            flex: 1;
+            align-content: start;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+        .btn-track {
+            background-color: #222;
+            border: 2px solid #444;
+            color: #fff;
+            border-radius: 12px;
+            padding: 30px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            word-wrap: break-word;
+            position: relative;
+            user-select: none;
+            min-height: 120px;
+        }
+        .btn-track:active { transform: scale(0.96); }
+        .btn-track.paused {
+            border-color: #f39c12;
+            background-color: #1a1308;
+        }
+        .btn-track[draggable="true"] { cursor: move; }
+        .btn-track.drag-over {
+            border-color: #0984e3;
+            background-color: #08192a;
+            box-shadow: 0 0 30px rgba(9, 132, 227, 0.5), inset 0 0 15px rgba(9, 132, 227, 0.2);
+            transform: scale(1.05);
+        }
+        .btn-track.dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
+
+        /* ANIMAÇÃO DE PISCADA PARA BOTÃO TOCANDO */
+        @keyframes pulse-playing {
+            0%, 100% {
+                background-color: #001a14;
+                border-color: #00b894;
+                box-shadow: 0 0 20px rgba(0,184,148,0.3);
+            }
+            50% {
+                background-color: #003d2e;
+                border-color: #00ff88;
+                box-shadow: 0 0 30px rgba(0,255,136,0.6), inset 0 0 20px rgba(0,184,148,0.4);
+            }
+        }
+
+        .btn-track.playing {
+            border-color: #00b894;
+            background-color: #001a14;
+            box-shadow: 0 0 20px rgba(0,184,148,0.3);
+            animation: pulse-playing 1.5s ease-in-out infinite;
+        }
+        .reorder-icon {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(0, 210, 255, 0.8);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            display: none;
+            opacity: 0.7;
+            transition: 0.2s;
+        }
+        .btn-track.edit-mode .reorder-icon {
+            display: block;
+            cursor: grab;
+        }
+        .btn-track.dragging .reorder-icon {
+            cursor: grabbing;
+        }
+        .btn-track[draggable="true"]:hover .reorder-icon {
+            opacity: 1;
+            background: rgba(0, 210, 255, 1);
+        }
+
+        /* CONTROLE DE VOLUME INDIVIDUAL */
+        /* BADGE DE TECLA -->
+        .key-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #0984e3;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* ÍCONE DE METRÔNOMO */
+        .metronome-icon {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #9b59b6;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        /* CONTROLES DE EDIÇÃO NO BOTÃO */
+        .track-controls {
+            display: none;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            gap: 8px;
+        }
+        .btn-track.edit-mode .track-controls { display: flex; }
+        .btn-icon {
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            border: 1px solid #555;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .btn-icon:hover { background-color: rgba(0,0,0,0.9); }
+        .btn-icon.delete { color: #ff4757; border-color: #ff4757; }
+        .btn-icon.edit { color: #f39c12; border-color: #f39c12; }
+        .btn-icon.key { color: #0984e3; border-color: #0984e3; }
+        .btn-icon.waiting { 
+            background-color: #0984e3; 
+            animation: pulse 1s infinite; 
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .key-badge-global {
+            position: absolute;
+            bottom: -25px;
+            background: #0984e3;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        /* MODAL DE ADIÇÃO/EDIÇÃO */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal.open { display: flex; }
+        .modal-content {
+            background-color: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            color: white;
+        }
+        .modal-content h2 {
+            margin-bottom: 25px;
+            color: #00d2ff;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #ddd;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            background-color: #222;
+            color: white;
+            font-size: 15px;
+        }
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #444;
+            border-radius: 6px;
+            background-color: #222;
+            color: white;
+        }
+
+        /* CHECKBOX DE METRÔNOMO */
+        .metronome-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 12px;
+            background: #222;
+            border-radius: 6px;
+            border: 1px solid #444;
+        }
+        .metronome-toggle input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #9b59b6;
+        }
+        .metronome-toggle label {
+            margin: 0;
+            cursor: pointer;
+            color: #9b59b6;
+            font-weight: bold;
+        }
+
+        /* CONTROLES DE METRÔNOMO */
+        .metronome-controls {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #2a1a2a;
+            border-radius: 6px;
+            border: 1px solid #9b59b6;
+        }
+        .metronome-controls.active { display: block; }
+        
+        .bpm-input-group {
+            margin-bottom: 15px;
+        }
+        .bpm-input-group label {
+            color: #bb8fce;
+        }
+        .bpm-input-group input {
+            background-color: #E0E0E0;
+            border-color: #9b59b6;
+        }
+
+        /* SELETOR DE CANAL */
+        .channel-selector {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .channel-selector label {
+            font-size: 14px;
+            color: #bb8fce;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .channel-btn {
+            flex: 1;
+            padding: 10px;
+            background: #222;
+            border: 2px solid #555;
+            color: #aaa;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .channel-btn:hover {
+            background: #333;
+        }
+        .channel-btn.active {
+            background: #9b59b6;
+            border-color: #9b59b6;
+            color: white;
+        }
+
+        /* VOLUME NO MODAL */
+        .modal-volume-group {
+            margin-top: 20px;
+            padding: 15px;
+            background: #222;
+            border-radius: 6px;
+            border: 1px solid #444;
+        }
+        .modal-volume-label {
+            color: #00d2ff;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-volume-value {
+            color: #00d2ff;
+            font-size: 14px;
+        }
+        .modal-volume-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #444;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+        .modal-volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #00d2ff;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 210, 255, 0.5);
+        }
+        .modal-volume-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #00d2ff;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 5px rgba(0, 210, 255, 0.5);
+        }
+
+        /* SELETOR DE SOM METRÔNOMO */
+        .metronome-sound-selector {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .metronome-sound-selector label {
+            font-size: 14px;
+            color: #bb8fce;
+            margin-bottom: 8px;
+            display: block;
+            width: 100%;
+        }
+        .sound-btn {
+            flex: 1;
+            padding: 10px;
+            background: #222;
+            border: 2px solid #555;
+            color: #aaa;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+            font-size: 13px;
+        }
+        .sound-btn:hover {
+            background: #333;
+        }
+        .sound-btn.active {
+            background: #9b59b6;
+            border-color: #9b59b6;
+            color: white;
+        }
+
+        /* CONTROLE DE VOLUME */
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: #222;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid #444;
+        }
+        .volume-control label {
+            color: #ddd;
+            font-weight: bold;
+            min-width: 80px;
+            margin: 0;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        .modal-actions button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-cancel {
+            background-color: #555;
+            color: white;
+        }
+        .btn-cancel:hover { background-color: #777; }
+        .btn-save {
+            background-color: #0984e3;
+            color: white;
+        }
+        .btn-save:hover { background-color: #74b9ff; }
+
+        /* BOTÃO DE MAPEAMENTO DE TECLA */
+        .btn-map-key {
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            border: 1px solid #555;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .btn-map-key:hover { background-color: rgba(0,0,0,0.9); }
+        .btn-map-key.waiting { 
+            background-color: #0984e3; 
+            animation: pulse 1s infinite; 
+        }
+    </style>
+</head>
+<body>
+    <audio id="player"></audio>
+
+    <div class="header">
+        <div class="header-left">
+            <h1>LIVE SHOW <span>by Viver de Som</span></h1>
+            
+            <div class="setlist-manager">
+                <select id="setlistSelect"></select>
+                <button class="btn-new-setlist" onclick="createNewSetlist()" data-i18n="new-setlist">+ Nova Setlist</button>
+                <button class="btn-del-setlist" onclick="removeCurrentSetlist()" title="Excluir Setlist atual">- Excluir</button>
+            </div>
+        </div>
+
+        <div class="setup-controls">
+            <label class="toggle-label">
+                <input type="checkbox" id="checkAutoPlay">
+                <span data-i18n="auto-play">Auto-play</span>
+            </label>
+            <label class="toggle-label">
+                <input type="checkbox" id="checkShowKeys">
+                <span data-i18n="show-keys">Mostrar Teclas</span>
+            </label>
+            <button class="btn-add" onclick="openAddModal()" data-i18n="add-button">+ Adicionar</button>
+            <button class="btn-edit" id="btnEditMode" onclick="toggleEditMode()" data-i18n="edit-mode">Modo Edição</button>
+            <button class="settings-icon" onclick="openSettingsModal()" title="Configurações">⚙️</button>
+        </div>
+    </div>
+
+    <div class="display-container">
+        <div class="track-name" id="currentTrackName">Parado</div>
+        <div class="time-block">
+            <div class="time-item">
+                <div class="time-label" data-i18n="current-time">Tempo Atual</div>
+                <div class="time-value large" id="timeCurrent">00:00</div>
+            </div>
+            <div class="time-item">
+                <div class="time-label" data-i18n="total-time">Total</div>
+                <div class="time-value small" id="timeTotal">00:00</div>
+            </div>
+            <div class="time-item">
+                <div class="time-label" data-i18n="remaining-time">Restante</div>
+                <div class="time-value large remaining" id="timeRemaining">-00:00</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <div class="control-wrapper">
+            <button class="btn-control btn-stop" id="btnStop" onclick="handleStopClick()" data-i18n="stop-btn">PARAR</button>
+            <div class="key-badge-global" id="stopKeyBadge" style="display:none;"></div>
+            <button class="btn-map-key" id="mapStopKeyBtn" onclick="startKeyMapping('stop')" style="display:none; margin-top: 5px; padding: 5px 10px; font-size: 12px;" data-i18n="map-stop-key">Mapear Tecla</button>
+        </div>
+        <div class="control-wrapper">
+            <button class="btn-control btn-play-pause" id="btnPlayPause" onclick="handlePlayPauseClick()" data-i18n="play-pause-btn">TOCAR</button>
+            <div class="key-badge-global" id="playPauseKeyBadge" style="display:none;"></div>
+            <button class="btn-map-key" id="mapPlayKeyBtn" onclick="startKeyMapping('playpause')" style="display:none; margin-top: 5px; padding: 5px 10px; font-size: 12px;" data-i18n="map-play-key">Mapear Tecla</button>
+        </div>
+    </div>
+
+    <div class="botoeira-grid" id="botoeira"></div>
+
+    <!-- MODAL DE CONFIGURAÇÕES -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-content">
+            <h2 data-i18n="settings-title">⚙️ Configurações</h2>
+            <div class="settings-group">
+                <label data-i18n="language">🌐 Idioma:</label>
+                <select id="languageSelect" onchange="changeLanguage(this.value)">
+                    <option value="pt-BR">Português (BR)</option>
+                    <option value="en-US">English (US)</option>
+                    <option value="es-ES">Español</option>
+                    <option value="fr-FR">Français</option>
+                </select>
+            </div>
+            <div class="settings-actions">
+                <button class="btn-about-action btn-donate" onclick="openDonateModal()" data-i18n="donate-btn">❤️ Doação</button>
+                <button class="btn-about-action" onclick="openAboutModal()" data-i18n="about-btn">ℹ️ Sobre</button>
+                <button class="btn-close-settings" onclick="closeSettingsModal()" data-i18n="close-settings">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE SOBRE -->
+    <div class="about-modal" id="aboutModal">
+        <div class="about-content">
+            <h2 data-i18n="about-title">ℹ️ Sobre o LIVE SHOW</h2>
+            <p data-i18n="about-description">
+                O LIVE SHOW é um aplicativo web profissional desenvolvido para musicos, bandas e produtores de shows ao vivo. 
+                Oferece um controle preciso de áudio durante apresentações, com suporte a metrônomo sincronizado e múltiplas setlists.
+            </p>
+            <p data-i18n="about-features">
+                <strong>Recursos principais:</strong> Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, 
+                interface multilíngue e sincronização com IndexedDB.
+            </p>
+            <div class="version-info">
+                <div data-i18n="version-label">Versão:</div>
+                <div>5.0 - LIVE SHOW Professional</div>
+                <div style="margin-top: 10px;" data-i18n="developed-by">Desenvolvido por:</div>
+                <div>🎵 Viver de Som Studios</div>
+                <div style="margin-top: 10px; font-style: italic;" data-i18n="tagline">Sua música, nosso palco, seu show!</div>
+            </div>
+            <div class="about-actions">
+                <button class="btn-about-action btn-donate" onclick="openDonateModal()" data-i18n="donate-btn">❤️ Doação</button>
+                <button class="btn-about-action btn-close-about" onclick="closeAboutModal()" data-i18n="close-btn">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE DOAÇÃO -->
+    <div class="donate-modal" id="donateModal">
+        <div class="donate-content">
+            <h2 data-i18n="donate-title">❤️ Apoie o Desenvolvimento</h2>
+            <p data-i18n="donate-description">
+                Suas doações ajudam a manter o LIVE SHOW ativo e melhorado constantemente!
+            </p>
+            <p data-i18n="donate-info">
+                Escolha sua plataforma de doação preferida:
+            </p>
+            <div class="donate-options">
+                <button class="donate-btn" onclick="window.open('https://www.paypal.com/donate?hosted_button_id=YOUR_BUTTON_ID', '_blank')" data-i18n="paypal-donate">
+                    💳 PayPal
+                </button>
+                <button class="donate-btn" onclick="window.open('https://www.buymeacoffee.com/viverdsom', '_blank')" data-i18n="coffee-donate">
+                    ☕ Buy Me a Coffee
+                </button>
+                <button class="donate-btn" onclick="window.open('https://www.patreon.com/viverdsom', '_blank')" data-i18n="patreon-donate">
+                    🎁 Patreon
+                </button>
+                <button class="donate-btn" onclick="copyPixKey()" data-i18n="pix-donate">
+                    🔑 Pix (BR)
+                </button>
+            </div>
+            <p style="font-size: 12px; color: #888; margin-top: 15px;" data-i18n="donate-thanks">
+                Muito obrigado por apoiar o projeto! 🙏
+            </p>
+            <div class="donate-actions">
+                <button class="btn-close-donate" onclick="closeDonateModal()" data-i18n="close-btn">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="addModal">
+        <div class="modal-content">
+            <h2 id="modalTitle" data-i18n="add-music-modal">Adicionar Nova Música</h2>
+            <form id="trackForm">
+                <div class="form-group">
+                    <label data-i18n="music-name">Nome da Música:</label>
+                    <input type="text" id="inputName" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="audio-file">Arquivo de Áudio:</label>
+                    <input type="file" id="inputFile" accept="audio/*" data-i18n-placeholder="choose-file">
+                    <small id="currentFileInfo" style="color: #888; display: none; margin-top: 5px;"></small>
+                </div>
+
+                <!-- VOLUME DA MÚSICA -->
+                <div class="modal-volume-group">
+                    <div class="modal-volume-label">
+                        <span data-i18n="music-volume">🔊 Volume da Música:</span>
+                        <span class="modal-volume-value" id="volumeValueDisplay">100%</span>
+                    </div>
+                    <input type="range" id="inputVolume" class="modal-volume-slider" min="0" max="100" value="100" onchange="updateVolumeDisplay(this.value)">
+                </div>
+                
+                <div class="metronome-toggle">
+                    <input type="checkbox" id="checkMetronome">
+                    <label for="checkMetronome" data-i18n="metronome-mode">🎵 Modo Metrônomo (sem áudio)</label>
+                </div>
+
+                <div class="metronome-controls" id="metronomeControls">
+                    <div class="bpm-input-group">
+                        <label data-i18n="bpm-label">BPM (batidas por minuto):</label>
+                        <input type="number" id="inputBPM" min="40" max="240" value="120">
+                    </div>
+                    <div>
+                        <label data-i18n="output-channel">Canal de Saída:</label>
+                        <div class="channel-selector">
+                            <button type="button" class="channel-btn active" data-channel="left" onclick="selectChannel('left')" data-i18n="left-channel">
+                                Esquerdo (L)
+                            </button>
+                            <button type="button" class="channel-btn" data-channel="right" onclick="selectChannel('right')" data-i18n="right-channel">
+                                Direito (R)
+                            </button>
+                        </div>
+                    </div>
+                    <div style="margin-top: 15px;">
+                        <label style="color: #bb8fce; font-weight: bold; font-size: 13px;">🔊 Som do Metrônomo:</label>
+                        <div class="metronome-sound-selector">
+                            <button type="button" class="sound-btn active" data-sound="click" onclick="selectMetronomeSound('click')">
+                                🔔 Click
+                            </button>
+                            <button type="button" class="sound-btn" data-sound="bell" onclick="selectMetronomeSound('bell')">
+                                🔗 Cowbell
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeModal()" data-i18n="cancel-btn">Cancelar</button>
+                    <button type="submit" class="btn-save" data-i18n="save-btn">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // VARIÁVEIS GLOBAIS
+        // ==========================================
+        const player = document.getElementById('player');
+        const btnPlayPause = document.getElementById('btnPlayPause');
+        const btnStop = document.getElementById('btnStop');
+        const checkAutoPlay = document.getElementById('checkAutoPlay');
+        const checkShowKeys = document.getElementById('checkShowKeys');
+        const modal = document.getElementById('addModal');
+        const trackForm = document.getElementById('trackForm');
+        const setlistSelect = document.getElementById('setlistSelect');
+        const checkMetronome = document.getElementById('checkMetronome');
+        const metronomeControls = document.getElementById('metronomeControls');
+        const inputFile = document.getElementById('inputFile');
+        const inputName = document.getElementById('inputName');
+        const volumeSlider = document.getElementById('volumeSlider');
+
+        let trackList = [];
+        let currentLoadedTrackId = null;
+        let currentButton = null;
+        let isEditMode = false;
+        let editingTrackId = null;
+        let waitingForKeyId = null;
+        let currentVolume = parseFloat(localStorage.getItem('playerVolume')) || 0.7;
+
+        let globalKeys = { stop: null, playpause: null };
+        let setlists = [];
+        let currentSetlistId = null;
+
+        // METRÔNOMO (AGENDADOR PRECISO COM WEB AUDIO API)
+        let audioContext = null;
+        let clickBuffer = null;
+        let bellBuffer = null;
+        let selectedChannel = 'left';
+        let selectedMetronomeSound = 'click'; // 'click' ou 'bell'
+        
+        let isMetronomePlaying = false;
+        let currentBPM = 120;
+        let nextNoteTime = 0.0;
+        let metronomeTimerID = null;
+        const lookahead = 25.0; // ms de intervalo do scheduler
+        const scheduleAheadTime = 0.1; // Segundos agendados no futuro
+
+        // ==========================================
+        // PREENCHIMENTO AUTOMÁTICO DE NOME
+        // ==========================================
+        inputFile.addEventListener('change', (e) => {
+            if (e.target.files.length > 0 && inputName.value.trim() === '') {
+                inputName.value = e.target.files[0].name.replace(/\.[^/.]+$/, "");
+            }
+        });
+
+        // ==========================================
+        // INDEXEDDB
+        // ==========================================
+        let db;
+        const dbName = "BotoeiraDB";
+        const dbVersion = 3;
+
+        const dbRequest = indexedDB.open(dbName, dbVersion);
+        dbRequest.onerror = () => console.error("Erro ao abrir IndexedDB");
+        dbRequest.onsuccess = (event) => {
+            db = event.target.result;
+            loadSetlists();
+        };
+        dbRequest.onupgradeneeded = (event) => {
+            db = event.target.result;
+            if (!db.objectStoreNames.contains('tracks')) {
+                db.createObjectStore('tracks', { keyPath: 'id' });
+            }
+            if (!db.objectStoreNames.contains('setlists')) {
+                db.createObjectStore('setlists', { keyPath: 'id' });
+            }
+        };
+
+        function saveTrackToDB(track) {
+            // Guardamos apenas a estrutura, se houver url, ignoramos no DB pois geramos na hora a partir do blob
+            const trackToSave = { ...track };
+            delete trackToSave.url; 
+            const transaction = db.transaction(['tracks'], 'readwrite');
+            const store = transaction.objectStore('tracks');
+            store.put(trackToSave);
+        }
+
+        function deleteTrackFromDB(id) {
+            const transaction = db.transaction(['tracks'], 'readwrite');
+            const store = transaction.objectStore('tracks');
+            store.delete(id);
+        }
+
+        function loadTracksFromDB(setlistId) {
+            return new Promise((resolve) => {
+                const transaction = db.transaction(['tracks'], 'readonly');
+                const store = transaction.objectStore('tracks');
+                const request = store.getAll();
+                request.onsuccess = () => {
+                    const allTracks = request.result;
+                    const filtered = allTracks.filter(t => t.setlistId === setlistId).map(t => {
+                        // Gera a URL do blob salvo na base
+                        if (t.blob) {
+                            t.url = URL.createObjectURL(t.blob);
+                        }
+                        return t;
+                    });
+                    resolve(filtered);
+                };
+            });
+        }
+
+        function saveSetlistToDB(setlist) {
+            const transaction = db.transaction(['setlists'], 'readwrite');
+            const store = transaction.objectStore('setlists');
+            store.put(setlist);
+        }
+
+        function loadSetlistsFromDB() {
+            return new Promise((resolve) => {
+                const transaction = db.transaction(['setlists'], 'readonly');
+                const store = transaction.objectStore('setlists');
+                const request = store.getAll();
+                request.onsuccess = () => resolve(request.result);
+            });
+        }
+
+        function deleteSetlistFromDB(id) {
+            const transaction = db.transaction(['setlists'], 'readwrite');
+            const store = transaction.objectStore('setlists');
+            store.delete(id);
+        }
+
+        // ==========================================
+        // GERENCIAMENTO DE SETLISTS
+        // ==========================================
+        async function loadSetlists() {
+            setlists = await loadSetlistsFromDB();
+            if (setlists.length === 0) {
+                const defaultSetlist = { id: Date.now(), name: 'Setlist Principal' };
+                setlists.push(defaultSetlist);
+                saveSetlistToDB(defaultSetlist);
+            }
+            
+            const lastUsed = localStorage.getItem('lastSetlistId');
+            currentSetlistId = lastUsed ? parseFloat(lastUsed) : setlists[0].id;
+            
+            // Garantir que a id existe
+            if (!setlists.find(s => s.id === currentSetlistId)) {
+                currentSetlistId = setlists[0].id;
+            }
+            
+            renderSetlistSelector();
+            await loadCurrentSetlist();
+        }
+
+        function renderSetlistSelector() {
+            setlistSelect.innerHTML = '';
+            setlists.forEach(sl => {
+                const opt = document.createElement('option');
+                opt.value = sl.id;
+                opt.textContent = sl.name;
+                if (sl.id === currentSetlistId) opt.selected = true;
+                setlistSelect.appendChild(opt);
+            });
+        }
+
+        setlistSelect.addEventListener('change', async (e) => {
+            stopAudio();
+            currentSetlistId = parseFloat(e.target.value);
+            localStorage.setItem('lastSetlistId', currentSetlistId);
+            await loadCurrentSetlist();
+        });
+
+        async function loadCurrentSetlist() {
+            trackList = await loadTracksFromDB(currentSetlistId);
+            renderGrid();
+        }
+
+        function createNewSetlist() {
+            const promptMsg = translations[currentLanguage]['new-setlist-name'] || 'Nome da nova setlist:';
+            const name = prompt(promptMsg);
+            if (!name || name.trim() === '') return;
+            
+            const newSetlist = { id: Date.now(), name: name.trim() };
+            setlists.push(newSetlist);
+            saveSetlistToDB(newSetlist);
+            currentSetlistId = newSetlist.id;
+            localStorage.setItem('lastSetlistId', currentSetlistId);
+            
+            renderSetlistSelector();
+            loadCurrentSetlist();
+        }
+
+        async function removeCurrentSetlist() {
+            if (setlists.length <= 1) {
+                const msg = translations[currentLanguage]['confirm-delete-setlist'] || 'Você não pode excluir a única Setlist restante!';
+                alert(msg);
+                return;
+            }
+
+            const currentName = setlists.find(s => s.id === currentSetlistId).name;
+            if (confirm(`ATENÇÃO!\n\nTem certeza que deseja excluir a Setlist "${currentName}" e todas as suas músicas?`)) {
+                stopAudio();
+                
+                // Remove as músicas dessa setlist do banco
+                const tracks = await loadTracksFromDB(currentSetlistId);
+                tracks.forEach(t => deleteTrackFromDB(t.id));
+                
+                // Remove a Setlist
+                deleteSetlistFromDB(currentSetlistId);
+                
+                // Atualiza o estado
+                setlists = setlists.filter(s => s.id !== currentSetlistId);
+                currentSetlistId = setlists[0].id;
+                localStorage.setItem('lastSetlistId', currentSetlistId);
+                
+                renderSetlistSelector();
+                await loadCurrentSetlist();
+            }
+        }
+
+        // ==========================================
+        // GERAÇÃO DE SOM DE CLICK PARA METRÔNOMO
+        // ==========================================
+        function initAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                createClickSound();
+                createBellSound();
+            }
+        }
+
+        function createClickSound() {
+            if (!audioContext) return;
+            const sampleRate = audioContext.sampleRate;
+            const duration = 0.05; // 50ms
+            const length = sampleRate * duration;
+            clickBuffer = audioContext.createBuffer(2, length, sampleRate);
+            
+            const channelData = clickBuffer.getChannelData(selectedChannel === 'left' ? 0 : 1);
+            
+            for (let i = 0; i < length; i++) {
+                const envelope = Math.exp(-5 * i / length);
+                channelData[i] = (Math.random() * 2 - 1) * envelope * 0.5;
+            }
+        }
+
+        function createBellSound() {
+            if (!audioContext) return;
+            const sampleRate = audioContext.sampleRate;
+            const duration = 0.25; // 250ms para cowbell
+            const length = sampleRate * duration;
+            bellBuffer = audioContext.createBuffer(2, length, sampleRate);
+            
+            const channelData = bellBuffer.getChannelData(selectedChannel === 'left' ? 0 : 1);
+            
+            // Cowbell - som de instrumento de percussão metálico
+            // Combinação de frequências para som metálico característico
+            const freq1 = 540;   // Frequência fundamental (tom baixo)
+            const freq2 = 800;   // Frequência principal (tom médio)
+            const freq3 = 1350;  // Frequência alta (brilho metálico)
+            const freq4 = 2100;  // Harmônico muito alto (claridade)
+            
+            for (let i = 0; i < length; i++) {
+                const t = i / sampleRate;
+                
+                // Envelope rápido e agressivo para soar como percussão
+                // Ataque rápido, decaimento exponencial
+                const envelope = Math.exp(-13 * t) * (1 - Math.cos(2 * Math.PI * 50 * t * 0.01)) * 0.5;
+                
+                // Combinação de senos para som metálico rico
+                const wave = Math.sin(2 * Math.PI * freq1 * t) * 0.3 +
+                            Math.sin(2 * Math.PI * freq2 * t) * 0.4 +
+                            Math.sin(2 * Math.PI * freq3 * t) * 0.25 +
+                            Math.sin(2 * Math.PI * freq4 * t) * 0.15;
+                
+                // Adiciona um pouco de ruído branco para mais "brilho" metálico
+                const noise = (Math.random() * 2 - 1) * 0.1;
+                
+                channelData[i] = (wave + noise) * envelope * 0.8;
+            }
+        }
+
+        function scheduleNote(time) {
+            const source = audioContext.createBufferSource();
+            
+            if (selectedMetronomeSound === 'bell' && bellBuffer) {
+                source.buffer = bellBuffer;
+            } else {
+                source.buffer = clickBuffer;
+            }
+            
+            source.connect(audioContext.destination);
+            source.start(time);
+        }
+
+        function nextNote() {
+            const secondsPerBeat = 60.0 / currentBPM;
+            nextNoteTime += secondsPerBeat;
+        }
+
+        function metronomeScheduler() {
+            while (nextNoteTime < audioContext.currentTime + scheduleAheadTime) {
+                scheduleNote(nextNoteTime);
+                nextNote();
+            }
+            metronomeTimerID = setTimeout(metronomeScheduler, lookahead);
+        }
+
+        // ==========================================
+        // SELEÇÃO DE CANAL
+        // ==========================================
+        function selectChannel(channel) {
+            selectedChannel = channel;
+            document.querySelectorAll('.channel-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.channel === channel);
+            });
+            if (audioContext) {
+                createClickSound();
+                createBellSound();
+            }
+        }
+
+        function selectMetronomeSound(sound) {
+            selectedMetronomeSound = sound;
+            document.querySelectorAll('.sound-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.sound === sound);
+            });
+        }
+
+        // ==========================================
+        // TOGGLE DO METRÔNOMO NO MODAL
+        // ==========================================
+        checkMetronome.addEventListener('change', (e) => {
+            metronomeControls.classList.toggle('active', e.target.checked);
+            document.getElementById('inputFile').disabled = e.target.checked;
+            document.getElementById('inputFile').required = !e.target.checked && !editingTrackId;
+        });
+
+        // ==========================================
+        // MODAL E FORM
+        // ==========================================
+        function openAddModal() {
+            editingTrackId = null;
+            document.getElementById('modalTitle').innerText = 'Adicionar Nova Música';
+            inputName.value = '';
+            inputFile.value = '';
+            inputFile.required = true;
+            inputFile.disabled = false;
+            document.getElementById('currentFileInfo').style.display = 'none';
+            checkMetronome.checked = false;
+            metronomeControls.classList.remove('active');
+            document.getElementById('inputBPM').value = 120;
+            selectChannel('left');
+            modal.classList.add('open');
+        }
+
+        function openEditModal(id) {
+            const track = trackList.find(t => t.id === id);
+            if (!track) return;
+
+            editingTrackId = id;
+            document.getElementById('modalTitle').innerText = translations[currentLanguage]['edit-music-modal'] || 'Editar Música';
+            inputName.value = track.name;
+            inputFile.required = false;
+            document.getElementById('currentFileInfo').style.display = 'block';
+            
+            // Restaura volume
+            const volume = Math.round((track.volume || 1) * 100);
+            document.getElementById('inputVolume').value = volume;
+            document.getElementById('volumeValueDisplay').innerText = volume + '%';
+            
+            if (track.isMetronome) {
+                checkMetronome.checked = true;
+                metronomeControls.classList.add('active');
+                document.getElementById('inputBPM').value = track.bpm;
+                selectChannel(track.channel);
+                selectMetronomeSound(track.metronomeSound || 'click');
+                inputFile.disabled = true;
+                document.getElementById('currentFileInfo').textContent = `⚙️ Metrônomo: ${track.bpm} BPM no canal ${track.channel === 'left' ? 'Esquerdo' : 'Direito'} (${track.metronomeSound === 'bell' ? 'Cowbell' : 'Click'})`;
+            } else {
+                checkMetronome.checked = false;
+                metronomeControls.classList.remove('active');
+                inputFile.disabled = false;
+                const fileMsg = translations[currentLanguage]['current-file-audio'] || '📁 Áudio atual carregado. Selecione outro para substituir.';
+                document.getElementById('currentFileInfo').textContent = fileMsg;
+            }
+
+            modal.classList.add('open');
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+        }
+
+        function openSettingsModal() {
+            const settingsModal = document.getElementById('settingsModal');
+            settingsModal.classList.add('open');
+        }
+
+        function closeSettingsModal() {
+            const settingsModal = document.getElementById('settingsModal');
+            settingsModal.classList.remove('open');
+        }
+
+        function openAboutModal() {
+            const aboutModal = document.getElementById('aboutModal');
+            aboutModal.classList.add('open');
+        }
+
+        function closeAboutModal() {
+            const aboutModal = document.getElementById('aboutModal');
+            aboutModal.classList.remove('open');
+        }
+
+        function openDonateModal() {
+            const donateModal = document.getElementById('donateModal');
+            donateModal.classList.add('open');
+        }
+
+        function closeDonateModal() {
+            const donateModal = document.getElementById('donateModal');
+            donateModal.classList.remove('open');
+        }
+
+        function copyPixKey() {
+            const pixKey = "seu.email@exemplo.com"; // Substitua com sua chave Pix real
+            navigator.clipboard.writeText(pixKey).then(() => {
+                alert(translations[currentLanguage]['pix-copied'] || 'Chave Pix copiada para a área de transferência!');
+            }).catch(err => {
+                alert(pixKey);
+            });
+        }
+
+        function updateVolumeDisplay(value) {
+            document.getElementById('volumeValueDisplay').innerText = value + '%';
+        }
+
+        trackForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = inputName.value.trim();
+            const isMetronome = checkMetronome.checked;
+
+            if (!name) return;
+
+            let trackData = {
+                name,
+                setlistId: currentSetlistId,
+                isMetronome: isMetronome,
+                keyBinding: null,
+                volume: parseInt(document.getElementById('inputVolume').value) / 100 // Salva volume
+            };
+
+            if (isMetronome) {
+                trackData.bpm = parseInt(document.getElementById('inputBPM').value);
+                trackData.channel = selectedChannel;
+                trackData.metronomeSound = selectedMetronomeSound; // Salva o som escolhido
+                trackData.blob = null;
+                trackData.url = null;
+            } else {
+                if (editingTrackId) {
+                    const existing = trackList.find(t => t.id === editingTrackId);
+                    if (inputFile.files.length > 0) {
+                        trackData.blob = inputFile.files[0];
+                    } else {
+                        trackData.blob = existing.blob; // Mantém o Blob atual
+                    }
+                } else {
+                    if (inputFile.files.length === 0) {
+                        alert('Selecione um arquivo de áudio!');
+                        return;
+                    }
+                    trackData.blob = inputFile.files[0];
+                }
+                
+                // Gera a URL para tocar imediatamente na tela
+                if(trackData.blob) {
+                    trackData.url = URL.createObjectURL(trackData.blob);
+                }
+            }
+
+            if (editingTrackId) {
+                trackData.id = editingTrackId;
+                const existing = trackList.find(t => t.id === editingTrackId);
+                trackData.keyBinding = existing.keyBinding;
+                trackData.order = existing.order;
+                const index = trackList.findIndex(t => t.id === editingTrackId);
+                trackList[index] = trackData;
+            } else {
+                trackData.id = Date.now();
+                trackData.order = trackList.length;
+                trackList.push(trackData);
+            }
+
+            saveTrackToDB(trackData);
+            closeModal();
+            renderGrid();
+        });
+
+        // ==========================================
+        // MODO EDIÇÃO
+        // ==========================================
+        checkShowKeys.addEventListener('change', () => {
+            renderGrid();
+            updateGlobalBadges();
+        });
+
+        function updateGlobalBadges() {
+            const show = checkShowKeys.checked;
+            const stopBadge = document.getElementById('stopKeyBadge');
+            const playPauseBadge = document.getElementById('playPauseKeyBadge');
+
+            if (show && globalKeys.stop) {
+                stopBadge.innerText = globalKeys.stop;
+                stopBadge.style.display = 'block';
+            } else {
+                stopBadge.style.display = 'none';
+            }
+
+            if (show && globalKeys.playpause) {
+                playPauseBadge.innerText = globalKeys.playpause;
+                playPauseBadge.style.display = 'block';
+            } else {
+                playPauseBadge.style.display = 'none';
+            }
+        }
+
+        globalKeys.stop = localStorage.getItem('botoeira_key_stop') || null;
+        globalKeys.playpause = localStorage.getItem('botoeira_key_playpause') || null;
+        updateGlobalBadges();
+
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            const btn = document.getElementById('btnEditMode');
+            btn.classList.toggle('active', isEditMode);
+            
+            const mapStopBtn = document.getElementById('mapStopKeyBtn');
+            const mapPlayBtn = document.getElementById('mapPlayKeyBtn');
+            
+            if (isEditMode) {
+                btn.innerText = translations[currentLanguage]['exit-edit-mode'] || 'Sair do Modo Edição';
+                mapStopBtn.style.display = 'block';
+                mapPlayBtn.style.display = 'block';
+            } else {
+                btn.innerText = translations[currentLanguage]['edit-mode'] || 'Modo Edição';
+                mapStopBtn.style.display = 'none';
+                mapPlayBtn.style.display = 'none';
+            }
+            
+            renderGrid();
+        }
+
+        function renderGrid() {
+            const container = document.getElementById('botoeira');
+            container.innerHTML = '';
+
+            trackList.forEach(track => {
+                const btn = document.createElement('div');
+                btn.className = 'btn-track';
+                btn.dataset.id = track.id;
+
+                if (isEditMode) {
+                    btn.classList.add('edit-mode');
+                    btn.draggable = true;
+                    btn.addEventListener('dragstart', handleDragStart);
+                    btn.addEventListener('dragover', handleDragOver);
+                    btn.addEventListener('dragleave', handleDragLeave);
+                    btn.addEventListener('drop', handleDrop);
+                } else {
+                    btn.addEventListener('click', () => selectOrPlayTrack(track, btn));
+                }
+
+                const nameSpan = document.createElement('span');
+                nameSpan.innerText = track.name;
+                btn.appendChild(nameSpan);
+
+                // Ícone de reorder em modo edição
+                if (isEditMode) {
+                    const reorderIcon = document.createElement('div');
+                    reorderIcon.className = 'reorder-icon';
+                    reorderIcon.innerHTML = '☰ Arrastar';
+                    btn.insertBefore(reorderIcon, btn.firstChild);
+                }
+
+                if (track.isMetronome) {
+                    const metroIcon = document.createElement('div');
+                    metroIcon.className = 'metronome-icon';
+                    metroIcon.innerText = `♩ ${track.bpm}`;
+                    metroIcon.title = `Metrônomo ${track.bpm} BPM - Canal ${track.channel === 'left' ? 'L' : 'R'}`;
+                    btn.appendChild(metroIcon);
+                }
+
+                if (checkShowKeys.checked && track.keyBinding) {
+                    const badge = document.createElement('div');
+                    badge.className = 'key-badge';
+                    badge.innerText = track.keyBinding;
+                    btn.appendChild(badge);
+                }
+
+                if (isEditMode) {
+                    const controls = document.createElement('div');
+                    controls.className = 'track-controls';
+
+                    const btnEdit = document.createElement('button');
+                    btnEdit.className = 'btn-icon edit';
+                    btnEdit.innerText = '✏️ Editar';
+                    btnEdit.onclick = (e) => { e.stopPropagation(); openEditModal(track.id); };
+
+                    const btnKey = document.createElement('button');
+                    btnKey.className = 'btn-icon key';
+                    btnKey.id = `mapKeyBtn_${track.id}`;
+                    btnKey.innerText = 'Mapear Tecla';
+                    btnKey.onclick = (e) => startKeyMapping(track.id, e);
+
+                    const btnDel = document.createElement('button');
+                    btnDel.className = 'btn-icon delete';
+                    btnDel.innerText = '🗑️';
+                    btnDel.onclick = (e) => removeTrack(track.id, e);
+
+                    controls.appendChild(btnEdit);
+                    controls.appendChild(btnKey);
+                    controls.appendChild(btnDel);
+                    btn.appendChild(controls);
+                }
+
+                if (currentLoadedTrackId === track.id) {
+                    if ((track.isMetronome && !isMetronomePlaying) || (!track.isMetronome && player.paused)) {
+                        btn.classList.add('paused');
+                    } else {
+                        btn.classList.add('playing');
+                    }
+                }
+
+                container.appendChild(btn);
+            });
+            
+            if (isEditMode) {
+                // Atualiza ordens no DB
+                trackList.forEach((track, idx) => {
+                    if(track.order !== idx) {
+                        track.order = idx;
+                        saveTrackToDB(track);
+                    }
+                });
+            }
+        }
+
+        function removeTrack(id, event) {
+            event.stopPropagation();
+            const confirmMsg = translations[currentLanguage]['confirm-delete'] || 'Tem certeza que deseja remover este botão?';
+            if(confirm(confirmMsg)) {
+                trackList = trackList.filter(t => t.id !== id);
+                deleteTrackFromDB(id);
+                if (currentLoadedTrackId === id) stopAudio(); 
+                renderGrid();
+            }
+        }
+
+        function startKeyMapping(targetId, event) {
+            if (event) event.stopPropagation();
+            waitingForKeyId = targetId;
+            
+            document.querySelectorAll('.btn-map-key').forEach(b => {
+                const i18nKey = b.getAttribute('data-i18n');
+                const newText = translations[currentLanguage][i18nKey] || translations['pt-BR'][i18nKey];
+                b.innerText = newText;
+                b.classList.remove('waiting');
+            });
+            
+            if (targetId === 'stop') {
+                const btn = document.getElementById('mapStopKeyBtn');
+                btn.innerText = translations[currentLanguage]['waiting-key'] || 'Aguardando... (ESC p/ limpar)';
+                btn.classList.add('waiting');
+            } else if (targetId === 'playpause') {
+                const btn = document.getElementById('mapPlayKeyBtn');
+                btn.innerText = translations[currentLanguage]['waiting-key'] || 'Aguardando... (ESC p/ limpar)';
+                btn.classList.add('waiting');
+            } else {
+                const btn = document.getElementById(`mapKeyBtn_${targetId}`);
+                if (btn) {
+                    btn.innerText = translations[currentLanguage]['waiting-key'] || 'Aguardando... (ESC p/ limpar)';
+                    btn.classList.add('waiting');
+                }
+            }
+        }
+
+        // CAPTURADOR GLOBAL DE TECLAS
+        document.addEventListener('keydown', (e) => {
+            if (waitingForKeyId !== null) {
+                e.preventDefault();
+                const pressedKey = e.key === 'Escape' ? null : (e.key === ' ' ? 'ESPAÇO' : e.key.toUpperCase());
+                
+                if (waitingForKeyId === 'stop' || waitingForKeyId === 'playpause') {
+                    globalKeys[waitingForKeyId] = pressedKey;
+                    if (pressedKey) {
+                        localStorage.setItem(`botoeira_key_${waitingForKeyId}`, pressedKey);
+                    } else {
+                        localStorage.removeItem(`botoeira_key_${waitingForKeyId}`);
+                    }
+                    updateGlobalBadges();
+                } else {
+                    const track = trackList.find(t => t.id === waitingForKeyId);
+                    if (track) {
+                        track.keyBinding = pressedKey;
+                        saveTrackToDB(track);
+                        renderGrid();
+                    }
+                }
+                waitingForKeyId = null;
+                
+                document.querySelectorAll('.btn-map-key.waiting').forEach(b => {
+                    b.classList.remove('waiting');
+                });
+                if(waitingForKeyId === 'stop' || waitingForKeyId === 'playpause') updateGlobalBadges();
+                return;
+            }
+
+            if (!isEditMode && !modal.classList.contains('open')) {
+                const pressedKey = e.key === ' ' ? 'ESPAÇO' : e.key.toUpperCase();
+                
+                if (pressedKey === globalKeys.stop) {
+                    e.preventDefault();
+                    stopAudio();
+                    return;
+                }
+                if (pressedKey === globalKeys.playpause) {
+                    e.preventDefault();
+                    togglePlayPause();
+                    return;
+                }
+
+                const trackToPlay = trackList.find(t => t.keyBinding === pressedKey);
+                if (trackToPlay) {
+                    e.preventDefault(); 
+                    const btnElement = document.querySelector(`.btn-track[data-id="${trackToPlay.id}"]`);
+                    selectOrPlayTrack(trackToPlay, btnElement);
+                }
+            }
+        });
+
+        // ==========================================
+        // LÓGICA DE ARRASTAR E SOLTAR
+        // ==========================================
+        let draggedItemId = null;
+        function handleDragStart(e) {
+            if (!isEditMode) return;
+            draggedItemId = parseFloat(this.dataset.id);
+            this.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.innerHTML);
+        }
+        function handleDragOver(e) {
+            if (!isEditMode) return;
+            e.preventDefault();
+            const targetId = parseFloat(this.dataset.id);
+            if (draggedItemId !== targetId) {
+                this.classList.add('drag-over');
+            }
+            e.dataTransfer.dropEffect = 'move';
+        }
+        function handleDragLeave(e) {
+            if (!isEditMode) return;
+            this.classList.remove('drag-over');
+        }
+        function handleDragEnd(e) {
+            if (!isEditMode) return;
+            document.querySelectorAll('.btn-track').forEach(btn => {
+                btn.classList.remove('dragging');
+                btn.classList.remove('drag-over');
+            });
+        }
+        function handleDrop(e) {
+            if (!isEditMode) return;
+            e.preventDefault();
+            e.stopPropagation();
+            this.classList.remove('drag-over');
+
+            const targetId = parseFloat(this.dataset.id);
+            if (draggedItemId === targetId) {
+                draggedItemId = null;
+                return;
+            }
+
+            const draggedIndex = trackList.findIndex(t => t.id === draggedItemId);
+            const targetIndex = trackList.findIndex(t => t.id === targetId);
+
+            if (draggedIndex !== -1 && targetIndex !== -1) {
+                const [draggedItem] = trackList.splice(draggedIndex, 1);
+                trackList.splice(targetIndex, 0, draggedItem);
+                renderGrid();
+            }
+            
+            draggedItemId = null;
+        }
+
+        // ==========================================
+        // PLAYER E DISPLAY
+        // ==========================================
+        function handleStopClick() {
+            if (isEditMode) return;
+            stopAudio();
+        }
+
+        function handlePlayPauseClick() {
+            if (isEditMode) return;
+            togglePlayPause();
+        }
+
+        function selectOrPlayTrack(track, btnElement) {
+            if (track.isMetronome) {
+                if (currentLoadedTrackId === track.id) {
+                    toggleMetronome();
+                    return;
+                }
+
+                stopAudio(); 
+                
+                currentLoadedTrackId = track.id;
+                document.getElementById('currentTrackName').innerText = `♩ ${track.name} (${track.bpm} BPM)`;
+                
+                document.querySelectorAll('.btn-track').forEach(b => {
+                    b.classList.remove('playing');
+                    b.classList.remove('paused');
+                });
+                currentButton = btnElement;
+
+                initAudioContext();
+                selectedChannel = track.channel;
+                selectedMetronomeSound = track.metronomeSound || 'click'; // Carrega som escolhido
+                createClickSound();
+                createBellSound();
+
+                if (checkAutoPlay.checked) {
+                    startMetronome(track.bpm);
+                    btnElement.classList.add('playing');
+                    setMainButtonState('playing');
+                } else {
+                    btnElement.classList.add('paused');
+                    setMainButtonState('paused');
+                }
+
+                document.getElementById('timeCurrent').innerText = "--:--";
+                document.getElementById('timeRemaining').innerText = "---";
+                document.getElementById('timeTotal').innerText = "--:--";
+                
+                return;
+            }
+
+            // Áudio Normal
+            if (currentLoadedTrackId === track.id) {
+                togglePlayPause(); 
+                return;
+            }
+
+            stopAudio();
+
+            player.src = track.url;
+            player.volume = track.volume || 1; // Aplica volume individual
+            currentLoadedTrackId = track.id;
+            document.getElementById('currentTrackName').innerText = track.name;
+            
+            document.querySelectorAll('.btn-track').forEach(b => {
+                b.classList.remove('playing');
+                b.classList.remove('paused');
+            });
+            currentButton = btnElement;
+
+            if (checkAutoPlay.checked) {
+                player.play().catch(e => console.error("Erro no áudio", e));
+                btnElement.classList.add('playing');
+                setMainButtonState('playing');
+            } else {
+                btnElement.classList.add('paused'); 
+                setMainButtonState('paused');
+            }
+            
+            updateTimeDisplay(); 
+        }
+
+        function togglePlayPause() {
+            if (!currentLoadedTrackId) return;
+
+            const currentTrack = trackList.find(t => t.id === currentLoadedTrackId);
+            
+            if (currentTrack && currentTrack.isMetronome) {
+                toggleMetronome();
+                return;
+            }
+
+            if (!player.src) return;
+
+            if (player.paused) {
+                player.play();
+                if(currentButton) {
+                    currentButton.classList.remove('paused');
+                    currentButton.classList.add('playing');
+                }
+                setMainButtonState('playing');
+            } else {
+                player.pause();
+                if(currentButton) {
+                    currentButton.classList.remove('playing');
+                    currentButton.classList.add('paused');
+                }
+                setMainButtonState('paused');
+            }
+        }
+
+        function startMetronome(bpm) {
+            currentBPM = bpm;
+            if (isMetronomePlaying) return;
+            initAudioContext(); 
+            if(audioContext.state === 'suspended') audioContext.resume();
+            
+            isMetronomePlaying = true;
+            nextNoteTime = audioContext.currentTime + 0.05; 
+            metronomeScheduler();
+        }
+
+        function stopMetronome() {
+            isMetronomePlaying = false;
+            if (metronomeTimerID) {
+                clearTimeout(metronomeTimerID);
+                metronomeTimerID = null;
+            }
+        }
+
+        function toggleMetronome() {
+            const currentTrack = trackList.find(t => t.id === currentLoadedTrackId);
+            if (!currentTrack || !currentTrack.isMetronome) return;
+
+            if (isMetronomePlaying) {
+                stopMetronome();
+                if(currentButton) {
+                    currentButton.classList.remove('playing');
+                    currentButton.classList.add('paused');
+                }
+                setMainButtonState('paused');
+            } else {
+                startMetronome(currentTrack.bpm);
+                if(currentButton) {
+                    currentButton.classList.remove('paused');
+                    currentButton.classList.add('playing');
+                }
+                setMainButtonState('playing');
+            }
+        }
+
+        function stopAudio() {
+            if (!currentLoadedTrackId) return;
+
+            const currentTrack = trackList.find(t => t.id === currentLoadedTrackId);
+            
+            if (currentTrack && currentTrack.isMetronome) {
+                stopMetronome();
+            } else {
+                player.pause();
+                player.currentTime = 0;
+            }
+            
+            if(currentButton) {
+                currentButton.classList.remove('playing');
+                currentButton.classList.add('paused'); 
+            }
+            
+            setMainButtonState('paused');
+            
+            if (currentTrack && currentTrack.isMetronome) {
+                document.getElementById('timeCurrent').innerText = "--:--";
+                document.getElementById('timeRemaining').innerText = "---";
+                document.getElementById('timeTotal').innerText = "--:--";
+            } else {
+                updateTimeDisplay();
+            }
+        }
+        
+        function setMainButtonState(state) {
+            if (state === 'playing') {
+                btnPlayPause.innerText = "PAUSAR";
+                btnPlayPause.classList.add('playing-state');
+            } else {
+                btnPlayPause.innerText = "TOCAR";
+                btnPlayPause.classList.remove('playing-state');
+            }
+        }
+
+        function formatTime(seconds) {
+            if (isNaN(seconds) || !isFinite(seconds)) return "00:00";
+            const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const s = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function updateTimeDisplay() {
+            const current = player.currentTime;
+            const total = player.duration || 0; 
+            const remaining = total > 0 ? total - current : 0;
+
+            document.getElementById('timeCurrent').innerText = formatTime(current);
+            document.getElementById('timeRemaining').innerText = "-" + formatTime(remaining);
+            document.getElementById('timeTotal').innerText = formatTime(total);
+        }
+
+        player.addEventListener('timeupdate', updateTimeDisplay);
+        player.addEventListener('loadedmetadata', updateTimeDisplay); 
+
+        player.addEventListener('ended', () => {
+            if(currentButton) {
+                currentButton.classList.remove('playing');
+                currentButton.classList.remove('paused');
+            }
+            currentLoadedTrackId = null; 
+            setMainButtonState('paused');
+            
+            document.getElementById('timeCurrent').innerText = "00:00";
+            document.getElementById('timeRemaining').innerText = "-00:00";
+            document.getElementById('timeTotal').innerText = "00:00";
+            document.getElementById('currentTrackName').innerText = "Parado";
+        });
+
+        // ==========================================
+        // SISTEMA DE TRADUÇÃO MULTILÍNGUE
+        // ==========================================
+        const translations = {
+            'pt-BR': {
+                'app-title': 'LIVE SHOW',
+                'new-setlist': '+ Nova Setlist',
+                'language': '🌐 Idioma:',
+                'auto-play': 'Auto-play',
+                'show-keys': 'Mostrar Teclas',
+                'add-button': '+ Adicionar',
+                'edit-mode': 'Modo Edição',
+                'exit-edit-mode': 'Sair do Modo Edição',
+                'current-time': 'Tempo Atual',
+                'total-time': 'Total',
+                'remaining-time': 'Restante',
+                'stop-btn': 'PARAR',
+                'play-pause-btn': 'TOCAR',
+                'pause-btn': 'PAUSAR',
+                'map-stop-key': 'Mapear Tecla PARAR',
+                'map-play-key': 'Mapear Tecla TOCAR',
+                'add-music': 'Adicionar Nova Música',
+                'edit-music': 'Editar Música',
+                'music-name': 'Nome da Música:',
+                'audio-file': 'Arquivo de Áudio:',
+                'metronome-mode': '🎵 Modo Metrônomo (sem áudio)',
+                'bpm-label': 'BPM (batidas por minuto):',
+                'output-channel': 'Canal de Saída:',
+                'left-channel': 'Esquerdo (L)',
+                'right-channel': 'Direito (R)',
+                'edit-btn': '✏️ Editar',
+                'map-key-btn': 'Mapear Tecla',
+                'delete-btn': '🗑️',
+                'cancel-btn': 'Cancelar',
+                'save-btn': 'Salvar',
+                'stopped': 'Parado',
+                'confirm-delete': 'Tem certeza que deseja remover este botão?',
+                'waiting-key': 'Aguardando... (ESC p/ limpar)',
+                'current-file': '📁 Áudio atual carregado',
+                'metronome-file': '⚙️ Metrônomo:',
+                'select-audio': 'Selecione um arquivo de áudio!',
+                'enter-name': 'Digite um nome para a música!',
+                'reorder': '☰ Arrastar',
+                'settings-title': '⚙️ Configurações',
+                'close-settings': 'Fechar',
+                'new-setlist-name': 'Nome da nova setlist:',
+                'confirm-delete-setlist': 'Tem certeza que deseja excluir esta setlist?',
+                'about-btn': 'ℹ️ Sobre',
+                'donate-btn': '❤️ Doação',
+                'about-title': 'ℹ️ Sobre o LIVE SHOW',
+                'about-description': 'O LIVE SHOW é um aplicativo web profissional desenvolvido para musicos, bandas e produtores de shows ao vivo. Oferece um controle preciso de áudio durante apresentações, com suporte a metrônomo sincronizado e múltiplas setlists.',
+                'about-features': 'Recursos principais: Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e sincronização com IndexedDB.',
+                'version-label': 'Versão:',
+                'developed-by': 'Desenvolvido por:',
+                'tagline': 'Sua música, nosso palco, seu show!',
+                'donate-title': '❤️ Apoie o Desenvolvimento',
+                'donate-description': 'Suas doações ajudam a manter o LIVE SHOW ativo e melhorado constantemente!',
+                'donate-info': 'Escolha sua plataforma de doação preferida:',
+                'paypal-donate': '💳 PayPal',
+                'coffee-donate': '☕ Buy Me a Coffee',
+                'patreon-donate': '🎁 Patreon',
+                'pix-donate': '🔑 Pix (BR)',
+                'donate-thanks': 'Muito obrigado por apoiar o projeto! 🙏',
+                'close-btn': 'Fechar',
+                'pix-copied': 'Chave Pix copiada para a área de transferência!',
+                'volume-label': '🔊 Volume:',
+                'add-music-modal': 'Adicionar Nova Música',
+                'music-volume': '🔊 Volume da Música:',
+                'choose-file': 'Escolher arquivo',
+                'current-file-audio': '📁 Áudio atual carregado. Selecione outro para substituir.'
+            },
+            'en-US': {
+                'app-title': 'LIVE SHOW',
+                'new-setlist': '+ New Setlist',
+                'language': '🌐 Language:',
+                'auto-play': 'Auto-play',
+                'show-keys': 'Show Keys',
+                'add-button': '+ Add',
+                'edit-mode': 'Edit Mode',
+                'exit-edit-mode': 'Exit Edit Mode',
+                'current-time': 'Current Time',
+                'total-time': 'Total',
+                'remaining-time': 'Remaining',
+                'stop-btn': 'STOP',
+                'play-pause-btn': 'PLAY',
+                'pause-btn': 'PAUSE',
+                'map-stop-key': 'Map STOP Key',
+                'map-play-key': 'Map PLAY Key',
+                'add-music': 'Add New Music',
+                'edit-music': 'Edit Music',
+                'music-name': 'Music Name:',
+                'audio-file': 'Audio File:',
+                'metronome-mode': '🎵 Metronome Mode (no audio)',
+                'bpm-label': 'BPM (beats per minute):',
+                'output-channel': 'Output Channel:',
+                'left-channel': 'Left (L)',
+                'right-channel': 'Right (R)',
+                'edit-btn': '✏️ Edit',
+                'map-key-btn': 'Map Key',
+                'delete-btn': '🗑️',
+                'cancel-btn': 'Cancel',
+                'save-btn': 'Save',
+                'stopped': 'Stopped',
+                'confirm-delete': 'Are you sure you want to remove this button?',
+                'waiting-key': 'Waiting... (ESC to clear)',
+                'current-file': '📁 Current audio loaded',
+                'metronome-file': '⚙️ Metronome:',
+                'select-audio': 'Select an audio file!',
+                'enter-name': 'Enter a name for the music!',
+                'reorder': '☰ Drag',
+                'settings-title': '⚙️ Settings',
+                'close-settings': 'Close',
+                'new-setlist-name': 'New setlist name:',
+                'confirm-delete-setlist': 'Are you sure you want to delete this setlist?',
+                'about-btn': 'ℹ️ About',
+                'donate-btn': '❤️ Donate',
+                'about-title': 'ℹ️ About LIVE SHOW',
+                'about-description': 'LIVE SHOW is a professional web application developed for musicians, bands and live show producers. It offers precise audio control during performances, with synchronized metronome support and multiple setlists.',
+                'about-features': 'Main features: Multi-track playback, metronome with adjustable BPM, key mapping, multilingual interface and IndexedDB synchronization.',
+                'version-label': 'Version:',
+                'developed-by': 'Developed by:',
+                'tagline': 'Your music, our stage, your show!',
+                'donate-title': '❤️ Support Development',
+                'donate-description': 'Your donations help keep LIVE SHOW active and constantly improved!',
+                'donate-info': 'Choose your preferred donation platform:',
+                'paypal-donate': '💳 PayPal',
+                'coffee-donate': '☕ Buy Me a Coffee',
+                'patreon-donate': '🎁 Patreon',
+                'pix-donate': '🔑 Pix (BR)',
+                'donate-thanks': 'Thank you very much for supporting the project! 🙏',
+                'close-btn': 'Close',
+                'pix-copied': 'Pix key copied to clipboard!',
+                'volume-label': '🔊 Volume:',
+                'add-music-modal': 'Add New Music',
+                'music-volume': '🔊 Music Volume:',
+                'choose-file': 'Choose file',
+                'current-file-audio': '📁 Current audio loaded. Select another to replace.'
+            },
+            'es-ES': {
+                'app-title': 'LIVE SHOW',
+                'new-setlist': '+ Nueva Lista',
+                'language': '🌐 Idioma:',
+                'auto-play': 'Reproducción Auto.',
+                'show-keys': 'Mostrar Teclas',
+                'add-button': '+ Añadir',
+                'edit-mode': 'Modo Edición',
+                'exit-edit-mode': 'Salir Modo Edición',
+                'current-time': 'Tiempo Actual',
+                'total-time': 'Total',
+                'remaining-time': 'Restante',
+                'stop-btn': 'PARAR',
+                'play-pause-btn': 'REPRODUCIR',
+                'pause-btn': 'PAUSAR',
+                'map-stop-key': 'Asignar Tecla PARAR',
+                'map-play-key': 'Asignar Tecla REPRODUCIR',
+                'add-music': 'Añadir Nueva Música',
+                'edit-music': 'Editar Música',
+                'music-name': 'Nombre de la Música:',
+                'audio-file': 'Archivo de Audio:',
+                'metronome-mode': '🎵 Modo Metrónomo (sin audio)',
+                'bpm-label': 'BPM (golpes por minuto):',
+                'output-channel': 'Canal de Salida:',
+                'left-channel': 'Izquierdo (L)',
+                'right-channel': 'Derecho (R)',
+                'edit-btn': '✏️ Editar',
+                'map-key-btn': 'Asignar Tecla',
+                'delete-btn': '🗑️',
+                'cancel-btn': 'Cancelar',
+                'save-btn': 'Guardar',
+                'stopped': 'Detenido',
+                'confirm-delete': '¿Estás seguro de que deseas eliminar este botón?',
+                'waiting-key': 'Esperando... (ESC para limpiar)',
+                'current-file': '📁 Audio actual cargado',
+                'metronome-file': '⚙️ Metrónomo:',
+                'select-audio': '¡Selecciona un archivo de audio!',
+                'enter-name': '¡Introduce un nombre para la música!',
+                'reorder': '☰ Arrastrar',
+                'settings-title': '⚙️ Configuración',
+                'close-settings': 'Cerrar',
+                'new-setlist-name': 'Nombre de la nueva lista:',
+                'confirm-delete-setlist': '¿Estás seguro de que deseas eliminar esta lista?',
+                'about-btn': 'ℹ️ Acerca',
+                'donate-btn': '❤️ Donar',
+                'about-title': 'ℹ️ Acerca de LIVE SHOW',
+                'about-description': 'LIVE SHOW es una aplicación web profesional desarrollada para músicos, bandas y productores de espectáculos en vivo. Ofrece control de audio preciso durante las presentaciones, con soporte de metrónomo sincronizado y múltiples listas.',
+                'about-features': 'Características principales: Reproducción multisectorial, metrónomo con BPM ajustable, mapeo de teclas, interfaz multilingüe y sincronización con IndexedDB.',
+                'version-label': 'Versión:',
+                'developed-by': 'Desarrollado por:',
+                'tagline': '¡Tu música, nuestro escenario, tu espectáculo!',
+                'donate-title': '❤️ Apoye el Desarrollo',
+                'donate-description': '¡Sus donaciones ayudan a mantener LIVE SHOW activo y mejorando constantemente!',
+                'donate-info': 'Elige tu plataforma de donación preferida:',
+                'paypal-donate': '💳 PayPal',
+                'coffee-donate': '☕ Buy Me a Coffee',
+                'patreon-donate': '🎁 Patreon',
+                'pix-donate': '🔑 Pix (BR)',
+                'donate-thanks': '¡Muchas gracias por apoyar el proyecto! 🙏',
+                'close-btn': 'Cerrar',
+                'pix-copied': '¡Clave Pix copiada al portapapeles!',
+                'volume-label': '🔊 Volumen:',
+                'add-music-modal': 'Añadir Nueva Música',
+                'music-volume': '🔊 Volumen de Música:',
+                'choose-file': 'Elegir archivo',
+                'current-file-audio': '📁 Audio actual cargado. Selecciona otro para reemplazar.'
+            },
+            'fr-FR': {
+                'app-title': 'LIVE SHOW',
+                'new-setlist': '+ Nouvelle Liste',
+                'language': '🌐 Langue:',
+                'auto-play': 'Lecture Auto',
+                'show-keys': 'Afficher Touches',
+                'add-button': '+ Ajouter',
+                'edit-mode': 'Mode Édition',
+                'exit-edit-mode': 'Quitter Mode Édition',
+                'current-time': 'Temps Actuel',
+                'total-time': 'Total',
+                'remaining-time': 'Restant',
+                'stop-btn': 'ARRÊTER',
+                'play-pause-btn': 'LIRE',
+                'pause-btn': 'PAUSE',
+                'map-stop-key': 'Assigner Touche ARRÊTER',
+                'map-play-key': 'Assigner Touche LIRE',
+                'add-music': 'Ajouter Nouvelle Musique',
+                'edit-music': 'Éditer Musique',
+                'music-name': 'Nom de la Musique:',
+                'audio-file': 'Fichier Audio:',
+                'metronome-mode': '🎵 Mode Métronome (sans audio)',
+                'bpm-label': 'BPM (battements par minute):',
+                'output-channel': 'Canal de Sortie:',
+                'left-channel': 'Gauche (L)',
+                'right-channel': 'Droit (R)',
+                'edit-btn': '✏️ Éditer',
+                'map-key-btn': 'Assigner Touche',
+                'delete-btn': '🗑️',
+                'cancel-btn': 'Annuler',
+                'save-btn': 'Enregistrer',
+                'stopped': 'Arrêté',
+                'confirm-delete': 'Êtes-vous sûr de vouloir supprimer ce bouton?',
+                'waiting-key': 'En attente... (ESC pour effacer)',
+                'current-file': '📁 Audio actuel chargé',
+                'metronome-file': '⚙️ Métronome:',
+                'select-audio': 'Sélectionnez un fichier audio!',
+                'enter-name': 'Entrez un nom pour la musique!',
+                'reorder': '☰ Glisser',
+                'settings-title': '⚙️ Paramètres',
+                'close-settings': 'Fermer',
+                'new-setlist-name': 'Nom de la nouvelle liste:',
+                'confirm-delete-setlist': 'Êtes-vous sûr de vouloir supprimer cette liste?',
+                'about-btn': 'ℹ️ À Propos',
+                'donate-btn': '❤️ Donner',
+                'about-title': 'ℹ️ À Propos de LIVE SHOW',
+                'about-description': 'LIVE SHOW est une application web professionnelle développée pour les musiciens, les groupes et les producteurs de spectacles en direct. Il offre un contrôle audio précis lors de performances, avec support de métronome synchronisé et plusieurs listes.',
+                'about-features': 'Caractéristiques principales: Lecture multi-piste, métronome avec BPM ajustable, mappage des touches, interface multilingue et synchronisation IndexedDB.',
+                'version-label': 'Version:',
+                'developed-by': 'Développé par:',
+                'tagline': 'Votre musique, notre scène, votre spectacle!',
+                'donate-title': '❤️ Soutenir le Développement',
+                'donate-description': 'Vos dons aident à maintenir LIVE SHOW actif et constamment amélioré!',
+                'donate-info': 'Choisissez votre plateforme de don préférée:',
+                'paypal-donate': '💳 PayPal',
+                'coffee-donate': '☕ Buy Me a Coffee',
+                'patreon-donate': '🎁 Patreon',
+                'pix-donate': '🔑 Pix (BR)',
+                'donate-thanks': 'Merci beaucoup de soutenir le projet! 🙏',
+                'close-btn': 'Fermer',
+                'pix-copied': 'Clé Pix copiée dans le presse-papiers!',
+                'volume-label': '🔊 Volume:',
+                'add-music-modal': 'Ajouter Nouvelle Musique',
+                'music-volume': '🔊 Volume de la Musique:',
+                'choose-file': 'Choisir un fichier',
+                'current-file-audio': '📁 Audio actuel chargé. Sélectionnez un autre pour remplacer.'
+            }
+        };
+
+        let currentLanguage = localStorage.getItem('language') || 'pt-BR';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            updateLanguage();
+        }
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const text = translations[currentLanguage]?.[key] || translations['pt-BR'][key];
+                
+                if (el.tagName === 'LABEL') {
+                    // Para labels que envolvem inputs
+                    if (el.querySelector('input')) {
+                        el.childNodes[0].textContent = text + ' ';
+                    } else {
+                        // Para labels simples
+                        el.innerText = text;
+                    }
+                } else if (el.tagName === 'BUTTON') {
+                    // Para botões
+                    el.innerText = text;
+                } else {
+                    // Para outros elementos
+                    el.innerText = text;
+                }
+            });
+            
+            // Atualizar atributos de placeholder e title
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                const text = translations[currentLanguage]?.[key] || translations['pt-BR'][key];
+                el.placeholder = text;
+            });
+        }
+
+        document.getElementById('languageSelect').value = currentLanguage;
+        updateLanguage();
+
+        // ==========================================
+        // CONTROLE DE VOLUME
+        // ==========================================
+        // ==========================================
+    </script>
+</body>
+</html>
