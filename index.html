@@ -872,15 +872,15 @@
             }
             
             .time-value.large {
-                font-size: 32px;
+                font-size: 36px;
             }
             
             .time-value.small {
-                font-size: 22px;
+                font-size: 24px;
             }
             
             .time-value.remaining {
-                font-size: 32px;
+                font-size: 36px;
             }
         }
         
@@ -921,15 +921,15 @@
             }
             
             .time-value.large {
-                font-size: 22px;
+                font-size: 26px;
             }
             
             .time-value.small {
-                font-size: 16px;
+                font-size: 18px;
             }
             
             .time-value.remaining {
-                font-size: 22px;
+                font-size: 26px;
             }
         }
         
@@ -998,6 +998,41 @@
         .btn-play-pause { background-color: #f39c12; }
         .btn-play-pause:hover { background-color: #f1c40f; color: #000; }
         .btn-play-pause.playing-state { background-color: #00b894; color: #000; }
+
+        /* RESPONSIVIDADE DOS BOTÕES */
+        @media (max-width: 768px) {
+            .btn-control {
+                padding: 12px 30px;
+                font-size: 16px;
+                min-width: 160px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .controls {
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+            
+            .btn-control {
+                padding: 10px 20px;
+                font-size: 14px;
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .controls {
+                gap: 8px;
+                margin-bottom: 15px;
+            }
+            
+            .btn-control {
+                padding: 8px 15px;
+                font-size: 12px;
+                min-width: 100px;
+            }
+        }
 
         /* GRID DA BOTOEIRA */
         .botoeira-grid {
@@ -1430,6 +1465,121 @@
         }
         .btn-save:hover { background-color: #74b9ff; }
 
+        /* RESPONSIVIDADE DO MODAL */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            .modal-content h2 {
+                margin-bottom: 20px;
+                font-size: 20px;
+            }
+            
+            .form-group {
+                margin-bottom: 15px;
+            }
+            
+            .form-group label {
+                font-size: 14px;
+                margin-bottom: 6px;
+            }
+            
+            .form-group input[type="text"],
+            .form-group input[type="number"] {
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .modal-actions {
+                gap: 10px;
+                margin-top: 20px;
+            }
+            
+            .modal-actions button {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                width: 100%;
+                max-width: 100%;
+                padding: 15px;
+                border-radius: 8px;
+            }
+            
+            .modal-content h2 {
+                margin-bottom: 15px;
+                font-size: 18px;
+            }
+            
+            .form-group {
+                margin-bottom: 12px;
+            }
+            
+            .form-group label {
+                font-size: 13px;
+                margin-bottom: 5px;
+            }
+            
+            .form-group input[type="text"],
+            .form-group input[type="number"] {
+                padding: 8px;
+                font-size: 13px;
+            }
+            
+            .form-group input[type="file"] {
+                font-size: 12px;
+                padding: 8px;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+                gap: 8px;
+                margin-top: 15px;
+            }
+            
+            .modal-actions button {
+                padding: 12px;
+                font-size: 13px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .modal-content {
+                padding: 12px;
+            }
+            
+            .modal-content h2 {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+            
+            .form-group {
+                margin-bottom: 10px;
+            }
+            
+            .form-group label {
+                font-size: 12px;
+            }
+            
+            .form-group input[type="text"],
+            .form-group input[type="number"] {
+                font-size: 12px;
+                padding: 6px;
+            }
+            
+            .modal-actions button {
+                padding: 10px;
+                font-size: 12px;
+            }
+        }
+
         /* BOTÃO DE MAPEAMENTO DE TECLA */
         .btn-map-key {
             background-color: rgba(0,0,0,0.6);
@@ -1602,9 +1752,9 @@
             </p>
             <div class="version-info">
                 <div data-i18n="version-label">Versão:</div>
-                <div>1.13 - LIVE SHOW Professional</div>
+                <div>1.14 - LIVE SHOW Professional</div>
                 <div style="margin-top: 10px;" data-i18n="developed-by">Desenvolvido por:</div>
-                <div>🎵 Viver de Som </div>
+                <div>🎵 Viver de Som Studios</div>
                 <div style="margin-top: 10px; font-style: italic;" data-i18n="tagline">Sua música, nosso palco, seu show!</div>
             </div>
             <div class="about-actions">
