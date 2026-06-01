@@ -177,7 +177,7 @@
             border-color: #00d2ff;
         }
 
-        .menu-item input[type="checkbox"] {
+        .menu-item [type="checkbox"] {
             cursor: pointer;
             width: 18px;
             height: 18px;
@@ -776,7 +776,7 @@
             border: 1px solid #444;
             user-select: none;
         }
-        .toggle-label input {
+        .toggle-label  {
             cursor: pointer;
             width: 18px;
             height: 18px;
@@ -1240,8 +1240,8 @@
             font-weight: bold;
             color: #ddd;
         }
-        .form-group input[type="text"],
-        .form-group input[type="number"] {
+        .form-group [type="text"],
+        .form-group [type="number"] {
             width: 100%;
             padding: 12px;
             border: 1px solid #444;
@@ -1250,7 +1250,7 @@
             color: white;
             font-size: 15px;
         }
-        .form-group input[type="file"] {
+        .form-group [type="file"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #444;
@@ -1270,7 +1270,7 @@
             border-radius: 6px;
             border: 1px solid #444;
         }
-        .metronome-toggle input[type="checkbox"] {
+        .metronome-toggle [type="checkbox"] {
             width: 20px;
             height: 20px;
             cursor: pointer;
@@ -1294,10 +1294,10 @@
         }
         .metronome-controls.active { display: block; }
         
-        .bpm-input-group {
+        .bpm--group {
             margin-bottom: 15px;
         }
-        .bpm-input-group label {
+        .bpm--group label {
             color: #bb8fce;
         }
         .bpm-input-group input {
@@ -1807,7 +1807,7 @@
                 </div>
                 <div class="form-group">
                     <label data-i18n="audio-file">Arquivo de Áudio:</label>
-                    <input type="file" id="inputFile" accept="audio/*" data-i18n-placeholder="choose-file">
+                    <input type="file" id="inputFile" accept="audio/*, .mp3, .wav, .m4a, .aac, .ogg" data-i18n-placeholder="choose-file">
                     <small id="currentFileInfo" style="color: #888; display: none; margin-top: 5px;"></small>
                 </div>
 
