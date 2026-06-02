@@ -21,13 +21,13 @@
             padding: 20px;
             overflow: hidden;
         }
- 
+
         /* WAVEFORM ANIMADO */
- 
+
         /* HEADER E CONTROLES DE SETUP - FLEX UMA LINHA */
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start; /* Alterado para alinhar à esquerda */
             align-items: center;
             margin-bottom: 20px;
             padding: 0;
@@ -60,7 +60,7 @@
             letter-spacing: 1px;
             font-weight: normal;
         }
- 
+
         /* SETLIST MANAGER NA DIREITA */
         #desktopSetlist {
             display: flex;
@@ -73,7 +73,7 @@
             order: 3;
             flex-shrink: 0;
         }
- 
+
         /* SETUP CONTROLS NA DIREITA */
         .setup-controls {
             display: flex;
@@ -81,8 +81,9 @@
             gap: 10px;
             order: 4;
             flex-shrink: 0;
+            margin-left: auto; /* Empurra os controles para a direita */
         }
- 
+
         /* MENU TOGGLE BUTTON */
         .menu-toggle {
             display: none;
@@ -109,7 +110,7 @@
         .menu-toggle.active {
             background: #ff4757;
         }
- 
+
         /* MENU SIDEBAR */
         .sidebar-menu {
             position: fixed;
@@ -124,11 +125,11 @@
             overflow-y: auto;
             padding: 70px 15px 15px 15px;
         }
- 
+
         .sidebar-menu.open {
             left: 0;
         }
- 
+
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -139,24 +140,24 @@
             z-index: 150;
             display: none;
         }
- 
+
         .menu-overlay.open {
             display: block;
         }
- 
+
         /* SETTINGS ICON NA DIREITA - DESKTOP ONLY */
         #settingsDesktop {
             order: 5;
             flex-shrink: 0;
         }
- 
+
         /* ESCONDER SETTINGS EM TABLET */
         @media (max-width: 1199px) {
             #settingsDesktop {
                 display: none !important;
             }
         }
- 
+
         /* ESCONDER SETTINGS EM MOBILE */
         @media (max-width: 768px) {
             #settingsDesktop {
@@ -166,24 +167,24 @@
         .sidebar-menu.open ~ .header {
             justify-content: center;
         }
- 
+
         .sidebar-menu.open ~ .header .header-left {
             display: none;
         }
- 
+
         .sidebar-menu.open ~ .header h1 {
             flex: 0;
             order: 0;
         }
- 
+
         .sidebar-menu.open ~ .header #desktopSetlist {
             display: none !important;
         }
- 
+
         .sidebar-menu.open ~ .header .setup-controls {
             display: none !important;
         }
- 
+
         .menu-close {
             position: absolute;
             top: 15px;
@@ -201,15 +202,15 @@
             justify-content: center;
             font-weight: bold;
         }
- 
+
         .menu-close:hover {
             background: #ff6b81;
         }
- 
+
         .menu-section {
             margin-bottom: 25px;
         }
- 
+
         .menu-section-title {
             font-size: 12px;
             color: #888;
@@ -218,7 +219,7 @@
             margin-bottom: 10px;
             font-weight: bold;
         }
- 
+
         .menu-item {
             display: flex;
             align-items: center;
@@ -233,19 +234,19 @@
             font-size: 14px;
             color: #ddd;
         }
- 
+
         .menu-item:hover {
             background: #333;
             border-color: #00d2ff;
         }
- 
+
         .menu-item [type="checkbox"] {
             cursor: pointer;
             width: 18px;
             height: 18px;
             accent-color: #0984e3;
         }
- 
+
         .menu-button {
             display: flex;
             align-items: center;
@@ -260,39 +261,39 @@
             transition: 0.2s;
             width: 100%;
         }
- 
+
         .menu-button.primary {
             background-color: #0984e3;
             color: white;
         }
- 
+
         .menu-button.primary:hover {
             background-color: #74b9ff;
         }
- 
+
         .menu-button.secondary {
             background-color: #e1b12c;
             color: #000;
         }
- 
+
         .menu-button.secondary:hover {
             background-color: #f1c40f;
         }
- 
+
         .menu-button.secondary.active {
             background-color: #c23616;
             color: white;
         }
- 
+
         .menu-button.danger {
             background-color: #ff4757;
             color: white;
         }
- 
+
         .menu-button.danger:hover {
             background-color: #ff6b81;
         }
- 
+
         /* SETTINGS ICON SVG */
         .settings-icon {
             background: #00d2ff;
@@ -406,7 +407,7 @@
             padding: 12px;
             font-size: 14px;
         }
- 
+
         /* MEDIA QUERIES RESPONSIVAS */
         
         /* TABLET (768px - 1199px) - Menu sanduíche + Logo + Setlist + Opções */
@@ -463,6 +464,7 @@
                 margin-top: 8px;
                 border-radius: 0;
                 border: none;
+                margin-left: 0; /* Reseta a margem no tablet */
             }
             
             .setup-controls .toggle-label {
@@ -539,7 +541,7 @@
                 display: none;
             }
         }
- 
+
         /* SELETOR DE IDIOMA */
         .language-selector {
             display: flex;
@@ -560,7 +562,7 @@
             font-weight: bold;
             cursor: pointer;
         }
- 
+
         /* ÍCONE DE CONFIGURAÇÕES */
         .settings-icon {
             background: #00d2ff;
@@ -581,7 +583,7 @@
             background: #55efc4;
             transform: scale(1.1);
         }
- 
+
         /* MODAL DE CONFIGURAÇÕES */
         .settings-modal {
             display: none;
@@ -653,7 +655,7 @@
         .btn-close-settings:hover { 
             background-color: #74b9ff; 
         }
- 
+
         /* MODAL DE SOBRE */
         .about-modal {
             display: none;
@@ -732,7 +734,7 @@
         .btn-close-about:hover { 
             background-color: #74b9ff; 
         }
- 
+
         /* MODAL DE DOAÇÃO */
         .donate-modal {
             display: none;
@@ -810,7 +812,7 @@
         .btn-close-donate:hover { 
             background-color: #74b9ff; 
         }
- 
+
         .setup-controls {
             display: flex;
             align-items: center;
@@ -840,7 +842,7 @@
             accent-color: #0984e3;
             flex-shrink: 0;
         }
- 
+
         .btn-add, .btn-edit {
             color: white;
             border: none;
@@ -856,7 +858,7 @@
         
         .btn-edit { background-color: #e1b12c; color: #000; }
         .btn-edit.active { background-color: #c23616; color: white; }
- 
+
         /* DISPLAY DE TEMPO CENTRALIZADO COM HIERARQUIA */
         .display-container {
             background-color: #1a1a1a;
@@ -906,7 +908,7 @@
         .time-value.large { font-size: 45px; }
         .time-value.small { font-size: 30px; color: #ff4757; }
         .time-value.remaining { color: #ddd; font-size: 45px; }
- 
+
         /* RESPONSIVIDADE DO DISPLAY DE TEMPO */
         
         /* TABLET (480px - 768px) */
@@ -1030,7 +1032,7 @@
                 font-size: 18px;
             }
         }
- 
+
         /* CONTROLES GERAIS */
         .controls {
             display: flex;
@@ -1065,7 +1067,7 @@
         .btn-play-pause { background-color: #f39c12; }
         .btn-play-pause:hover { background-color: #f1c40f; color: #000; }
         .btn-play-pause.playing-state { background-color: #00b894; color: #000; }
- 
+
         /* RESPONSIVIDADE DOS BOTÕES */
         @media (max-width: 768px) {
             .controls {
@@ -1080,7 +1082,7 @@
                 min-width: 140px;
             }
         }
- 
+
         @media (max-width: 480px) {
             .controls {
                 gap: 8px;
@@ -1094,7 +1096,7 @@
                 min-width: 110px;
             }
         }
- 
+
         @media (max-width: 375px) {
             .controls {
                 gap: 6px;
@@ -1106,7 +1108,7 @@
                 min-width: 90px;
             }
         }
- 
+
         /* GRID DA BOTOEIRA */
         .botoeira-grid {
             display: grid;
@@ -1155,7 +1157,7 @@
             opacity: 0.5;
             transform: scale(0.95);
         }
- 
+
         /* ANIMAÇÃO DE PISCADA PARA BOTÃO TOCANDO */
         @keyframes pulse-playing {
             0%, 100% {
@@ -1169,7 +1171,7 @@
                 box-shadow: 0 0 30px rgba(0,255,136,0.6), inset 0 0 20px rgba(0,184,148,0.4);
             }
         }
- 
+
         .btn-track.playing {
             border-color: #00b894;
             background-color: #001a14;
@@ -1201,7 +1203,7 @@
             opacity: 1;
             background: rgba(0, 210, 255, 1);
         }
- 
+
         /* CONTROLE DE VOLUME INDIVIDUAL */
         /* BADGE DE TECLA -->
         .key-badge {
@@ -1216,7 +1218,7 @@
             font-weight: bold;
             letter-spacing: 1px;
         }
- 
+
         /* ÍCONE DE METRÔNOMO */
         .metronome-icon {
             position: absolute;
@@ -1229,7 +1231,7 @@
             font-size: 11px;
             font-weight: bold;
         }
- 
+
         /* CONTROLES DE EDIÇÃO NO BOTÃO */
         .track-controls {
             display: none;
@@ -1259,12 +1261,12 @@
             background-color: #0984e3; 
             animation: pulse 1s infinite; 
         }
- 
+
         @keyframes pulse {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
- 
+
         .key-badge-global {
             position: absolute;
             bottom: -25px;
@@ -1277,7 +1279,7 @@
             letter-spacing: 1px;
             white-space: nowrap;
         }
- 
+
         /* MODAL DE ADIÇÃO/EDIÇÃO */
         .modal {
             display: none;
@@ -1333,7 +1335,7 @@
             background-color: #222;
             color: white;
         }
- 
+
         /* CHECKBOX DE METRÔNOMO */
         .metronome-toggle {
             display: flex;
@@ -1357,7 +1359,7 @@
             color: #9b59b6;
             font-weight: bold;
         }
- 
+
         /* CONTROLES DE METRÔNOMO */
         .metronome-controls {
             display: none;
@@ -1379,7 +1381,7 @@
             background-color: #E0E0E0;
             border-color: #9b59b6;
         }
- 
+
         /* SELETOR DE CANAL */
         .channel-selector {
             display: flex;
@@ -1411,7 +1413,7 @@
             border-color: #9b59b6;
             color: white;
         }
- 
+
         /* VOLUME NO MODAL */
         .modal-volume-group {
             margin-top: 20px;
@@ -1461,7 +1463,7 @@
             border: none;
             box-shadow: 0 0 5px rgba(0, 210, 255, 0.5);
         }
- 
+
         /* SELETOR DE SOM METRÔNOMO */
         .metronome-sound-selector {
             display: flex;
@@ -1495,7 +1497,7 @@
             border-color: #9b59b6;
             color: white;
         }
- 
+
         /* CONTROLE DE VOLUME */
         .volume-control {
             display: flex;
@@ -1513,7 +1515,7 @@
             min-width: 80px;
             margin: 0;
         }
- 
+
         .modal-actions {
             display: flex;
             gap: 15px;
@@ -1539,7 +1541,7 @@
             color: white;
         }
         .btn-save:hover { background-color: #74b9ff; }
- 
+
         /* RESPONSIVIDADE DO MODAL */
         @media (max-width: 768px) {
             .modal-content {
@@ -1578,7 +1580,7 @@
                 font-size: 14px;
             }
         }
- 
+
         @media (max-width: 480px) {
             .modal-content {
                 width: 100%;
@@ -1624,7 +1626,7 @@
                 width: 100%;
             }
         }
- 
+
         @media (max-width: 375px) {
             .modal-content {
                 padding: 12px;
@@ -1654,7 +1656,7 @@
                 font-size: 12px;
             }
         }
- 
+
         /* BOTÃO DE MAPEAMENTO DE TECLA */
         .btn-map-key {
             background-color: rgba(0,0,0,0.6);
@@ -1676,19 +1678,19 @@
 </head>
 <body>
     <audio id="player"></audio>
- 
+
     <div class="header">
         <div class="header-left">
             <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" title="Menu">☰</button>
             <h1>LIVE SHOW <span>by Viver de Som</span></h1>
         </div>
- 
+
         <div class="setlist-manager" id="desktopSetlist">
             <select id="setlistSelect"></select>
             <button class="btn-new-setlist" onclick="createNewSetlist()" data-i18n="new-setlist">+ Nova Setlist</button>
             <button class="btn-del-setlist" onclick="removeCurrentSetlist()" title="Excluir Setlist atual">- Excluir</button>
         </div>
- 
+
         <div class="setup-controls">
             <label class="toggle-label">
                 <input type="checkbox" id="checkAutoPlay">
@@ -1714,15 +1716,12 @@
             </svg>
         </button>
     </div>
- 
-    <!-- MENU OVERLAY -->
+
     <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
- 
-    <!-- SIDEBAR MENU (Mobile) -->
+
     <div class="sidebar-menu" id="sidebarMenu">
         <button class="menu-close" onclick="closeMenu()">✕</button>
- 
-        <!-- SETLIST MANAGER -->
+
         <div class="menu-section">
             <div class="menu-section-title">Setlist</div>
             <div class="setlist-manager mobile">
@@ -1731,8 +1730,7 @@
                 <button class="btn-del-setlist" onclick="removeCurrentSetlist(); closeMenu();" title="Excluir Setlist atual">- Excluir</button>
             </div>
         </div>
- 
-        <!-- CONTROLES -->
+
         <div class="menu-section">
             <div class="menu-section-title">Controles</div>
             <label class="menu-item">
@@ -1744,21 +1742,19 @@
                 <span data-i18n="show-keys">Mostrar Teclas</span>
             </label>
         </div>
- 
-        <!-- AÇÕES -->
+
         <div class="menu-section">
             <div class="menu-section-title">Ações</div>
             <button class="menu-button primary" onclick="openAddModal(); closeMenu();" data-i18n="add-button">+ Adicionar Música</button>
             <button class="menu-button secondary" id="btnEditModeMobile" onclick="toggleEditMode(); closeMenu();" data-i18n="edit-mode">✏️ Modo Edição</button>
         </div>
- 
-        <!-- CONFIGURAÇÕES -->
+
         <div class="menu-section">
             <div class="menu-section-title">App</div>
             <button class="menu-button primary" onclick="openSettingsModal(); closeMenu();">⚙️ Configurações</button>
         </div>
     </div>
- 
+
     <div class="display-container">
         <div class="track-name" id="currentTrackName">Parado</div>
         <div class="time-block">
@@ -1776,7 +1772,7 @@
             </div>
         </div>
     </div>
- 
+
     <div class="controls">
         <div class="control-wrapper">
             <button class="btn-control btn-stop" id="btnStop" onclick="handleStopClick()" data-i18n="stop-btn">PARAR</button>
@@ -1789,10 +1785,9 @@
             <button class="btn-map-key" id="mapPlayKeyBtn" onclick="startKeyMapping('playpause')" style="display:none; margin-top: 5px; padding: 5px 10px; font-size: 12px;" data-i18n="map-play-key">Mapear Tecla</button>
         </div>
     </div>
- 
+
     <div class="botoeira-grid" id="botoeira"></div>
- 
-    <!-- MODAL DE CONFIGURAÇÕES -->
+
     <div class="settings-modal" id="settingsModal">
         <div class="settings-content">
             <h2 data-i18n="settings-title">⚙️ Configurações</h2>
@@ -1812,8 +1807,7 @@
             </div>
         </div>
     </div>
- 
-    <!-- MODAL DE SOBRE -->
+
     <div class="about-modal" id="aboutModal">
         <div class="about-content">
             <h2 data-i18n="about-title">ℹ️ Sobre o LIVE SHOW</h2>
@@ -1838,8 +1832,7 @@
             </div>
         </div>
     </div>
- 
-    <!-- MODAL DE DOAÇÃO -->
+
     <div class="donate-modal" id="donateModal">
         <div class="donate-content">
             <h2 data-i18n="donate-title">❤️ Apoie o Desenvolvimento</h2>
@@ -1871,7 +1864,7 @@
             </div>
         </div>
     </div>
- 
+
     <div class="modal" id="addModal">
         <div class="modal-content">
             <h2 id="modalTitle" data-i18n="add-music-modal">Adicionar Nova Música</h2>
@@ -1885,8 +1878,7 @@
                     <input type="file" id="inputFile" accept="audio/*, .mp3, .wav, .m4a, .aac, .ogg" data-i18n-placeholder="choose-file">
                     <small id="currentFileInfo" style="color: #888; display: none; margin-top: 5px;"></small>
                 </div>
- 
-                <!-- VOLUME DA MÚSICA -->
+
                 <div class="modal-volume-group">
                     <div class="modal-volume-label">
                         <span data-i18n="music-volume">🔊 Volume da Música:</span>
@@ -1899,7 +1891,7 @@
                     <input type="checkbox" id="checkMetronome">
                     <label for="checkMetronome" data-i18n="metronome-mode">🎵 Modo Metrônomo (sem áudio)</label>
                 </div>
- 
+
                 <div class="metronome-controls" id="metronomeControls">
                     <div class="bpm-input-group">
                         <label data-i18n="bpm-label">BPM (batidas por minuto):</label>
@@ -1928,7 +1920,7 @@
                         </div>
                     </div>
                 </div>
- 
+
                 <div class="modal-actions">
                     <button type="button" class="btn-cancel" onclick="closeModal()" data-i18n="cancel-btn">Cancelar</button>
                     <button type="submit" class="btn-save" data-i18n="save-btn">Salvar</button>
@@ -1936,7 +1928,7 @@
             </form>
         </div>
     </div>
- 
+
     <script>
         // ==========================================
         // VARIÁVEIS GLOBAIS
@@ -1954,7 +1946,7 @@
         const inputFile = document.getElementById('inputFile');
         const inputName = document.getElementById('inputName');
         const volumeSlider = document.getElementById('volumeSlider');
- 
+
         let trackList = [];
         let currentLoadedTrackId = null;
         let currentButton = null;
@@ -1962,11 +1954,11 @@
         let editingTrackId = null;
         let waitingForKeyId = null;
         let currentVolume = parseFloat(localStorage.getItem('playerVolume')) || 0.7;
- 
+
         let globalKeys = { stop: null, playpause: null };
         let setlists = [];
         let currentSetlistId = null;
- 
+
         // METRÔNOMO (AGENDADOR PRECISO COM WEB AUDIO API)
         let audioContext = null;
         let clickBuffer = null;
@@ -1980,7 +1972,7 @@
         let metronomeTimerID = null;
         const lookahead = 25.0; // ms de intervalo do scheduler
         const scheduleAheadTime = 0.1; // Segundos agendados no futuro
- 
+
         // ==========================================
         // PREENCHIMENTO AUTOMÁTICO DE NOME
         // ==========================================
@@ -1989,14 +1981,14 @@
                 inputName.value = e.target.files[0].name.replace(/\.[^/.]+$/, "");
             }
         });
- 
+
         // ==========================================
         // INDEXEDDB
         // ==========================================
         let db;
         const dbName = "BotoeiraDB";
         const dbVersion = 3;
- 
+
         const dbRequest = indexedDB.open(dbName, dbVersion);
         dbRequest.onerror = () => console.error("Erro ao abrir IndexedDB");
         dbRequest.onsuccess = (event) => {
@@ -2012,7 +2004,7 @@
                 db.createObjectStore('setlists', { keyPath: 'id' });
             }
         };
- 
+
         function saveTrackToDB(track) {
             // Guardamos apenas a estrutura, se houver url, ignoramos no DB pois geramos na hora a partir do blob
             const trackToSave = { ...track };
@@ -2021,13 +2013,13 @@
             const store = transaction.objectStore('tracks');
             store.put(trackToSave);
         }
- 
+
         function deleteTrackFromDB(id) {
             const transaction = db.transaction(['tracks'], 'readwrite');
             const store = transaction.objectStore('tracks');
             store.delete(id);
         }
- 
+
         function loadTracksFromDB(setlistId) {
             return new Promise((resolve) => {
                 const transaction = db.transaction(['tracks'], 'readonly');
@@ -2046,13 +2038,13 @@
                 };
             });
         }
- 
+
         function saveSetlistToDB(setlist) {
             const transaction = db.transaction(['setlists'], 'readwrite');
             const store = transaction.objectStore('setlists');
             store.put(setlist);
         }
- 
+
         function loadSetlistsFromDB() {
             return new Promise((resolve) => {
                 const transaction = db.transaction(['setlists'], 'readonly');
@@ -2061,13 +2053,13 @@
                 request.onsuccess = () => resolve(request.result);
             });
         }
- 
+
         function deleteSetlistFromDB(id) {
             const transaction = db.transaction(['setlists'], 'readwrite');
             const store = transaction.objectStore('setlists');
             store.delete(id);
         }
- 
+
         // ==========================================
         // GERENCIAMENTO DE SETLISTS
         // ==========================================
@@ -2090,7 +2082,7 @@
             renderSetlistSelector();
             await loadCurrentSetlist();
         }
- 
+
         function renderSetlistSelector() {
             setlistSelect.innerHTML = '';
             const setlistSelectMobile = document.getElementById('setlistSelectMobile');
@@ -2115,7 +2107,7 @@
                 }
             });
         }
- 
+
         setlistSelect.addEventListener('change', async (e) => {
             stopAudio();
             currentSetlistId = parseFloat(e.target.value);
@@ -2129,12 +2121,12 @@
             
             await loadCurrentSetlist();
         });
- 
+
         async function loadCurrentSetlist() {
             trackList = await loadTracksFromDB(currentSetlistId);
             renderGrid();
         }
- 
+
         function createNewSetlist() {
             const promptMsg = translations[currentLanguage]['new-setlist-name'] || 'Nome da nova setlist:';
             const name = prompt(promptMsg);
@@ -2149,14 +2141,14 @@
             renderSetlistSelector();
             loadCurrentSetlist();
         }
- 
+
         async function removeCurrentSetlist() {
             if (setlists.length <= 1) {
                 const msg = translations[currentLanguage]['confirm-delete-setlist'] || 'Você não pode excluir a única Setlist restante!';
                 alert(msg);
                 return;
             }
- 
+
             const currentName = setlists.find(s => s.id === currentSetlistId).name;
             if (confirm(`ATENÇÃO!\n\nTem certeza que deseja excluir a Setlist "${currentName}" e todas as suas músicas?`)) {
                 stopAudio();
@@ -2177,7 +2169,7 @@
                 await loadCurrentSetlist();
             }
         }
- 
+
         // ==========================================
         // GERAÇÃO DE SOM DE CLICK PARA METRÔNOMO
         // ==========================================
@@ -2188,7 +2180,7 @@
                 createBellSound();
             }
         }
- 
+
         function createClickSound() {
             if (!audioContext) return;
             const sampleRate = audioContext.sampleRate;
@@ -2203,7 +2195,7 @@
                 channelData[i] = (Math.random() * 2 - 1) * envelope * 0.5;
             }
         }
- 
+
         function createBellSound() {
             if (!audioContext) return;
             const sampleRate = audioContext.sampleRate;
@@ -2239,7 +2231,7 @@
                 channelData[i] = (wave + noise) * envelope * 0.8;
             }
         }
- 
+
         function scheduleNote(time) {
             const source = audioContext.createBufferSource();
             
@@ -2252,12 +2244,12 @@
             source.connect(audioContext.destination);
             source.start(time);
         }
- 
+
         function nextNote() {
             const secondsPerBeat = 60.0 / currentBPM;
             nextNoteTime += secondsPerBeat;
         }
- 
+
         function metronomeScheduler() {
             while (nextNoteTime < audioContext.currentTime + scheduleAheadTime) {
                 scheduleNote(nextNoteTime);
@@ -2265,7 +2257,7 @@
             }
             metronomeTimerID = setTimeout(metronomeScheduler, lookahead);
         }
- 
+
         // ==========================================
         // SELEÇÃO DE CANAL
         // ==========================================
@@ -2279,14 +2271,14 @@
                 createBellSound();
             }
         }
- 
+
         function selectMetronomeSound(sound) {
             selectedMetronomeSound = sound;
             document.querySelectorAll('.sound-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.sound === sound);
             });
         }
- 
+
         // ==========================================
         // TOGGLE DO METRÔNOMO NO MODAL
         // ==========================================
@@ -2295,7 +2287,7 @@
             document.getElementById('inputFile').disabled = e.target.checked;
             document.getElementById('inputFile').required = !e.target.checked && !editingTrackId;
         });
- 
+
         // ==========================================
         // MODAL E FORM
         // ==========================================
@@ -2313,11 +2305,11 @@
             selectChannel('left');
             modal.classList.add('open');
         }
- 
+
         function openEditModal(id) {
             const track = trackList.find(t => t.id === id);
             if (!track) return;
- 
+
             editingTrackId = id;
             document.getElementById('modalTitle').innerText = translations[currentLanguage]['edit-music-modal'] || 'Editar Música';
             inputName.value = track.name;
@@ -2344,44 +2336,44 @@
                 const fileMsg = translations[currentLanguage]['current-file-audio'] || '📁 Áudio atual carregado. Selecione outro para substituir.';
                 document.getElementById('currentFileInfo').textContent = fileMsg;
             }
- 
+
             modal.classList.add('open');
         }
- 
+
         function closeModal() {
             modal.classList.remove('open');
         }
- 
+
         function openSettingsModal() {
             const settingsModal = document.getElementById('settingsModal');
             settingsModal.classList.add('open');
         }
- 
+
         function closeSettingsModal() {
             const settingsModal = document.getElementById('settingsModal');
             settingsModal.classList.remove('open');
         }
- 
+
         function openAboutModal() {
             const aboutModal = document.getElementById('aboutModal');
             aboutModal.classList.add('open');
         }
- 
+
         function closeAboutModal() {
             const aboutModal = document.getElementById('aboutModal');
             aboutModal.classList.remove('open');
         }
- 
+
         function openDonateModal() {
             const donateModal = document.getElementById('donateModal');
             donateModal.classList.add('open');
         }
- 
+
         function closeDonateModal() {
             const donateModal = document.getElementById('donateModal');
             donateModal.classList.remove('open');
         }
- 
+
         function copyPixKey() {
             const pixKey = "seu.email@exemplo.com"; // Substitua com sua chave Pix real
             navigator.clipboard.writeText(pixKey).then(() => {
@@ -2390,18 +2382,18 @@
                 alert(pixKey);
             });
         }
- 
+
         function updateVolumeDisplay(value) {
             document.getElementById('volumeValueDisplay').innerText = value + '%';
         }
- 
+
         trackForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = inputName.value.trim();
             const isMetronome = checkMetronome.checked;
- 
+
             if (!name) return;
- 
+
             let trackData = {
                 name,
                 setlistId: currentSetlistId,
@@ -2409,7 +2401,7 @@
                 keyBinding: null,
                 volume: parseInt(document.getElementById('inputVolume').value) / 100 // Salva volume
             };
- 
+
             if (isMetronome) {
                 trackData.bpm = parseInt(document.getElementById('inputBPM').value);
                 trackData.channel = selectedChannel;
@@ -2437,7 +2429,7 @@
                     trackData.url = URL.createObjectURL(trackData.blob);
                 }
             }
- 
+
             if (editingTrackId) {
                 trackData.id = editingTrackId;
                 const existing = trackList.find(t => t.id === editingTrackId);
@@ -2450,12 +2442,12 @@
                 trackData.order = trackList.length;
                 trackList.push(trackData);
             }
- 
+
             saveTrackToDB(trackData);
             closeModal();
             renderGrid();
         });
- 
+
         // ==========================================
         // MODO EDIÇÃO
         // ==========================================
@@ -2463,19 +2455,19 @@
             renderGrid();
             updateGlobalBadges();
         });
- 
+
         function updateGlobalBadges() {
             const show = checkShowKeys.checked;
             const stopBadge = document.getElementById('stopKeyBadge');
             const playPauseBadge = document.getElementById('playPauseKeyBadge');
- 
+
             if (show && globalKeys.stop) {
                 stopBadge.innerText = globalKeys.stop;
                 stopBadge.style.display = 'block';
             } else {
                 stopBadge.style.display = 'none';
             }
- 
+
             if (show && globalKeys.playpause) {
                 playPauseBadge.innerText = globalKeys.playpause;
                 playPauseBadge.style.display = 'block';
@@ -2483,11 +2475,11 @@
                 playPauseBadge.style.display = 'none';
             }
         }
- 
+
         globalKeys.stop = localStorage.getItem('botoeira_key_stop') || null;
         globalKeys.playpause = localStorage.getItem('botoeira_key_playpause') || null;
         updateGlobalBadges();
- 
+
         function toggleEditMode() {
             isEditMode = !isEditMode;
             const btn = document.getElementById('btnEditMode');
@@ -2508,16 +2500,16 @@
             
             renderGrid();
         }
- 
+
         function renderGrid() {
             const container = document.getElementById('botoeira');
             container.innerHTML = '';
- 
+
             trackList.forEach(track => {
                 const btn = document.createElement('div');
                 btn.className = 'btn-track';
                 btn.dataset.id = track.id;
- 
+
                 if (isEditMode) {
                     btn.classList.add('edit-mode');
                     btn.draggable = true;
@@ -2534,11 +2526,11 @@
                 } else {
                     btn.addEventListener('click', () => selectOrPlayTrack(track, btn));
                 }
- 
+
                 const nameSpan = document.createElement('span');
                 nameSpan.innerText = track.name;
                 btn.appendChild(nameSpan);
- 
+
                 // Ícone de reorder em modo edição
                 if (isEditMode) {
                     const reorderIcon = document.createElement('div');
@@ -2546,7 +2538,7 @@
                     reorderIcon.innerHTML = '☰ Arrastar';
                     btn.insertBefore(reorderIcon, btn.firstChild);
                 }
- 
+
                 if (track.isMetronome) {
                     const metroIcon = document.createElement('div');
                     metroIcon.className = 'metronome-icon';
@@ -2554,40 +2546,40 @@
                     metroIcon.title = `Metrônomo ${track.bpm} BPM - Canal ${track.channel === 'left' ? 'L' : 'R'}`;
                     btn.appendChild(metroIcon);
                 }
- 
+
                 if (checkShowKeys.checked && track.keyBinding) {
                     const badge = document.createElement('div');
                     badge.className = 'key-badge';
                     badge.innerText = track.keyBinding;
                     btn.appendChild(badge);
                 }
- 
+
                 if (isEditMode) {
                     const controls = document.createElement('div');
                     controls.className = 'track-controls';
- 
+
                     const btnEdit = document.createElement('button');
                     btnEdit.className = 'btn-icon edit';
                     btnEdit.innerText = '✏️ Editar';
                     btnEdit.onclick = (e) => { e.stopPropagation(); openEditModal(track.id); };
- 
+
                     const btnKey = document.createElement('button');
                     btnKey.className = 'btn-icon key';
                     btnKey.id = `mapKeyBtn_${track.id}`;
                     btnKey.innerText = 'Mapear Tecla';
                     btnKey.onclick = (e) => startKeyMapping(track.id, e);
- 
+
                     const btnDel = document.createElement('button');
                     btnDel.className = 'btn-icon delete';
                     btnDel.innerText = '🗑️';
                     btnDel.onclick = (e) => removeTrack(track.id, e);
- 
+
                     controls.appendChild(btnEdit);
                     controls.appendChild(btnKey);
                     controls.appendChild(btnDel);
                     btn.appendChild(controls);
                 }
- 
+
                 if (currentLoadedTrackId === track.id) {
                     if ((track.isMetronome && !isMetronomePlaying) || (!track.isMetronome && player.paused)) {
                         btn.classList.add('paused');
@@ -2595,7 +2587,7 @@
                         btn.classList.add('playing');
                     }
                 }
- 
+
                 container.appendChild(btn);
             });
             
@@ -2609,7 +2601,7 @@
                 });
             }
         }
- 
+
         function removeTrack(id, event) {
             event.stopPropagation();
             const confirmMsg = translations[currentLanguage]['confirm-delete'] || 'Tem certeza que deseja remover este botão?';
@@ -2620,7 +2612,7 @@
                 renderGrid();
             }
         }
- 
+
         function startKeyMapping(targetId, event) {
             if (event) event.stopPropagation();
             waitingForKeyId = targetId;
@@ -2648,7 +2640,7 @@
                 }
             }
         }
- 
+
         // CAPTURADOR GLOBAL DE TECLAS
         document.addEventListener('keydown', (e) => {
             if (waitingForKeyId !== null) {
@@ -2679,7 +2671,7 @@
                 if(waitingForKeyId === 'stop' || waitingForKeyId === 'playpause') updateGlobalBadges();
                 return;
             }
- 
+
             if (!isEditMode && !modal.classList.contains('open')) {
                 const pressedKey = e.key === ' ' ? 'ESPAÇO' : e.key.toUpperCase();
                 
@@ -2693,7 +2685,7 @@
                     togglePlayPause();
                     return;
                 }
- 
+
                 const trackToPlay = trackList.find(t => t.keyBinding === pressedKey);
                 if (trackToPlay) {
                     e.preventDefault(); 
@@ -2702,7 +2694,7 @@
                 }
             }
         });
- 
+
         // ==========================================
         // LÓGICA DE ARRASTAR E SOLTAR
         // ==========================================
@@ -2782,7 +2774,7 @@
                 if (draggedItemId !== targetId) {
                     const draggedIndex = trackList.findIndex(t => t.id === draggedItemId);
                     const targetIndex = trackList.findIndex(t => t.id === targetId);
- 
+
                     if (draggedIndex !== -1 && targetIndex !== -1) {
                         const [draggedItem] = trackList.splice(draggedIndex, 1);
                         trackList.splice(targetIndex, 0, draggedItem);
@@ -2803,16 +2795,16 @@
             e.preventDefault();
             e.stopPropagation();
             this.classList.remove('drag-over');
- 
+
             const targetId = parseFloat(this.dataset.id);
             if (draggedItemId === targetId) {
                 draggedItemId = null;
                 return;
             }
- 
+
             const draggedIndex = trackList.findIndex(t => t.id === draggedItemId);
             const targetIndex = trackList.findIndex(t => t.id === targetId);
- 
+
             if (draggedIndex !== -1 && targetIndex !== -1) {
                 const [draggedItem] = trackList.splice(draggedIndex, 1);
                 trackList.splice(targetIndex, 0, draggedItem);
@@ -2821,7 +2813,7 @@
             
             draggedItemId = null;
         }
- 
+
         // ==========================================
         // PLAYER E DISPLAY
         // ==========================================
@@ -2829,19 +2821,19 @@
             if (isEditMode) return;
             stopAudio();
         }
- 
+
         function handlePlayPauseClick() {
             if (isEditMode) return;
             togglePlayPause();
         }
- 
+
         function selectOrPlayTrack(track, btnElement) {
             if (track.isMetronome) {
                 if (currentLoadedTrackId === track.id) {
                     toggleMetronome();
                     return;
                 }
- 
+
                 stopAudio(); 
                 
                 currentLoadedTrackId = track.id;
@@ -2852,13 +2844,13 @@
                     b.classList.remove('paused');
                 });
                 currentButton = btnElement;
- 
+
                 initAudioContext();
                 selectedChannel = track.channel;
                 selectedMetronomeSound = track.metronomeSound || 'click'; // Carrega som escolhido
                 createClickSound();
                 createBellSound();
- 
+
                 if (checkAutoPlay.checked) {
                     startMetronome(track.bpm);
                     btnElement.classList.add('playing');
@@ -2867,22 +2859,22 @@
                     btnElement.classList.add('paused');
                     setMainButtonState('paused');
                 }
- 
+
                 document.getElementById('timeCurrent').innerText = "--:--";
                 document.getElementById('timeRemaining').innerText = "---";
                 document.getElementById('timeTotal').innerText = "--:--";
                 
                 return;
             }
- 
+
             // Áudio Normal
             if (currentLoadedTrackId === track.id) {
                 togglePlayPause(); 
                 return;
             }
- 
+
             stopAudio();
- 
+
             player.src = track.url;
             player.volume = track.volume || 1; // Aplica volume individual
             currentLoadedTrackId = track.id;
@@ -2893,7 +2885,7 @@
                 b.classList.remove('paused');
             });
             currentButton = btnElement;
- 
+
             if (checkAutoPlay.checked) {
                 player.play().catch(e => console.error("Erro no áudio", e));
                 btnElement.classList.add('playing');
@@ -2905,19 +2897,19 @@
             
             updateTimeDisplay(); 
         }
- 
+
         function togglePlayPause() {
             if (!currentLoadedTrackId) return;
- 
+
             const currentTrack = trackList.find(t => t.id === currentLoadedTrackId);
             
             if (currentTrack && currentTrack.isMetronome) {
                 toggleMetronome();
                 return;
             }
- 
+
             if (!player.src) return;
- 
+
             if (player.paused) {
                 player.play();
                 if(currentButton) {
@@ -2934,7 +2926,7 @@
                 setMainButtonState('paused');
             }
         }
- 
+
         function startMetronome(bpm) {
             currentBPM = bpm;
             if (isMetronomePlaying) return;
@@ -2945,7 +2937,7 @@
             nextNoteTime = audioContext.currentTime + 0.05; 
             metronomeScheduler();
         }
- 
+
         function stopMetronome() {
             isMetronomePlaying = false;
             if (metronomeTimerID) {
@@ -2953,11 +2945,11 @@
                 metronomeTimerID = null;
             }
         }
- 
+
         function toggleMetronome() {
             const currentTrack = trackList.find(t => t.id === currentLoadedTrackId);
             if (!currentTrack || !currentTrack.isMetronome) return;
- 
+
             if (isMetronomePlaying) {
                 stopMetronome();
                 if(currentButton) {
@@ -2974,10 +2966,10 @@
                 setMainButtonState('playing');
             }
         }
- 
+
         function stopAudio() {
             if (!currentLoadedTrackId) return;
- 
+
             const currentTrack = trackList.find(t => t.id === currentLoadedTrackId);
             
             if (currentTrack && currentTrack.isMetronome) {
@@ -3012,27 +3004,27 @@
                 btnPlayPause.classList.remove('playing-state');
             }
         }
- 
+
         function formatTime(seconds) {
             if (isNaN(seconds) || !isFinite(seconds)) return "00:00";
             const m = Math.floor(seconds / 60).toString().padStart(2, '0');
             const s = Math.floor(seconds % 60).toString().padStart(2, '0');
             return `${m}:${s}`;
         }
- 
+
         function updateTimeDisplay() {
             const current = player.currentTime;
             const total = player.duration || 0; 
             const remaining = total > 0 ? total - current : 0;
- 
+
             document.getElementById('timeCurrent').innerText = formatTime(current);
             document.getElementById('timeRemaining').innerText = "-" + formatTime(remaining);
             document.getElementById('timeTotal').innerText = formatTime(total);
         }
- 
+
         player.addEventListener('timeupdate', updateTimeDisplay);
         player.addEventListener('loadedmetadata', updateTimeDisplay); 
- 
+
         player.addEventListener('ended', () => {
             if(currentButton) {
                 currentButton.classList.remove('playing');
@@ -3046,7 +3038,7 @@
             document.getElementById('timeTotal').innerText = "00:00";
             document.getElementById('currentTrackName').innerText = "Parado";
         });
- 
+
         // ==========================================
         // SISTEMA DE TRADUÇÃO MULTILÍNGUE
         // ==========================================
@@ -3320,15 +3312,15 @@
                 'current-file-audio': '📁 Audio actuel chargé. Sélectionnez un autre pour remplacer.'
             }
         };
- 
+
         let currentLanguage = localStorage.getItem('language') || 'pt-BR';
- 
+
         function changeLanguage(lang) {
             currentLanguage = lang;
             localStorage.setItem('language', lang);
             updateLanguage();
         }
- 
+
         function updateLanguage() {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
@@ -3358,10 +3350,10 @@
                 el.placeholder = text;
             });
         }
- 
+
         document.getElementById('languageSelect').value = currentLanguage;
         updateLanguage();
- 
+
         // ==========================================
         // MENU TOGGLE E SIDEBAR
         // ==========================================
@@ -3374,7 +3366,7 @@
             overlay.classList.toggle('open');
             toggle.classList.toggle('active');
         }
- 
+
         function closeMenu() {
             const sidebar = document.getElementById('sidebarMenu');
             const overlay = document.getElementById('menuOverlay');
@@ -3384,7 +3376,7 @@
             overlay.classList.remove('open');
             toggle.classList.remove('active');
         }
- 
+
         // Sincronizar Setlist entre desktop e mobile
         const setlistSelectMobile = document.getElementById('setlistSelectMobile');
         if(setlistSelectMobile) {
@@ -3394,12 +3386,12 @@
                 document.getElementById('setlistSelect').dispatchEvent(new Event('change'));
             });
         }
- 
+
         // Sincronizar checkboxes
         document.getElementById('checkAutoPlayMobile')?.addEventListener('change', (e) => {
             document.getElementById('checkAutoPlay').checked = e.target.checked;
         });
- 
+
         document.getElementById('checkShowKeysMobile')?.addEventListener('change', (e) => {
             document.getElementById('checkShowKeys').checked = e.target.checked;
             renderGrid(); // Re-renderiza para mostrar/esconder badges de teclas
