@@ -108,14 +108,17 @@
         .btn-add, .btn-edit { color: white; border: none; padding: 12px 20px; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.2s; }
         .btn-add { background-color: #0984e3; } .btn-add:hover { background-color: #74b9ff; }
         .btn-edit { background-color: #e1b12c; color: #000; } .btn-edit.active { background-color: #c23616; color: white; }
-        .display-container { background-color: #1a1a1a; border: 2px solid #333; border-radius: 10px; padding: 25px; display: flex; flex-direction: column; align-items: center; gap: 15px; flex-shrink: 0; min-height: 200px; max-height: 220px; margin-bottom: 20px; }
+        .display-container { background-color: #1a1a1a; border: 2px solid #333; border-radius: 10px; padding: 25px; display: flex; flex-direction: column; align-items: center; gap: 15px; flex-shrink: 0; min-height: 200px; max-height: 220px; margin-bottom: 20px; position: relative; }
         .track-name { font-size: 28px; font-weight: bold; color: #00d2ff; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
         .time-block { display: flex; gap: 50px; justify-content: center; align-items: center; }
-        .time-item { display: flex; flex-direction: column; align-items: center; }
+        .time-item { display: flex; flex-direction: column; align-items: center; position: relative; }
         .time-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
         .time-value { font-variant-numeric: tabular-nums; font-weight: bold; } .time-value.large { font-size: 45px; } .time-value.small { font-size: 30px; color: #ff4757; } .time-value.remaining { color: #ddd; font-size: 45px; }
-        @media (max-width: 768px) { .display-container { padding: 15px; gap: 8px; min-height: 160px; max-height: 180px; margin-bottom: 15px; } .track-name { font-size: 18px; } .time-block { gap: 25px; width: 100%; } .time-label { font-size: 9px; letter-spacing: 0.5px; margin-bottom: 2px; } .time-value.large { font-size: 28px; } .time-value.small { font-size: 18px; } .time-value.remaining { font-size: 28px; } }
-        @media (max-width: 480px) { .display-container { padding: 12px; gap: 6px; min-height: 140px; max-height: 160px; margin-bottom: 12px; } .track-name { font-size: 14px; } .time-block { gap: 15px; width: 100%; justify-content: space-around; } .time-item { flex: 1; min-width: 0; } .time-label { font-size: 9px; letter-spacing: 0px; margin-bottom: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; } .time-value.large { font-size: 26px; } .time-value.small { font-size: 18px; } .time-value.remaining { font-size: 26px; } }
+        .btn-exit-edit-mobile { display: none; position: absolute; background: #c23616; color: white; border: 2px solid #ff4757; border-radius: 8px; padding: 10px 14px; font-size: 13px; font-weight: bold; cursor: pointer; z-index: 10; white-space: nowrap; text-align: center; transition: 0.2s; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .btn-exit-edit-mobile:hover { background: #e74c3c; border-color: #ff6b81; }
+        .btn-exit-edit-mobile:active { transform: translate(-50%, -50%) scale(0.95); background: #a93226; }
+        @media (max-width: 768px) { .display-container { padding: 15px; gap: 8px; min-height: 160px; max-height: 180px; margin-bottom: 15px; } .track-name { font-size: 18px; } .time-block { gap: 25px; width: 100%; } .time-label { font-size: 9px; letter-spacing: 0.5px; margin-bottom: 2px; } .time-value.large { font-size: 28px; } .time-value.small { font-size: 18px; } .time-value.remaining { font-size: 28px; } .btn-exit-edit-mobile.show { display: block; } }
+        @media (max-width: 480px) { .display-container { padding: 12px; gap: 6px; min-height: 140px; max-height: 160px; margin-bottom: 12px; } .track-name { font-size: 14px; } .time-block { gap: 15px; width: 100%; justify-content: space-around; } .time-item { flex: 1; min-width: 0; } .time-label { font-size: 9px; letter-spacing: 0px; margin-bottom: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; } .time-value.large { font-size: 26px; } .time-value.small { font-size: 18px; } .time-value.remaining { font-size: 26px; } .btn-exit-edit-mobile { padding: 8px 10px; font-size: 11px; } }
         .controls { display: flex; gap: 20px; justify-content: center; transition: margin-bottom 0.3s; flex-shrink: 0; min-height: 70px; max-height: 80px; }
         .control-wrapper { position: relative; display: flex; flex-direction: column; align-items: center; }
         .btn-control { padding: 15px 40px; font-size: 18px; font-weight: bold; background-color: #333; color: #fff; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; min-width: 200px; }
@@ -177,14 +180,14 @@
         </div>
         <div class="setlist-manager" id="desktopSetlist">
             <select id="setlistSelect"></select>
-            <button class="btn-new-setlist" onclick="createNewSetlist()">+ Nova Setlist</button>
-            <button class="btn-del-setlist" onclick="removeCurrentSetlist()" title="Excluir Setlist atual">- Excluir</button>
+            <button class="btn-new-setlist" onclick="createNewSetlist()" data-i18n="new-setlist">+ Nova Setlist</button>
+            <button class="btn-del-setlist" onclick="removeCurrentSetlist()" title="Excluir Setlist atual" data-i18n="del-setlist">- Excluir</button>
         </div>
         <div class="setup-controls">
-            <label class="toggle-label"><input type="checkbox" id="checkAutoPlay"><span>Auto-play</span></label>
-            <label class="toggle-label"><input type="checkbox" id="checkShowKeys"><span>Mostrar Teclas</span></label>
-            <button class="btn-add" onclick="openAddModal()">+ Adicionar</button>
-            <button class="btn-edit" id="btnEditMode" onclick="toggleEditMode()">Modo Edição</button>
+            <label class="toggle-label"><input type="checkbox" id="checkAutoPlay"><span data-i18n="auto-play">Auto-play</span></label>
+            <label class="toggle-label"><input type="checkbox" id="checkShowKeys"><span data-i18n="show-keys">Mostrar Teclas</span></label>
+            <button class="btn-add" onclick="openAddModal()" data-i18n="add-button">+ Adicionar</button>
+            <button class="btn-edit" id="btnEditMode" onclick="toggleEditMode()" data-i18n="edit-mode">Modo Edição</button>
         </div>
         <button class="settings-icon" id="settingsDesktop" onclick="openSettingsModal()" title="Configurações">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -198,45 +201,46 @@
     <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
     <div class="sidebar-menu" id="sidebarMenu">
         <button class="menu-close" onclick="closeMenu()">✕</button>
-        <div class="menu-section"><div class="menu-section-title">Setlist</div>
+        <div class="menu-section"><div class="menu-section-title" data-i18n="menu-setlist">Setlist</div>
             <div class="setlist-manager mobile">
                 <select id="setlistSelectMobile"></select>
-                <button class="btn-new-setlist" onclick="createNewSetlist(); closeMenu();">+ Nova Setlist</button>
-                <button class="btn-del-setlist" onclick="removeCurrentSetlist(); closeMenu();" title="Excluir Setlist atual">- Excluir</button>
+                <button class="btn-new-setlist" onclick="createNewSetlist(); closeMenu();" data-i18n="new-setlist">+ Nova Setlist</button>
+                <button class="btn-del-setlist" onclick="removeCurrentSetlist(); closeMenu();" title="Excluir Setlist atual" data-i18n="del-setlist">- Excluir</button>
             </div>
         </div>
-        <div class="menu-section"><div class="menu-section-title">Controles</div>
-            <label class="menu-item"><input type="checkbox" id="checkAutoPlayMobile"><span>Auto-play</span></label>
-            <label class="menu-item"><input type="checkbox" id="checkShowKeysMobile"><span>Mostrar Teclas</span></label>
+        <div class="menu-section"><div class="menu-section-title" data-i18n="menu-controls">Controles</div>
+            <label class="menu-item"><input type="checkbox" id="checkAutoPlayMobile"><span data-i18n="auto-play">Auto-play</span></label>
+            <label class="menu-item"><input type="checkbox" id="checkShowKeysMobile"><span data-i18n="show-keys">Mostrar Teclas</span></label>
         </div>
-        <div class="menu-section"><div class="menu-section-title">Ações</div>
-            <button class="menu-button primary" onclick="openAddModal(); closeMenu();">+ Adicionar Música</button>
-            <button class="menu-button secondary" id="btnEditModeMobile" onclick="toggleEditMode(); closeMenu();">✏️ Modo Edição</button>
+        <div class="menu-section"><div class="menu-section-title" data-i18n="menu-actions">Ações</div>
+            <button class="menu-button primary" onclick="openAddModal(); closeMenu();" data-i18n="add-music-btn">+ Adicionar Música</button>
+            <button class="menu-button secondary" id="btnEditModeMobile" onclick="toggleEditMode(); closeMenu();" data-i18n="edit-mode">✏️ Modo Edição</button>
         </div>
-        <div class="menu-section"><div class="menu-section-title">App</div>
-            <button class="menu-button primary" onclick="openSettingsModal(); closeMenu();">⚙️ Configurações</button>
+        <div class="menu-section"><div class="menu-section-title" data-i18n="menu-app">App</div>
+            <button class="menu-button primary" onclick="openSettingsModal(); closeMenu();" data-i18n="settings-btn">⚙️ Configurações</button>
         </div>
     </div>
 
-    <div class="display-container">
-        <div class="track-name" id="currentTrackName">Parado</div>
+    <div class="display-container" id="displayContainer">
+        <div class="track-name" id="currentTrackName" data-i18n="stopped">Parado</div>
         <div class="time-block">
-            <div class="time-item"><div class="time-label">Tempo Atual</div><div class="time-value large" id="timeCurrent">00:00</div></div>
-            <div class="time-item"><div class="time-label">Total</div><div class="time-value small" id="timeTotal">00:00</div></div>
-            <div class="time-item"><div class="time-label">Restante</div><div class="time-value large remaining" id="timeRemaining">-00:00</div></div>
+            <div class="time-item"><div class="time-label" data-i18n="current-time">Tempo Atual</div><div class="time-value large" id="timeCurrent">00:00</div></div>
+            <div class="time-item" id="timeTotalItem"><div class="time-label" data-i18n="total-time">Total</div><div class="time-value small" id="timeTotal">00:00</div></div>
+            <div class="time-item"><div class="time-label" data-i18n="remaining-time">Restante</div><div class="time-value large remaining" id="timeRemaining">-00:00</div></div>
         </div>
+        <button class="btn-exit-edit-mobile" id="btnExitEditMobile" onclick="toggleEditMode()" data-i18n="exit-edit-btn">✕ Sair da Edição</button>
     </div>
 
     <div class="controls">
         <div class="control-wrapper">
-            <button class="btn-control btn-stop" id="btnStop" onclick="handleStopClick()">PARAR</button>
+            <button class="btn-control btn-stop" id="btnStop" onclick="handleStopClick()" data-i18n="stop-btn">PARAR</button>
             <div class="key-badge-global" id="stopKeyBadge" style="display:none;"></div>
-            <button class="btn-map-key" id="mapStopKeyBtn" onclick="startKeyMapping('stop')" style="display:none; margin-top: 5px; padding: 5px 10px; font-size: 12px;">Mapear Tecla</button>
+            <button class="btn-map-key" id="mapStopKeyBtn" onclick="startKeyMapping('stop')" style="display:none; margin-top: 5px; padding: 5px 10px; font-size: 12px;" data-i18n="map-stop-key">Mapear Tecla</button>
         </div>
         <div class="control-wrapper">
-            <button class="btn-control btn-play-pause" id="btnPlayPause" onclick="handlePlayPauseClick()">TOCAR</button>
+            <button class="btn-control btn-play-pause" id="btnPlayPause" onclick="handlePlayPauseClick()" data-i18n="play-pause-btn">TOCAR</button>
             <div class="key-badge-global" id="playPauseKeyBadge" style="display:none;"></div>
-            <button class="btn-map-key" id="mapPlayKeyBtn" onclick="startKeyMapping('playpause')" style="display:none; margin-top: 5px; padding: 5px 10px; font-size: 12px;">Mapear Tecla</button>
+            <button class="btn-map-key" id="mapPlayKeyBtn" onclick="startKeyMapping('playpause')" style="display:none; margin-top: 5px; padding: 5px 10px; font-size: 12px;" data-i18n="map-play-key">Mapear Tecla</button>
         </div>
     </div>
 
@@ -244,77 +248,77 @@
 
     <div class="settings-modal" id="settingsModal">
         <div class="settings-content">
-            <h2>⚙️ Configurações</h2>
-            <div class="settings-group"><label>🌐 Idioma:</label><select id="languageSelect" onchange="changeLanguage(this.value)"><option value="pt-BR">Português (BR)</option><option value="en-US">English (US)</option><option value="es-ES">Español</option><option value="fr-FR">Français</option></select></div>
+            <h2 data-i18n="settings-title">⚙️ Configurações</h2>
+            <div class="settings-group"><label data-i18n="language">🌐 Idioma:</label><select id="languageSelect" onchange="changeLanguage(this.value)"><option value="pt-BR">Português (BR)</option><option value="en-US">English (US)</option><option value="es-ES">Español</option><option value="fr-FR">Français</option></select></div>
             <div class="settings-actions">
-                <button class="btn-about-action btn-donate" onclick="openDonateModal()">❤️ Doação</button>
-                <button class="btn-about-action" onclick="openAboutModal()">ℹ️ Sobre</button>
-                <button class="btn-close-settings" onclick="closeSettingsModal()">Fechar</button>
+                <button class="btn-about-action btn-donate" onclick="openDonateModal()" data-i18n="donate-btn">❤️ Doação</button>
+                <button class="btn-about-action" onclick="openAboutModal()" data-i18n="about-btn">ℹ️ Sobre</button>
+                <button class="btn-close-settings" onclick="closeSettingsModal()" data-i18n="close-btn">Fechar</button>
             </div>
         </div>
     </div>
 
     <div class="about-modal" id="aboutModal">
         <div class="about-content">
-            <h2>ℹ️ Sobre o LIVE SHOW</h2>
-            <p>O LIVE SHOW é um aplicativo web profissional desenvolvido para músicos, bandas e produtores de shows ao vivo. Oferece controle preciso de áudio durante apresentações, com suporte a metrônomo sincronizado e múltiplas setlists.</p>
-            <p><strong>Recursos principais:</strong> Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e dados salvos localmente (sem depender de internet).</p>
-            <div class="version-info"><div>Versão:</div><div>1.19 - LIVE SHOW Professional</div><div style="margin-top: 10px;">Desenvolvido por:</div><div>🎵 Viver de Som Studios</div><div style="margin-top: 10px; font-style: italic;">Sua música, nosso palco, seu show!</div></div>
+            <h2 data-i18n="about-title">ℹ️ Sobre o LIVE SHOW</h2>
+            <p data-i18n="about-description">O LIVE SHOW é um aplicativo web profissional desenvolvido para músicos, bandas e produtores de shows ao vivo. Oferece controle preciso de áudio durante apresentações, com suporte a metrônomo sincronizado e múltiplas setlists.</p>
+            <p data-i18n="about-features"><strong>Recursos principais:</strong> Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e dados salvos localmente (sem depender de internet).</p>
+            <div class="version-info"><div data-i18n="version-label">Versão:</div><div>1.21 - LIVE SHOW Professional</div><div style="margin-top: 10px;" data-i18n="developed-by">Desenvolvido por:</div><div>🎵 Viver de Som Studios</div><div style="margin-top: 10px; font-style: italic;" data-i18n="tagline">Sua música, nosso palco, seu show!</div></div>
             <div class="about-actions">
-                <button class="btn-about-action btn-donate" onclick="openDonateModal()">❤️ Doação</button>
-                <button class="btn-about-action btn-close-about" onclick="closeAboutModal()">Fechar</button>
+                <button class="btn-about-action btn-donate" onclick="openDonateModal()" data-i18n="donate-btn">❤️ Doação</button>
+                <button class="btn-about-action btn-close-about" onclick="closeAboutModal()" data-i18n="close-btn">Fechar</button>
             </div>
         </div>
     </div>
 
     <div class="donate-modal" id="donateModal">
         <div class="donate-content">
-            <h2>❤️ Apoie o LIVE SHOW</h2>
-            <p class="donate-message">"Apoie o LIVE SHOW! Sua doação mantém este projeto gratuito e em evolução para músicos. ❤️"</p>
+            <h2 data-i18n="donate-title">❤️ Apoie o LIVE SHOW</h2>
+            <p class="donate-message" data-i18n="donate-message">"Apoie o LIVE SHOW! Sua doação mantém este projeto gratuito e em evolução para músicos. ❤️"</p>
             <div class="donate-options">
-                <button class="donate-btn" onclick="window.open('https://www.paypal.com/donate/?hosted_button_id=CUMGN7FGJX3UU', '_blank')">💳 PayPal</button>
-                <button class="donate-btn" onclick="copyPixKey()">🔑 Pix (BR)</button>
+                <button class="donate-btn" onclick="window.open('https://www.paypal.com/donate/?hosted_button_id=CUMGN7FGJX3UU', '_blank')" data-i18n="paypal-donate">💳 PayPal</button>
+                <button class="donate-btn" onclick="copyPixKey()" data-i18n="pix-donate">🔑 Pix (BR)</button>
             </div>
-            <p class="donate-thanks">Muito obrigado por apoiar o projeto! 🙏</p>
-            <div class="donate-actions"><button class="btn-close-donate" onclick="closeDonateModal()">Fechar</button></div>
+            <p class="donate-thanks" data-i18n="donate-thanks">Muito obrigado por apoiar o projeto! 🙏</p>
+            <div class="donate-actions"><button class="btn-close-donate" onclick="closeDonateModal()" data-i18n="close-btn">Fechar</button></div>
         </div>
     </div>
 
     <div class="modal" id="addModal">
         <div class="modal-content">
-            <h2 id="modalTitle">Adicionar Nova Música</h2>
+            <h2 id="modalTitle" data-i18n="add-music-modal">Adicionar Nova Música</h2>
             <form id="trackForm">
-                <div class="form-group"><label>Nome da Música:</label><input type="text" id="inputName" required></div>
-                <div class="form-group"><label>Arquivo de Áudio:</label><input type="file" id="inputFile" accept="audio/*, .mp3, .wav, .m4a, .aac, .ogg"><small id="currentFileInfo" style="color: #888; display: none; margin-top: 5px;"></small></div>
+                <div class="form-group"><label data-i18n="music-name">Nome da Música:</label><input type="text" id="inputName" required></div>
+                <div class="form-group"><label data-i18n="audio-file">Arquivo de Áudio:</label><input type="file" id="inputFile" accept="audio/*, .mp3, .wav, .m4a, .aac, .ogg"><small id="currentFileInfo" style="color: #888; display: none; margin-top: 5px;"></small></div>
                 <div class="modal-volume-group">
-                    <div class="modal-volume-label"><span>🔊 Volume da Música:</span><span class="modal-volume-value" id="volumeValueDisplay">100%</span></div>
+                    <div class="modal-volume-label"><span data-i18n="music-volume">🔊 Volume da Música:</span><span class="modal-volume-value" id="volumeValueDisplay">100%</span></div>
                     <input type="range" id="inputVolume" class="modal-volume-slider" min="0" max="100" value="100" onchange="updateVolumeDisplay(this.value)">
                 </div>
-                <div class="metronome-toggle"><input type="checkbox" id="checkMetronome"><label for="checkMetronome">🎵 Modo Metrônomo (sem áudio)</label></div>
+                <div class="metronome-toggle"><input type="checkbox" id="checkMetronome"><label for="checkMetronome" data-i18n="metronome-mode">🎵 Modo Metrônomo (sem áudio)</label></div>
                 <div class="metronome-controls" id="metronomeControls">
-                    <div class="bpm-input-group"><label>BPM (batidas por minuto):</label><input type="number" id="inputBPM" min="40" max="240" value="120"></div>
-                    <div><label>Canal de Saída:</label>
+                    <div class="bpm-input-group"><label data-i18n="bpm-label">BPM (batidas por minuto):</label><input type="number" id="inputBPM" min="40" max="240" value="120"></div>
+                    <div><label data-i18n="output-channel">Canal de Saída:</label>
                         <div class="channel-selector">
-                            <button type="button" class="channel-btn active" data-channel="left" onclick="selectChannel('left')">Esquerdo (L)</button>
-                            <button type="button" class="channel-btn" data-channel="right" onclick="selectChannel('right')">Direito (R)</button>
+                            <button type="button" class="channel-btn active" data-channel="left" onclick="selectChannel('left')" data-i18n="left-channel">Esquerdo (L)</button>
+                            <button type="button" class="channel-btn" data-channel="right" onclick="selectChannel('right')" data-i18n="right-channel">Direito (R)</button>
                         </div>
                     </div>
-                    <div style="margin-top: 15px;"><label style="color: #bb8fce; font-weight: bold; font-size: 13px;">🔊 Som do Metrônomo:</label>
+                    <div style="margin-top: 15px;"><label style="color: #bb8fce; font-weight: bold; font-size: 13px;" data-i18n="metronome-sound-label">🔊 Som do Metrônomo:</label>
                         <div class="metronome-sound-selector">
-                            <button type="button" class="sound-btn active" data-sound="click" onclick="selectMetronomeSound('click')">🔔 Click</button>
-                            <button type="button" class="sound-btn" data-sound="bell" onclick="selectMetronomeSound('bell')">🔗 Cowbell</button>
+                            <button type="button" class="sound-btn active" data-sound="click" onclick="selectMetronomeSound('click')" data-i18n="click-sound">🔔 Click</button>
+                            <button type="button" class="sound-btn" data-sound="bell" onclick="selectMetronomeSound('bell')" data-i18n="cowbell-sound">🔗 Cowbell</button>
                         </div>
                     </div>
                     <div class="cowbell-pitch-group" id="cowbellPitchGroup">
-                        <div class="cowbell-pitch-label"><span>🎚️ Tonalidade do Cowbell</span><span class="cowbell-pitch-value" id="cowbellPitchValue">50%</span></div>
+                        <div class="cowbell-pitch-label"><span data-i18n="cowbell-pitch">🎚️ Tonalidade do Cowbell</span><span class="cowbell-pitch-value" id="cowbellPitchValue">50%</span></div>
                         <input type="range" id="cowbellPitchSlider" class="cowbell-pitch-slider" min="0" max="100" value="50" oninput="updateCowbellPitchDisplay(this.value)">
-                        <div class="cowbell-pitch-labels"><span>🔊 Grave</span><span>Médio</span><span>🔔 Agudo</span></div>
-                        <button type="button" class="btn-test-sound" id="btnTestCowbell" onclick="previewCowbell()">▶️ Testar Som</button>
+                        <div class="cowbell-pitch-labels"><span data-i18n="cowbell-low">🔊 Grave</span><span data-i18n="cowbell-mid">Médio</span><span data-i18n="cowbell-high">🔔 Agudo</span></div>
+                        <button type="button" class="btn-test-sound" id="btnTestCowbell" onclick="previewCowbell()" data-i18n="test-sound">▶️ Testar Som</button>
                     </div>
                 </div>
                 <div class="modal-actions">
-                    <button type="button" class="btn-cancel" onclick="closeModal()">Cancelar</button>
-                    <button type="submit" class="btn-save">Salvar</button>
+                    <button type="button" class="btn-cancel" onclick="closeModal()" data-i18n="cancel-btn">Cancelar</button>
+                    <button type="submit" class="btn-save" data-i18n="save-btn">Salvar</button>
                 </div>
             </form>
         </div>
@@ -346,9 +350,8 @@
         let globalKeys = { stop: null, playpause: null };
         let setlists = [];
         let currentSetlistId = null;
-        let isMetronomeNameAuto = true; // 🔧 NOVO: Controla se o nome do metrônomo é automático
+        let isMetronomeNameAuto = true;
 
-        // METRÔNOMO
         let audioContext = null;
         let clickBuffer = null;
         let bellBuffer = null;
@@ -363,15 +366,12 @@
         const lookahead = 25.0;
         const scheduleAheadTime = 0.1;
 
-        // Controle de memória
         let activeBlobUrls = new Set();
         let memoryStats = { totalUrlsCreated: 0, totalUrlsRevoked: 0, lastCleanup: null };
-
-        // 🔧 NOVO: Desbloqueio de áudio para iOS
         let audioUnlocked = false;
 
         // ==========================================
-        // 🔧 CORRIGIDO: PREENCHIMENTO AUTOMÁTICO DO NOME
+        // PREENCHIMENTO AUTOMÁTICO
         // ==========================================
         inputFile.addEventListener('change', function(e) {
             if (e.target.files.length > 0 && inputName.value.trim() === '') {
@@ -380,108 +380,56 @@
             }
         });
 
-        // 🔧 NOVO: Preenchimento automático para metrônomo
         function updateMetronomeName() {
             if (!checkMetronome.checked) return;
-            if (!isMetronomeNameAuto && inputName.value.trim() !== '') return; // Respeita nome personalizado
-            
+            if (!isMetronomeNameAuto && inputName.value.trim() !== '') return;
             const bpm = document.getElementById('inputBPM').value;
             const soundName = selectedMetronomeSound === 'bell' ? 'Cowbell' : 'Click';
             inputName.value = soundName + ' ' + bpm + ' BPM';
         }
 
-        // 🔧 NOVO: Força o nome quando ativa o metrônomo
-        function forceMetronomeName() {
-            isMetronomeNameAuto = true;
-            updateMetronomeName();
-        }
-
-        // 🔧 NOVO: Quando usuário digita, desativa auto-nome
-        inputName.addEventListener('input', function() {
-            if (checkMetronome.checked) {
-                isMetronomeNameAuto = false;
-            }
-        });
+        function forceMetronomeName() { isMetronomeNameAuto = true; updateMetronomeName(); }
+        inputName.addEventListener('input', function() { if (checkMetronome.checked) { isMetronomeNameAuto = false; } });
 
         // ==========================================
-        // 🔧 CORRIGIDO: DESBLOQUEIO DE ÁUDIO iOS
+        // DESBLOQUEIO iOS
         // ==========================================
         function unlockAudio() {
             if (audioUnlocked) return;
-            
-            // Cria um AudioContext silencioso para "acordar" o sistema de áudio
             const tempCtx = new (window.AudioContext || window.webkitAudioContext)();
             const buffer = tempCtx.createBuffer(1, 1, 22050);
             const source = tempCtx.createBufferSource();
-            source.buffer = buffer;
-            source.connect(tempCtx.destination);
-            source.start(0);
-            
-            if (tempCtx.state === 'suspended') {
-                tempCtx.resume();
-            }
-            
+            source.buffer = buffer; source.connect(tempCtx.destination); source.start(0);
+            if (tempCtx.state === 'suspended') tempCtx.resume();
             audioUnlocked = true;
-            console.log('🔓 Áudio desbloqueado para iOS');
-            
-            // Limpa depois
-            setTimeout(() => {
-                source.disconnect();
-                tempCtx.close().catch(() => {});
-            }, 100);
+            setTimeout(() => { source.disconnect(); tempCtx.close().catch(() => {}); }, 100);
         }
-
-        // Desbloqueia áudio no primeiro toque em qualquer lugar
         document.addEventListener('touchstart', unlockAudio, { once: true });
         document.addEventListener('click', unlockAudio, { once: true });
 
         // ==========================================
-        // PREVIEW COWBELL (compatível com iOS)
+        // PREVIEW COWBELL
         // ==========================================
         function previewCowbell() {
             try {
-                // Garante que o áudio está desbloqueado
                 unlockAudio();
-                
-                if (!previewAudioContext) {
-                    previewAudioContext = new (window.AudioContext || window.webkitAudioContext)();
-                }
-                
-                // 🔧 CORRIGIDO: Resume o contexto se estiver suspenso (iOS)
-                if (previewAudioContext.state === 'suspended') {
-                    previewAudioContext.resume();
-                }
-                
+                if (!previewAudioContext) previewAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+                if (previewAudioContext.state === 'suspended') previewAudioContext.resume();
                 const ctx = previewAudioContext;
-                const sampleRate = ctx.sampleRate;
-                const duration = 0.2;
-                const length = Math.floor(sampleRate * duration);
+                const sampleRate = ctx.sampleRate, duration = 0.2, length = Math.floor(sampleRate * duration);
                 const buffer = ctx.createBuffer(2, length, sampleRate);
-                const channelIndex = selectedChannel === 'left' ? 0 : 1;
-                const channelData = buffer.getChannelData(channelIndex);
-                const pitchFactor = 0.5 + (selectedCowbellPitch / 100);
-                const freq1 = 587 * pitchFactor;
-                const freq2 = 880 * pitchFactor;
-                const freq3 = 1175 * pitchFactor;
-                
+                const cd = buffer.getChannelData(selectedChannel === 'left' ? 0 : 1);
+                const pf = 0.5 + (selectedCowbellPitch / 100);
+                const f1 = 587 * pf, f2 = 880 * pf, f3 = 1175 * pf;
                 for (let i = 0; i < length; i++) {
                     const t = i / sampleRate;
-                    const attack = Math.min(t * 500, 1);
-                    const decay = Math.exp(-20 * t);
-                    const envelope = attack * decay * 0.6;
-                    const wave = Math.sin(2 * Math.PI * freq1 * t) * 0.6 + Math.sin(2 * Math.PI * freq2 * t) * 0.3 + Math.sin(2 * Math.PI * freq3 * t) * 0.1;
-                    channelData[i] = wave * envelope;
+                    const envelope = Math.min(t * 500, 1) * Math.exp(-20 * t) * 0.6;
+                    cd[i] = (Math.sin(2 * Math.PI * f1 * t) * 0.6 + Math.sin(2 * Math.PI * f2 * t) * 0.3 + Math.sin(2 * Math.PI * f3 * t) * 0.1) * envelope;
                 }
-                
-                const source = ctx.createBufferSource();
-                source.buffer = buffer;
-                source.connect(ctx.destination);
-                source.start(0);
-                
+                const source = ctx.createBufferSource(); source.buffer = buffer; source.connect(ctx.destination); source.start(0);
                 const btn = document.getElementById('btnTestCowbell');
                 btn.style.backgroundColor = '#7d3c98'; btn.innerText = '🔔 Tocando...';
                 setTimeout(() => { btn.style.backgroundColor = '#9b59b6'; btn.innerText = '▶️ Testar Som'; }, 200);
-                
             } catch (err) { console.error('Erro ao tocar preview:', err); }
         }
 
@@ -492,8 +440,7 @@
         // INDEXEDDB
         // ==========================================
         let db;
-        const dbName = "BotoeiraDB";
-        const dbVersion = 3;
+        const dbName = "BotoeiraDB", dbVersion = 3;
         const dbRequest = indexedDB.open(dbName, dbVersion);
         dbRequest.onerror = () => console.error("Erro ao abrir IndexedDB");
         dbRequest.onsuccess = (event) => { db = event.target.result; loadSetlists(); };
@@ -502,7 +449,6 @@
             if (!db.objectStoreNames.contains('tracks')) db.createObjectStore('tracks', { keyPath: 'id' });
             if (!db.objectStoreNames.contains('setlists')) db.createObjectStore('setlists', { keyPath: 'id' });
         };
-
         function saveTrackToDB(track) { const t = { ...track }; delete t.url; db.transaction(['tracks'], 'readwrite').objectStore('tracks').put(t); }
         function deleteTrackFromDB(id) { db.transaction(['tracks'], 'readwrite').objectStore('tracks').delete(id); }
         function loadTracksFromDB(setlistId) {
@@ -513,7 +459,6 @@
                         if (t.blob) { const url = URL.createObjectURL(t.blob); t.url = url; activeBlobUrls.add(url); memoryStats.totalUrlsCreated++; }
                         return t;
                     });
-                    console.log(`📊 Memória: ${activeBlobUrls.size} Blob URLs ativas`);
                     resolve(filtered);
                 };
             });
@@ -523,16 +468,16 @@
         function deleteSetlistFromDB(id) { db.transaction(['setlists'], 'readwrite').objectStore('setlists').delete(id); }
 
         // ==========================================
-        // GERENCIAMENTO DE MEMÓRIA
+        // MEMÓRIA
         // ==========================================
         function revokeBlobUrlsSafely(tracks, protectedId = null) {
             let c = 0;
             tracks.forEach(t => { if (t.url && t.id !== protectedId && activeBlobUrls.has(t.url)) { URL.revokeObjectURL(t.url); activeBlobUrls.delete(t.url); t.url = null; c++; } });
-            if (c > 0) { memoryStats.totalUrlsRevoked += c; memoryStats.lastCleanup = new Date().toLocaleTimeString(); console.log(`🧹 Limpeza: ${c} URLs revogadas`); }
+            if (c > 0) { memoryStats.totalUrlsRevoked += c; memoryStats.lastCleanup = new Date().toLocaleTimeString(); }
             return c;
         }
         function cleanupSetlistBlobUrls(tracks) { return revokeBlobUrlsSafely(tracks, currentLoadedTrackId); }
-        function showMemoryStats() { console.log(`📊 Memória: ${activeBlobUrls.size} ativas | ${memoryStats.totalUrlsCreated} criadas | ${memoryStats.totalUrlsRevoked} revogadas`); }
+        function showMemoryStats() { console.log(`📊 Memória: ${activeBlobUrls.size} ativas`); }
 
         // ==========================================
         // SETLISTS
@@ -557,18 +502,19 @@
             stopAudio(); if (trackList.length > 0) cleanupSetlistBlobUrls(trackList);
             currentSetlistId = parseFloat(e.target.value); localStorage.setItem('lastSetlistId', currentSetlistId);
             const m = document.getElementById('setlistSelectMobile'); if (m) m.value = currentSetlistId;
-            await loadCurrentSetlist(); showMemoryStats();
+            await loadCurrentSetlist();
         });
         async function loadCurrentSetlist() { if (trackList.length > 0) cleanupSetlistBlobUrls(trackList); trackList = await loadTracksFromDB(currentSetlistId); renderGrid(); }
         function createNewSetlist() {
-            const n = prompt('Nome da nova setlist:'); if (!n || !n.trim()) return;
+            const n = prompt(translations[currentLanguage]['new-setlist-name'] || 'Nome da nova setlist:');
+            if (!n || !n.trim()) return;
             const s = { id: Date.now(), name: n.trim() }; setlists.push(s); saveSetlistToDB(s);
             currentSetlistId = s.id; localStorage.setItem('lastSetlistId', currentSetlistId); renderSetlistSelector(); loadCurrentSetlist();
         }
         async function removeCurrentSetlist() {
-            if (setlists.length <= 1) { alert('Não pode excluir a única Setlist!'); return; }
+            if (setlists.length <= 1) { alert(translations[currentLanguage]['cant-delete-last'] || 'Não pode excluir a única Setlist!'); return; }
             const nm = setlists.find(s => s.id === currentSetlistId).name;
-            if (confirm(`Excluir Setlist "${nm}" e todas as músicas?`)) {
+            if (confirm((translations[currentLanguage]['confirm-delete-setlist'] || 'Excluir Setlist') + ` "${nm}"?`)) {
                 stopAudio(); cleanupSetlistBlobUrls(trackList);
                 const t = await loadTracksFromDB(currentSetlistId); t.forEach(x => deleteTrackFromDB(x.id));
                 deleteSetlistFromDB(currentSetlistId); setlists = setlists.filter(s => s.id !== currentSetlistId);
@@ -581,17 +527,9 @@
         // GERAÇÃO DE SOM
         // ==========================================
         function initAudioContext() {
-            if (!audioContext) {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                createClickSound();
-                createBellSound();
-            }
-            // 🔧 CORRIGIDO: Resume contexto se suspenso (iOS)
-            if (audioContext.state === 'suspended') {
-                audioContext.resume();
-            }
+            if (!audioContext) { audioContext = new (window.AudioContext || window.webkitAudioContext)(); createClickSound(); createBellSound(); }
+            if (audioContext.state === 'suspended') audioContext.resume();
         }
-        
         function createClickSound() {
             if (!audioContext) return;
             const sr = audioContext.sampleRate, dur = 0.05, len = Math.floor(sr * dur);
@@ -617,93 +555,53 @@
         function metronomeScheduler() { while (nextNoteTime < audioContext.currentTime + scheduleAheadTime) { scheduleNote(nextNoteTime); nextNote(); } metronomeTimerID = setTimeout(metronomeScheduler, lookahead); }
 
         // ==========================================
-        // 🔧 MODIFICADO: SELEÇÃO COM AUTO-NOME
+        // SELEÇÃO
         // ==========================================
-        function selectChannel(ch) {
-            selectedChannel = ch;
-            document.querySelectorAll('.channel-btn').forEach(b => b.classList.toggle('active', b.dataset.channel === ch));
-            if (audioContext) { createClickSound(); createBellSound(); }
-        }
-        
-        function selectMetronomeSound(s) {
-            selectedMetronomeSound = s;
-            document.querySelectorAll('.sound-btn').forEach(b => b.classList.toggle('active', b.dataset.sound === s));
-            showCowbellPitchSlider(s === 'bell');
-            updateMetronomeName(); // 🔧 Atualiza nome ao trocar som
-        }
+        function selectChannel(ch) { selectedChannel = ch; document.querySelectorAll('.channel-btn').forEach(b => b.classList.toggle('active', b.dataset.channel === ch)); if (audioContext) { createClickSound(); createBellSound(); } }
+        function selectMetronomeSound(s) { selectedMetronomeSound = s; document.querySelectorAll('.sound-btn').forEach(b => b.classList.toggle('active', b.dataset.sound === s)); showCowbellPitchSlider(s === 'bell'); updateMetronomeName(); }
 
         // ==========================================
         // MODAL
         // ==========================================
         checkMetronome.addEventListener('change', (e) => {
             metronomeControls.classList.toggle('active', e.target.checked);
-            inputFile.disabled = e.target.checked;
-            inputFile.required = !e.target.checked && !editingTrackId;
-            
-            if (e.target.checked) {
-                forceMetronomeName(); // 🔧 Preenche nome ao ativar metrônomo
-            } else {
-                isMetronomeNameAuto = false;
-            }
+            inputFile.disabled = e.target.checked; inputFile.required = !e.target.checked && !editingTrackId;
+            if (e.target.checked) forceMetronomeName(); else isMetronomeNameAuto = false;
         });
-        
-        // 🔧 NOVO: Atualiza nome ao mudar BPM
         document.getElementById('inputBPM').addEventListener('input', updateMetronomeName);
         
         function openAddModal() {
             editingTrackId = null;
-            document.getElementById('modalTitle').innerText = 'Adicionar Nova Música';
-            inputName.value = '';
-            inputFile.value = '';
-            inputFile.required = true;
-            inputFile.disabled = false;
-            document.getElementById('currentFileInfo').style.display = 'none';
-            checkMetronome.checked = false;
-            metronomeControls.classList.remove('active');
-            document.getElementById('inputBPM').value = 120;
-            selectChannel('left');
-            selectMetronomeSound('click');
-            document.getElementById('cowbellPitchSlider').value = 50;
-            updateCowbellPitchDisplay(50);
-            showCowbellPitchSlider(false);
-            isMetronomeNameAuto = false; // Reset
-            modal.classList.add('open');
+            document.getElementById('modalTitle').innerText = translations[currentLanguage]['add-music-modal'] || 'Adicionar Nova Música';
+            document.getElementById('modalTitle').setAttribute('data-i18n', 'add-music-modal');
+            inputName.value = ''; inputFile.value = ''; inputFile.required = true; inputFile.disabled = false;
+            document.getElementById('currentFileInfo').style.display = 'none'; checkMetronome.checked = false;
+            metronomeControls.classList.remove('active'); document.getElementById('inputBPM').value = 120;
+            selectChannel('left'); selectMetronomeSound('click');
+            document.getElementById('cowbellPitchSlider').value = 50; updateCowbellPitchDisplay(50); showCowbellPitchSlider(false);
+            isMetronomeNameAuto = false; modal.classList.add('open');
+            updateLanguage();
         }
-        
         function openEditModal(id) {
             const track = trackList.find(t => t.id === id); if (!track) return;
             editingTrackId = id;
-            document.getElementById('modalTitle').innerText = 'Editar Música';
-            inputName.value = track.name;
-            inputFile.required = false;
-            document.getElementById('currentFileInfo').style.display = 'block';
+            document.getElementById('modalTitle').innerText = translations[currentLanguage]['edit-music-modal'] || 'Editar Música';
+            document.getElementById('modalTitle').setAttribute('data-i18n', 'edit-music-modal');
+            inputName.value = track.name; inputFile.required = false; document.getElementById('currentFileInfo').style.display = 'block';
             document.getElementById('inputVolume').value = Math.round((track.volume || 1) * 100);
             document.getElementById('volumeValueDisplay').innerText = Math.round((track.volume || 1) * 100) + '%';
-            
             if (track.isMetronome) {
-                checkMetronome.checked = true;
-                metronomeControls.classList.add('active');
-                document.getElementById('inputBPM').value = track.bpm;
-                selectChannel(track.channel);
-                selectMetronomeSound(track.metronomeSound || 'click');
+                checkMetronome.checked = true; metronomeControls.classList.add('active');
+                document.getElementById('inputBPM').value = track.bpm; selectChannel(track.channel); selectMetronomeSound(track.metronomeSound || 'click');
                 const sp = track.cowbellPitch !== undefined ? track.cowbellPitch : 50;
-                document.getElementById('cowbellPitchSlider').value = sp;
-                updateCowbellPitchDisplay(sp);
-                showCowbellPitchSlider(track.metronomeSound === 'bell');
+                document.getElementById('cowbellPitchSlider').value = sp; updateCowbellPitchDisplay(sp); showCowbellPitchSlider(track.metronomeSound === 'bell');
                 inputFile.disabled = true;
-                document.getElementById('currentFileInfo').textContent = `⚙️ Metrônomo: ${track.bpm} BPM - ${track.metronomeSound === 'bell' ? 'Cowbell' : 'Click'}`;
-                isMetronomeNameAuto = false; // Na edição, respeita o nome salvo
-            } else {
-                checkMetronome.checked = false;
-                metronomeControls.classList.remove('active');
-                inputFile.disabled = false;
-                showCowbellPitchSlider(false);
-                document.getElementById('currentFileInfo').textContent = '📁 Áudio atual carregado.';
+                document.getElementById('currentFileInfo').textContent = `⚙️ ${translations[currentLanguage]['metronome-mode'] || 'Metrônomo'}: ${track.bpm} BPM - ${track.metronomeSound === 'bell' ? 'Cowbell' : 'Click'}`;
                 isMetronomeNameAuto = false;
-            }
+            } else { checkMetronome.checked = false; metronomeControls.classList.remove('active'); inputFile.disabled = false; showCowbellPitchSlider(false); document.getElementById('currentFileInfo').textContent = translations[currentLanguage]['current-file-audio'] || '📁 Áudio atual carregado.'; isMetronomeNameAuto = false; }
             modal.classList.add('open');
+            updateLanguage();
         }
-        
         function closeModal() { modal.classList.remove('open'); }
         function openSettingsModal() { document.getElementById('settingsModal').classList.add('open'); }
         function closeSettingsModal() { document.getElementById('settingsModal').classList.remove('open'); }
@@ -711,7 +609,11 @@
         function closeAboutModal() { document.getElementById('aboutModal').classList.remove('open'); }
         function openDonateModal() { document.getElementById('donateModal').classList.add('open'); }
         function closeDonateModal() { document.getElementById('donateModal').classList.remove('open'); }
-        function copyPixKey() { navigator.clipboard.writeText('51997160889').then(() => alert('Chave Pix copiada! 📋')).catch(() => prompt('Chave Pix:', '51997160889')); }
+        function copyPixKey() {
+            navigator.clipboard.writeText('51997160889').then(() => {
+                alert(translations[currentLanguage]['pix-copied'] || 'Chave Pix copiada! 📋');
+            }).catch(() => prompt('Pix:', '51997160889'));
+        }
         function updateVolumeDisplay(v) { document.getElementById('volumeValueDisplay').innerText = v + '%'; }
 
         // ==========================================
@@ -723,7 +625,7 @@
             if (isMetronome) { td.bpm = parseInt(document.getElementById('inputBPM').value); td.channel = selectedChannel; td.metronomeSound = selectedMetronomeSound; td.cowbellPitch = selectedCowbellPitch; td.blob = null; td.url = null; }
             else {
                 if (editingTrackId) { const ex = trackList.find(t => t.id === editingTrackId); if (inputFile.files.length > 0) { if (ex.url && activeBlobUrls.has(ex.url)) { URL.revokeObjectURL(ex.url); activeBlobUrls.delete(ex.url); memoryStats.totalUrlsRevoked++; } td.blob = inputFile.files[0]; } else td.blob = ex.blob; }
-                else { if (inputFile.files.length === 0) { alert('Selecione um arquivo de áudio!'); return; } td.blob = inputFile.files[0]; }
+                else { if (inputFile.files.length === 0) { alert(translations[currentLanguage]['select-audio'] || 'Selecione um arquivo de áudio!'); return; } td.blob = inputFile.files[0]; }
                 if (td.blob) { const u = URL.createObjectURL(td.blob); td.url = u; activeBlobUrls.add(u); memoryStats.totalUrlsCreated++; }
             }
             if (editingTrackId) { td.id = editingTrackId; const ex = trackList.find(t => t.id === editingTrackId); td.keyBinding = ex.keyBinding; td.order = ex.order; trackList[trackList.findIndex(t => t.id === editingTrackId)] = td; }
@@ -741,12 +643,31 @@
         updateGlobalBadges();
 
         function toggleEditMode() {
-            isEditMode = !isEditMode; const b = document.getElementById('btnEditMode'); b.classList.toggle('active', isEditMode);
-            const bm = document.getElementById('btnEditModeMobile'); if (bm) { bm.classList.toggle('active', isEditMode); bm.innerText = isEditMode ? 'Sair do Modo Edição' : 'Modo Edição'; }
+            isEditMode = !isEditMode;
+            const b = document.getElementById('btnEditMode');
+            b.classList.toggle('active', isEditMode);
+            b.innerText = isEditMode ? (translations[currentLanguage]['exit-edit-mode'] || 'Sair do Modo Edição') : (translations[currentLanguage]['edit-mode'] || 'Modo Edição');
+            b.setAttribute('data-i18n', isEditMode ? 'exit-edit-mode' : 'edit-mode');
+            const bm = document.getElementById('btnEditModeMobile');
+            if (bm) { bm.classList.toggle('active', isEditMode); bm.innerText = b.innerText; bm.setAttribute('data-i18n', b.getAttribute('data-i18n')); }
             document.getElementById('mapStopKeyBtn').style.display = isEditMode ? 'block' : 'none';
             document.getElementById('mapPlayKeyBtn').style.display = isEditMode ? 'block' : 'none';
-            b.innerText = isEditMode ? 'Sair do Modo Edição' : 'Modo Edição'; renderGrid();
+            updateMobileEditButton();
+            renderGrid();
         }
+
+        function updateMobileEditButton() {
+            const btnMobile = document.getElementById('btnExitEditMobile');
+            const timeTotalItem = document.getElementById('timeTotalItem');
+            if (isEditMode && window.innerWidth <= 768) {
+                btnMobile.classList.add('show');
+                if (timeTotalItem) timeTotalItem.style.visibility = 'hidden';
+            } else {
+                btnMobile.classList.remove('show');
+                if (timeTotalItem) timeTotalItem.style.visibility = 'visible';
+            }
+        }
+        window.addEventListener('resize', updateMobileEditButton);
 
         function renderGrid() {
             const container = document.getElementById('botoeira');
@@ -763,8 +684,8 @@
                 if (checkShowKeys.checked && track.keyBinding) { const kb = document.createElement('div'); kb.className = 'key-badge'; kb.innerText = track.keyBinding; btn.appendChild(kb); }
                 if (isEditMode) {
                     const ctrls = document.createElement('div'); ctrls.className = 'track-controls';
-                    const be = document.createElement('button'); be.className = 'btn-icon edit'; be.innerText = '✏️ Editar'; be.onclick = (ev) => { ev.stopPropagation(); openEditModal(track.id); };
-                    const bk = document.createElement('button'); bk.className = 'btn-icon key'; bk.id = `mapKeyBtn_${track.id}`; bk.innerText = 'Mapear Tecla'; bk.onclick = (ev) => startKeyMapping(track.id, ev);
+                    const be = document.createElement('button'); be.className = 'btn-icon edit'; be.innerText = '✏️ ' + (translations[currentLanguage]['edit-btn'] || 'Editar'); be.onclick = (ev) => { ev.stopPropagation(); openEditModal(track.id); };
+                    const bk = document.createElement('button'); bk.className = 'btn-icon key'; bk.id = `mapKeyBtn_${track.id}`; bk.innerText = translations[currentLanguage]['map-key-btn'] || 'Mapear Tecla'; bk.onclick = (ev) => startKeyMapping(track.id, ev);
                     const bd = document.createElement('button'); bd.className = 'btn-icon delete'; bd.innerText = '🗑️'; bd.onclick = (ev) => removeTrack(track.id, ev);
                     ctrls.appendChild(be); ctrls.appendChild(bk); ctrls.appendChild(bd); btn.appendChild(ctrls);
                 }
@@ -774,8 +695,22 @@
             if (isEditMode) trackList.forEach((t, i) => { if (t.order !== i) { t.order = i; saveTrackToDB(t); } });
         }
 
-        function removeTrack(id, event) { event.stopPropagation(); if (confirm('Remover este botão?')) { const tr = trackList.find(t => t.id === id); if (tr && tr.url && activeBlobUrls.has(tr.url)) { URL.revokeObjectURL(tr.url); activeBlobUrls.delete(tr.url); memoryStats.totalUrlsRevoked++; } trackList = trackList.filter(t => t.id !== id); deleteTrackFromDB(id); if (currentLoadedTrackId === id) stopAudio(); renderGrid(); } }
-        function startKeyMapping(targetId, event) { if (event) event.stopPropagation(); waitingForKeyId = targetId; document.querySelectorAll('.btn-map-key').forEach(b => b.classList.remove('waiting')); const btn = targetId === 'stop' ? document.getElementById('mapStopKeyBtn') : targetId === 'playpause' ? document.getElementById('mapPlayKeyBtn') : document.getElementById(`mapKeyBtn_${targetId}`); if (btn) { btn.innerText = 'Aguardando... (ESC p/ limpar)'; btn.classList.add('waiting'); } }
+        function removeTrack(id, event) {
+            event.stopPropagation();
+            if (confirm(translations[currentLanguage]['confirm-delete'] || 'Remover este botão?')) {
+                const tr = trackList.find(t => t.id === id);
+                if (tr && tr.url && activeBlobUrls.has(tr.url)) { URL.revokeObjectURL(tr.url); activeBlobUrls.delete(tr.url); memoryStats.totalUrlsRevoked++; }
+                trackList = trackList.filter(t => t.id !== id); deleteTrackFromDB(id);
+                if (currentLoadedTrackId === id) stopAudio(); renderGrid();
+            }
+        }
+        function startKeyMapping(targetId, event) {
+            if (event) event.stopPropagation();
+            waitingForKeyId = targetId;
+            document.querySelectorAll('.btn-map-key').forEach(b => b.classList.remove('waiting'));
+            const btn = targetId === 'stop' ? document.getElementById('mapStopKeyBtn') : targetId === 'playpause' ? document.getElementById('mapPlayKeyBtn') : document.getElementById(`mapKeyBtn_${targetId}`);
+            if (btn) { btn.innerText = translations[currentLanguage]['waiting-key'] || 'Aguardando... (ESC p/ limpar)'; btn.classList.add('waiting'); }
+        }
 
         document.addEventListener('keydown', (e) => {
             if (waitingForKeyId !== null) {
@@ -806,150 +741,219 @@
         function handleDrop(e) { if (!isEditMode) return; e.preventDefault(); e.stopPropagation(); this.classList.remove('drag-over'); const tid = parseFloat(this.dataset.id); if (draggedItemId === tid) return; const di = trackList.findIndex(t => t.id === draggedItemId); const ti = trackList.findIndex(t => t.id === tid); if (di !== -1 && ti !== -1) { const [item] = trackList.splice(di, 1); trackList.splice(ti, 0, item); renderGrid(); } draggedItemId = null; }
 
         // ==========================================
-        // 🔧 CORRIGIDO: PLAYER COM SUPORTE iOS
+        // PLAYER
         // ==========================================
         function handleStopClick() { if (!isEditMode) stopAudio(); }
         function handlePlayPauseClick() { if (!isEditMode) togglePlayPause(); }
-        
         function selectOrPlayTrack(track, btnElement) {
             if (track.isMetronome) {
                 if (currentLoadedTrackId === track.id) { toggleMetronome(); return; }
-                stopAudio();
-                currentLoadedTrackId = track.id;
+                stopAudio(); currentLoadedTrackId = track.id;
                 document.getElementById('currentTrackName').innerText = `♩ ${track.name} (${track.bpm} BPM)`;
                 document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('playing', 'paused'));
                 currentButton = btnElement;
-                
-                // 🔧 CORRIGIDO: Garante áudio desbloqueado e contexto resumido
-                unlockAudio();
-                initAudioContext();
-                if (audioContext.state === 'suspended') {
-                    audioContext.resume().then(() => {
-                        console.log('✅ AudioContext resumido');
-                    });
-                }
-                
-                selectedChannel = track.channel;
-                selectedMetronomeSound = track.metronomeSound || 'click';
+                unlockAudio(); initAudioContext();
+                if (audioContext.state === 'suspended') audioContext.resume();
+                selectedChannel = track.channel; selectedMetronomeSound = track.metronomeSound || 'click';
                 selectedCowbellPitch = track.cowbellPitch !== undefined ? track.cowbellPitch : 50;
-                createClickSound();
-                createBellSound();
-                
-                if (checkAutoPlay.checked) {
-                    startMetronome(track.bpm);
-                    btnElement.classList.add('playing');
-                    setMainButtonState('playing');
-                } else {
-                    btnElement.classList.add('paused');
-                    setMainButtonState('paused');
-                }
-                
+                createClickSound(); createBellSound();
+                if (checkAutoPlay.checked) { startMetronome(track.bpm); btnElement.classList.add('playing'); setMainButtonState('playing'); }
+                else { btnElement.classList.add('paused'); setMainButtonState('paused'); }
                 document.getElementById('timeCurrent').innerText = '--:--';
                 document.getElementById('timeRemaining').innerText = '---';
                 document.getElementById('timeTotal').innerText = '--:--';
                 return;
             }
-            
             if (currentLoadedTrackId === track.id) { togglePlayPause(); return; }
-            stopAudio();
-            player.src = track.url;
-            player.volume = track.volume || 1;
-            currentLoadedTrackId = track.id;
+            stopAudio(); player.src = track.url; player.volume = track.volume || 1; currentLoadedTrackId = track.id;
             document.getElementById('currentTrackName').innerText = track.name;
             document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('playing', 'paused'));
             currentButton = btnElement;
-            
-            if (checkAutoPlay.checked) {
-                player.play().catch(e => console.error(e));
-                btnElement.classList.add('playing');
-                setMainButtonState('playing');
-            } else {
-                btnElement.classList.add('paused');
-                setMainButtonState('paused');
-            }
+            if (checkAutoPlay.checked) { player.play().catch(e => console.error(e)); btnElement.classList.add('playing'); setMainButtonState('playing'); }
+            else { btnElement.classList.add('paused'); setMainButtonState('paused'); }
             updateTimeDisplay();
         }
-        
-        function togglePlayPause() {
-            if (!currentLoadedTrackId) return;
-            const ct = trackList.find(t => t.id === currentLoadedTrackId);
-            if (ct && ct.isMetronome) { toggleMetronome(); return; }
-            if (!player.src) return;
-            
-            if (player.paused) {
-                player.play();
-                if (currentButton) { currentButton.classList.remove('paused'); currentButton.classList.add('playing'); }
-                setMainButtonState('playing');
-            } else {
-                player.pause();
-                if (currentButton) { currentButton.classList.remove('playing'); currentButton.classList.add('paused'); }
-                setMainButtonState('paused');
-            }
-        }
-        
-        function startMetronome(bpm) {
-            currentBPM = bpm;
-            if (isMetronomePlaying) return;
-            
-            initAudioContext();
-            
-            // 🔧 CORRIGIDO: Resume contexto se suspenso (iOS)
-            if (audioContext.state === 'suspended') {
-                audioContext.resume().then(() => {
-                    console.log('✅ AudioContext resumido para metrônomo');
-                    isMetronomePlaying = true;
-                    nextNoteTime = audioContext.currentTime + 0.05;
-                    metronomeScheduler();
-                });
-            } else {
-                isMetronomePlaying = true;
-                nextNoteTime = audioContext.currentTime + 0.05;
-                metronomeScheduler();
-            }
-        }
-        
+        function togglePlayPause() { if (!currentLoadedTrackId) return; const ct = trackList.find(t => t.id === currentLoadedTrackId); if (ct && ct.isMetronome) { toggleMetronome(); return; } if (!player.src) return; if (player.paused) { player.play(); if (currentButton) { currentButton.classList.remove('paused'); currentButton.classList.add('playing'); } setMainButtonState('playing'); } else { player.pause(); if (currentButton) { currentButton.classList.remove('playing'); currentButton.classList.add('paused'); } setMainButtonState('paused'); } }
+        function startMetronome(bpm) { currentBPM = bpm; if (isMetronomePlaying) return; initAudioContext(); if (audioContext.state === 'suspended') { audioContext.resume().then(() => { isMetronomePlaying = true; nextNoteTime = audioContext.currentTime + 0.05; metronomeScheduler(); }); } else { isMetronomePlaying = true; nextNoteTime = audioContext.currentTime + 0.05; metronomeScheduler(); } }
         function stopMetronome() { isMetronomePlaying = false; if (metronomeTimerID) { clearTimeout(metronomeTimerID); metronomeTimerID = null; } }
-        
-        function toggleMetronome() {
-            const ct = trackList.find(t => t.id === currentLoadedTrackId);
-            if (!ct || !ct.isMetronome) return;
-            
-            if (isMetronomePlaying) {
-                stopMetronome();
-                if (currentButton) { currentButton.classList.remove('playing'); currentButton.classList.add('paused'); }
-                setMainButtonState('paused');
+        function toggleMetronome() { const ct = trackList.find(t => t.id === currentLoadedTrackId); if (!ct || !ct.isMetronome) return; if (isMetronomePlaying) { stopMetronome(); if (currentButton) { currentButton.classList.remove('playing'); currentButton.classList.add('paused'); } setMainButtonState('paused'); } else { startMetronome(ct.bpm); if (currentButton) { currentButton.classList.remove('paused'); currentButton.classList.add('playing'); } setMainButtonState('playing'); } }
+        function stopAudio() { if (!currentLoadedTrackId) return; const ct = trackList.find(t => t.id === currentLoadedTrackId); if (ct && ct.isMetronome) stopMetronome(); else { player.pause(); player.currentTime = 0; } if (currentButton) currentButton.classList.remove('playing', 'paused'); setMainButtonState('paused'); if (ct && ct.isMetronome) { document.getElementById('timeCurrent').innerText = '--:--'; document.getElementById('timeRemaining').innerText = '---'; document.getElementById('timeTotal').innerText = '--:--'; } else updateTimeDisplay(); }
+        function setMainButtonState(s) {
+            if (s === 'playing') {
+                btnPlayPause.innerText = translations[currentLanguage]['pause-btn'] || 'PAUSAR';
+                btnPlayPause.classList.add('playing-state');
+                btnPlayPause.setAttribute('data-i18n', 'pause-btn');
             } else {
-                startMetronome(ct.bpm);
-                if (currentButton) { currentButton.classList.remove('paused'); currentButton.classList.add('playing'); }
-                setMainButtonState('playing');
+                btnPlayPause.innerText = translations[currentLanguage]['play-pause-btn'] || 'TOCAR';
+                btnPlayPause.classList.remove('playing-state');
+                btnPlayPause.setAttribute('data-i18n', 'play-pause-btn');
             }
         }
-        
-        function stopAudio() {
-            if (!currentLoadedTrackId) return;
-            const ct = trackList.find(t => t.id === currentLoadedTrackId);
-            if (ct && ct.isMetronome) stopMetronome();
-            else { player.pause(); player.currentTime = 0; }
-            if (currentButton) currentButton.classList.remove('playing', 'paused');
-            setMainButtonState('paused');
-            if (ct && ct.isMetronome) { document.getElementById('timeCurrent').innerText = '--:--'; document.getElementById('timeRemaining').innerText = '---'; document.getElementById('timeTotal').innerText = '--:--'; }
-            else updateTimeDisplay();
-        }
-        
-        function setMainButtonState(s) { if (s === 'playing') { btnPlayPause.innerText = 'PAUSAR'; btnPlayPause.classList.add('playing-state'); } else { btnPlayPause.innerText = 'TOCAR'; btnPlayPause.classList.remove('playing-state'); } }
         function formatTime(s) { if (isNaN(s) || !isFinite(s)) return '00:00'; return `${Math.floor(s/60).toString().padStart(2,'0')}:${Math.floor(s%60).toString().padStart(2,'0')}`; }
         function updateTimeDisplay() { document.getElementById('timeCurrent').innerText = formatTime(player.currentTime); const t = player.duration || 0; document.getElementById('timeTotal').innerText = formatTime(t); document.getElementById('timeRemaining').innerText = '-' + formatTime(t > 0 ? t - player.currentTime : 0); }
-        
         player.addEventListener('timeupdate', updateTimeDisplay);
         player.addEventListener('loadedmetadata', updateTimeDisplay);
-        player.addEventListener('ended', () => { if (currentButton) currentButton.classList.remove('playing', 'paused'); currentLoadedTrackId = null; setMainButtonState('paused'); document.getElementById('timeCurrent').innerText = '00:00'; document.getElementById('timeRemaining').innerText = '-00:00'; document.getElementById('timeTotal').innerText = '00:00'; document.getElementById('currentTrackName').innerText = 'Parado'; showMemoryStats(); });
+        player.addEventListener('ended', () => {
+            if (currentButton) currentButton.classList.remove('playing', 'paused');
+            currentLoadedTrackId = null; setMainButtonState('paused');
+            document.getElementById('timeCurrent').innerText = '00:00';
+            document.getElementById('timeRemaining').innerText = '-00:00';
+            document.getElementById('timeTotal').innerText = '00:00';
+            document.getElementById('currentTrackName').innerText = translations[currentLanguage]['stopped'] || 'Parado';
+        });
 
         // ==========================================
-        // IDIOMA
+        // 🌐 SISTEMA DE TRADUÇÃO
         // ==========================================
+        const translations = {
+            'pt-BR': {
+                'new-setlist': '+ Nova Setlist', 'del-setlist': '- Excluir', 'auto-play': 'Auto-play', 'show-keys': 'Mostrar Teclas',
+                'add-button': '+ Adicionar', 'edit-mode': 'Modo Edição', 'exit-edit-mode': 'Sair do Modo Edição',
+                'menu-setlist': 'Setlist', 'menu-controls': 'Controles', 'menu-actions': 'Ações', 'menu-app': 'App',
+                'add-music-btn': '+ Adicionar Música', 'settings-btn': '⚙️ Configurações',
+                'stopped': 'Parado', 'current-time': 'Tempo Atual', 'total-time': 'Total', 'remaining-time': 'Restante',
+                'exit-edit-btn': '✕ Sair da Edição', 'stop-btn': 'PARAR', 'play-pause-btn': 'TOCAR', 'pause-btn': 'PAUSAR',
+                'map-stop-key': 'Mapear Tecla', 'map-play-key': 'Mapear Tecla',
+                'settings-title': '⚙️ Configurações', 'language': '🌐 Idioma:', 'donate-btn': '❤️ Doação', 'about-btn': 'ℹ️ Sobre', 'close-btn': 'Fechar',
+                'about-title': 'ℹ️ Sobre o LIVE SHOW',
+                'about-description': 'O LIVE SHOW é um aplicativo web profissional desenvolvido para músicos, bandas e produtores de shows ao vivo. Oferece controle preciso de áudio durante apresentações, com suporte a metrônomo sincronizado e múltiplas setlists.',
+                'about-features': 'Recursos principais: Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e dados salvos localmente (sem depender de internet).',
+                'version-label': 'Versão:', 'developed-by': 'Desenvolvido por:', 'tagline': 'Sua música, nosso palco, seu show!',
+                'donate-title': '❤️ Apoie o LIVE SHOW',
+                'donate-message': '"Apoie o LIVE SHOW! Sua doação mantém este projeto gratuito e em evolução para músicos. ❤️"',
+                'paypal-donate': '💳 PayPal', 'pix-donate': '🔑 Pix (BR)', 'donate-thanks': 'Muito obrigado por apoiar o projeto! 🙏',
+                'add-music-modal': 'Adicionar Nova Música', 'edit-music-modal': 'Editar Música',
+                'music-name': 'Nome da Música:', 'audio-file': 'Arquivo de Áudio:', 'music-volume': '🔊 Volume da Música:',
+                'metronome-mode': '🎵 Modo Metrônomo (sem áudio)', 'bpm-label': 'BPM (batidas por minuto):',
+                'output-channel': 'Canal de Saída:', 'left-channel': 'Esquerdo (L)', 'right-channel': 'Direito (R)',
+                'metronome-sound-label': '🔊 Som do Metrônomo:', 'click-sound': '🔔 Click', 'cowbell-sound': '🔗 Cowbell',
+                'cowbell-pitch': '🎚️ Tonalidade do Cowbell', 'cowbell-low': '🔊 Grave', 'cowbell-mid': 'Médio', 'cowbell-high': '🔔 Agudo',
+                'test-sound': '▶️ Testar Som', 'cancel-btn': 'Cancelar', 'save-btn': 'Salvar',
+                'new-setlist-name': 'Nome da nova setlist:', 'cant-delete-last': 'Não pode excluir a única Setlist!',
+                'confirm-delete-setlist': 'Excluir Setlist', 'confirm-delete': 'Remover este botão?',
+                'waiting-key': 'Aguardando... (ESC p/ limpar)', 'select-audio': 'Selecione um arquivo de áudio!',
+                'pix-copied': 'Chave Pix copiada! 📋', 'current-file-audio': '📁 Áudio atual carregado.',
+                'edit-btn': 'Editar', 'map-key-btn': 'Mapear Tecla'
+            },
+            'en-US': {
+                'new-setlist': '+ New Setlist', 'del-setlist': '- Delete', 'auto-play': 'Auto-play', 'show-keys': 'Show Keys',
+                'add-button': '+ Add', 'edit-mode': 'Edit Mode', 'exit-edit-mode': 'Exit Edit Mode',
+                'menu-setlist': 'Setlist', 'menu-controls': 'Controls', 'menu-actions': 'Actions', 'menu-app': 'App',
+                'add-music-btn': '+ Add Music', 'settings-btn': '⚙️ Settings',
+                'stopped': 'Stopped', 'current-time': 'Current', 'total-time': 'Total', 'remaining-time': 'Remaining',
+                'exit-edit-btn': '✕ Exit Edit', 'stop-btn': 'STOP', 'play-pause-btn': 'PLAY', 'pause-btn': 'PAUSE',
+                'map-stop-key': 'Map Key', 'map-play-key': 'Map Key',
+                'settings-title': '⚙️ Settings', 'language': '🌐 Language:', 'donate-btn': '❤️ Donate', 'about-btn': 'ℹ️ About', 'close-btn': 'Close',
+                'about-title': 'ℹ️ About LIVE SHOW',
+                'about-description': 'LIVE SHOW is a professional web app for musicians, bands and live show producers. It offers precise audio control during performances, with synchronized metronome and multiple setlists.',
+                'about-features': 'Key features: Multi-track playback, adjustable BPM metronome, key mapping, multilingual interface and data saved locally (no internet needed).',
+                'version-label': 'Version:', 'developed-by': 'Developed by:', 'tagline': 'Your music, our stage, your show!',
+                'donate-title': '❤️ Support LIVE SHOW',
+                'donate-message': '"Support LIVE SHOW! Your donation keeps this project free and evolving for musicians. ❤️"',
+                'paypal-donate': '💳 PayPal', 'pix-donate': '🔑 Pix (BR)', 'donate-thanks': 'Thank you for supporting the project! 🙏',
+                'add-music-modal': 'Add New Music', 'edit-music-modal': 'Edit Music',
+                'music-name': 'Music Name:', 'audio-file': 'Audio File:', 'music-volume': '🔊 Volume:',
+                'metronome-mode': '🎵 Metronome Mode', 'bpm-label': 'BPM:',
+                'output-channel': 'Output:', 'left-channel': 'Left (L)', 'right-channel': 'Right (R)',
+                'metronome-sound-label': '🔊 Metronome Sound:', 'click-sound': '🔔 Click', 'cowbell-sound': '🔗 Cowbell',
+                'cowbell-pitch': '🎚️ Cowbell Pitch', 'cowbell-low': '🔊 Low', 'cowbell-mid': 'Mid', 'cowbell-high': '🔔 High',
+                'test-sound': '▶️ Test Sound', 'cancel-btn': 'Cancel', 'save-btn': 'Save',
+                'new-setlist-name': 'New setlist name:', 'cant-delete-last': 'Cannot delete the last Setlist!',
+                'confirm-delete-setlist': 'Delete Setlist', 'confirm-delete': 'Remove this button?',
+                'waiting-key': 'Waiting... (ESC to clear)', 'select-audio': 'Select an audio file!',
+                'pix-copied': 'Pix key copied! 📋', 'current-file-audio': '📁 Current audio loaded.',
+                'edit-btn': 'Edit', 'map-key-btn': 'Map Key'
+            },
+            'es-ES': {
+                'new-setlist': '+ Nueva Lista', 'del-setlist': '- Eliminar', 'auto-play': 'Auto-play', 'show-keys': 'Mostrar Teclas',
+                'add-button': '+ Añadir', 'edit-mode': 'Modo Edición', 'exit-edit-mode': 'Salir Edición',
+                'menu-setlist': 'Lista', 'menu-controls': 'Controles', 'menu-actions': 'Acciones', 'menu-app': 'App',
+                'add-music-btn': '+ Añadir Música', 'settings-btn': '⚙️ Configuración',
+                'stopped': 'Detenido', 'current-time': 'Actual', 'total-time': 'Total', 'remaining-time': 'Restante',
+                'exit-edit-btn': '✕ Salir', 'stop-btn': 'PARAR', 'play-pause-btn': 'REPRODUCIR', 'pause-btn': 'PAUSAR',
+                'map-stop-key': 'Mapear Tecla', 'map-play-key': 'Mapear Tecla',
+                'settings-title': '⚙️ Configuración', 'language': '🌐 Idioma:', 'donate-btn': '❤️ Donar', 'about-btn': 'ℹ️ Acerca', 'close-btn': 'Cerrar',
+                'about-title': 'ℹ️ Acerca de LIVE SHOW',
+                'about-description': 'LIVE SHOW es una app web profesional para músicos, bandas y productores. Ofrece control de audio preciso durante presentaciones, con metrónomo sincronizado y múltiples listas.',
+                'about-features': 'Características: Reproducción multi-pista, metrónomo BPM ajustable, mapeo de teclas, interfaz multilíngue y datos guardados localmente.',
+                'version-label': 'Versión:', 'developed-by': 'Desarrollado por:', 'tagline': '¡Tu música, nuestro escenario!',
+                'donate-title': '❤️ Apoya LIVE SHOW', 'donate-message': '"¡Apoya LIVE SHOW! Tu donación mantiene este proyecto gratuito. ❤️"',
+                'paypal-donate': '💳 PayPal', 'pix-donate': '🔑 Pix (BR)', 'donate-thanks': '¡Gracias por apoyar! 🙏',
+                'add-music-modal': 'Añadir Música', 'edit-music-modal': 'Editar Música',
+                'music-name': 'Nombre:', 'audio-file': 'Archivo:', 'music-volume': '🔊 Volumen:',
+                'metronome-mode': '🎵 Metrónomo', 'bpm-label': 'BPM:', 'output-channel': 'Canal:', 'left-channel': 'Izquierdo', 'right-channel': 'Derecho',
+                'metronome-sound-label': '🔊 Sonido:', 'click-sound': '🔔 Click', 'cowbell-sound': '🔗 Cowbell',
+                'cowbell-pitch': '🎚️ Tono Cowbell', 'cowbell-low': '🔊 Grave', 'cowbell-mid': 'Medio', 'cowbell-high': '🔔 Agudo',
+                'test-sound': '▶️ Probar', 'cancel-btn': 'Cancelar', 'save-btn': 'Guardar',
+                'new-setlist-name': 'Nombre:', 'cant-delete-last': '¡No puede eliminar la última!',
+                'confirm-delete-setlist': 'Eliminar Lista', 'confirm-delete': '¿Eliminar botón?',
+                'waiting-key': 'Esperando... (ESC)', 'select-audio': '¡Seleccione archivo!', 'pix-copied': '¡Clave copiada! 📋',
+                'current-file-audio': '📁 Audio cargado.', 'edit-btn': 'Editar', 'map-key-btn': 'Mapear'
+            },
+            'fr-FR': {
+                'new-setlist': '+ Nouvelle', 'del-setlist': '- Supprimer', 'auto-play': 'Auto', 'show-keys': 'Touches',
+                'add-button': '+ Ajouter', 'edit-mode': 'Édition', 'exit-edit-mode': 'Quitter Édition',
+                'menu-setlist': 'Liste', 'menu-controls': 'Contrôles', 'menu-actions': 'Actions', 'menu-app': 'App',
+                'add-music-btn': '+ Ajouter Musique', 'settings-btn': '⚙️ Paramètres',
+                'stopped': 'Arrêté', 'current-time': 'Actuel', 'total-time': 'Total', 'remaining-time': 'Restant',
+                'exit-edit-btn': '✕ Quitter', 'stop-btn': 'ARRÊTER', 'play-pause-btn': 'LIRE', 'pause-btn': 'PAUSE',
+                'map-stop-key': 'Touche', 'map-play-key': 'Touche',
+                'settings-title': '⚙️ Paramètres', 'language': '🌐 Langue:', 'donate-btn': '❤️ Donner', 'about-btn': 'ℹ️ À Propos', 'close-btn': 'Fermer',
+                'about-title': 'ℹ️ À Propos de LIVE SHOW',
+                'about-description': 'LIVE SHOW est une app web pro pour musiciens. Offre un contrôle audio précis avec métronome synchronisé et playlists multiples.',
+                'about-features': 'Lecture multi-piste, métronome BPM, mappage touches, multilingue, données sauvegardées localement.',
+                'version-label': 'Version:', 'developed-by': 'Développé par:', 'tagline': 'Votre musique, notre scène!',
+                'donate-title': '❤️ Soutenez LIVE SHOW', 'donate-message': '"Soutenez LIVE SHOW! Votre don maintient ce projet gratuit. ❤️"',
+                'paypal-donate': '💳 PayPal', 'pix-donate': '🔑 Pix (BR)', 'donate-thanks': 'Merci pour votre soutien! 🙏',
+                'add-music-modal': 'Ajouter Musique', 'edit-music-modal': 'Éditer Musique',
+                'music-name': 'Nom:', 'audio-file': 'Fichier:', 'music-volume': '🔊 Volume:',
+                'metronome-mode': '🎵 Métronome', 'bpm-label': 'BPM:', 'output-channel': 'Canal:', 'left-channel': 'Gauche', 'right-channel': 'Droit',
+                'metronome-sound-label': '🔊 Son:', 'click-sound': '🔔 Click', 'cowbell-sound': '🔗 Cowbell',
+                'cowbell-pitch': '🎚️ Tonalité', 'cowbell-low': '🔊 Grave', 'cowbell-mid': 'Moyen', 'cowbell-high': '🔔 Aigu',
+                'test-sound': '▶️ Tester', 'cancel-btn': 'Annuler', 'save-btn': 'Enregistrer',
+                'new-setlist-name': 'Nom:', 'cant-delete-last': 'Impossible de supprimer!',
+                'confirm-delete-setlist': 'Supprimer Liste', 'confirm-delete': 'Supprimer ce bouton?',
+                'waiting-key': 'En attente... (ESC)', 'select-audio': 'Sélectionnez un fichier!', 'pix-copied': 'Clé copiée! 📋',
+                'current-file-audio': '📁 Audio chargé.', 'edit-btn': 'Éditer', 'map-key-btn': 'Touche'
+            }
+        };
+
         let currentLanguage = localStorage.getItem('language') || 'pt-BR';
-        function changeLanguage(lang) { currentLanguage = lang; localStorage.setItem('language', lang); }
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            updateLanguage();
+            // Atualiza botões dinâmicos
+            if (currentLoadedTrackId) {
+                const ct = trackList.find(t => t.id === currentLoadedTrackId);
+                if (ct && ct.isMetronome) {
+                    setMainButtonState(isMetronomePlaying ? 'playing' : 'paused');
+                } else {
+                    setMainButtonState(!player.paused ? 'playing' : 'paused');
+                }
+            }
+            if (!currentLoadedTrackId) {
+                document.getElementById('currentTrackName').innerText = translations[currentLanguage]['stopped'] || 'Parado';
+            }
+        }
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const text = translations[currentLanguage]?.[key] || translations['pt-BR'][key] || key;
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = text;
+                } else if (el.tagName === 'LABEL' && el.querySelector('input')) {
+                    // Label com checkbox dentro - não mexer
+                } else {
+                    el.innerText = text;
+                }
+            });
+        }
+
         document.getElementById('languageSelect').value = currentLanguage;
+        updateLanguage();
 
         // ==========================================
         // MENU
@@ -961,9 +965,7 @@
         document.getElementById('checkAutoPlayMobile')?.addEventListener('change', (e) => { document.getElementById('checkAutoPlay').checked = e.target.checked; });
         document.getElementById('checkShowKeysMobile')?.addEventListener('change', (e) => { document.getElementById('checkShowKeys').checked = e.target.checked; renderGrid(); updateGlobalBadges(); });
 
-        console.log('✅ LIVE SHOW v1.19 carregado!');
-        console.log('🔧 Correções: Nome automático, Auto-nome metrônomo, iOS audio');
-        console.log('💡 Dica: showMemoryStats() para ver uso de memória');
+        console.log('✅ LIVE SHOW v1.21 carregado! 🌐 Tradução restaurada');
     </script>
 </body>
 </html>
