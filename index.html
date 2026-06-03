@@ -22,12 +22,10 @@
             overflow: hidden;
         }
 
-        /* WAVEFORM ANIMADO */
-
         /* HEADER E CONTROLES DE SETUP - FLEX UMA LINHA */
         .header {
             display: flex;
-            justify-content: flex-start; /* Alterado para alinhar à esquerda */
+            justify-content: flex-start;
             align-items: center;
             margin-bottom: 20px;
             padding: 0;
@@ -81,7 +79,7 @@
             gap: 10px;
             order: 4;
             flex-shrink: 0;
-            margin-left: auto; /* Empurra os controles para a direita */
+            margin-left: auto;
         }
 
         /* MENU TOGGLE BUTTON */
@@ -145,25 +143,23 @@
             display: block;
         }
 
-        /* SETTINGS ICON NA DIREITA - DESKTOP ONLY */
         #settingsDesktop {
             order: 5;
             flex-shrink: 0;
         }
 
-        /* ESCONDER SETTINGS EM TABLET */
         @media (max-width: 1199px) {
             #settingsDesktop {
                 display: none !important;
             }
         }
 
-        /* ESCONDER SETTINGS EM MOBILE */
         @media (max-width: 768px) {
             #settingsDesktop {
                 display: none !important;
             }
         }
+
         .sidebar-menu.open ~ .header {
             justify-content: center;
         }
@@ -409,8 +405,6 @@
         }
 
         /* MEDIA QUERIES RESPONSIVAS */
-        
-        /* TABLET (768px - 1199px) - Menu sanduíche + Logo + Setlist + Opções */
         @media (max-width: 1199px) {
             .header {
                 display: flex;
@@ -451,7 +445,6 @@
                 order: 0;
             }
             
-            /* Segunda linha de controles */
             .setup-controls {
                 display: flex;
                 width: 100%;
@@ -464,7 +457,7 @@
                 margin-top: 8px;
                 border-radius: 0;
                 border: none;
-                margin-left: 0; /* Reseta a margem no tablet */
+                margin-left: 0;
             }
             
             .setup-controls .toggle-label {
@@ -485,7 +478,6 @@
             }
         }
         
-        /* MOBILE (<768px) - Menu toggle + Logo + Settings */
         @media (max-width: 768px) {
             body {
                 padding: 0;
@@ -532,7 +524,6 @@
                 font-size: 9px;
             }
             
-            /* Remove segunda linha em mobile */
             .setup-controls {
                 display: none !important;
             }
@@ -561,27 +552,6 @@
             outline: none;
             font-weight: bold;
             cursor: pointer;
-        }
-
-        /* ÍCONE DE CONFIGURAÇÕES */
-        .settings-icon {
-            background: #00d2ff;
-            color: #000;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-        .settings-icon:hover {
-            background: #55efc4;
-            transform: scale(1.1);
         }
 
         /* MODAL DE CONFIGURAÇÕES */
@@ -819,7 +789,7 @@
             gap: 15px;
         }
         
-        /* TOGGLES (AUTO-PLAY E MOSTRAR TECLAS) */
+        /* TOGGLES */
         .toggle-label {
             display: flex;
             align-items: center;
@@ -859,7 +829,7 @@
         .btn-edit { background-color: #e1b12c; color: #000; }
         .btn-edit.active { background-color: #c23616; color: white; }
 
-        /* DISPLAY DE TEMPO CENTRALIZADO COM HIERARQUIA */
+        /* DISPLAY DE TEMPO */
         .display-container {
             background-color: #1a1a1a;
             border: 2px solid #333;
@@ -903,15 +873,11 @@
             margin-bottom: 5px;
         }
         
-        /* FONTES DOS TEMPOS */
         .time-value { font-variant-numeric: tabular-nums; font-weight: bold; }
         .time-value.large { font-size: 45px; }
         .time-value.small { font-size: 30px; color: #ff4757; }
         .time-value.remaining { color: #ddd; font-size: 45px; }
 
-        /* RESPONSIVIDADE DO DISPLAY DE TEMPO */
-        
-        /* TABLET (480px - 768px) */
         @media (max-width: 768px) {
             .display-container {
                 padding: 15px;
@@ -949,7 +915,6 @@
             }
         }
         
-        /* MOBILE (<480px) */
         @media (max-width: 480px) {
             .display-container {
                 padding: 12px;
@@ -961,9 +926,6 @@
             
             .track-name {
                 font-size: 14px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
             }
             
             .time-block {
@@ -1000,7 +962,6 @@
             }
         }
         
-        /* MOBILE MUITO PEQUENO (<375px - iPhone SE) */
         @media (max-width: 375px) {
             .display-container {
                 padding: 12px;
@@ -1017,7 +978,7 @@
             
             .time-label {
                 font-size: 8px;
-                display: none;  /* Labels desaparecem em telas muito pequenas */
+                display: none;
             }
             
             .time-value.large {
@@ -1068,7 +1029,6 @@
         .btn-play-pause:hover { background-color: #f1c40f; color: #000; }
         .btn-play-pause.playing-state { background-color: #00b894; color: #000; }
 
-        /* RESPONSIVIDADE DOS BOTÕES */
         @media (max-width: 768px) {
             .controls {
                 min-height: 60px;
@@ -1204,8 +1164,6 @@
             background: rgba(0, 210, 255, 1);
         }
 
-        /* CONTROLE DE VOLUME INDIVIDUAL */
-        /* BADGE DE TECLA -->
         .key-badge {
             position: absolute;
             top: 8px;
@@ -1219,7 +1177,6 @@
             letter-spacing: 1px;
         }
 
-        /* ÍCONE DE METRÔNOMO */
         .metronome-icon {
             position: absolute;
             top: 8px;
@@ -1232,7 +1189,6 @@
             font-weight: bold;
         }
 
-        /* CONTROLES DE EDIÇÃO NO BOTÃO */
         .track-controls {
             display: none;
             position: absolute;
@@ -1302,6 +1258,8 @@
             width: 90%;
             max-width: 500px;
             color: white;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         .modal-content h2 {
             margin-bottom: 25px;
@@ -1336,7 +1294,6 @@
             color: white;
         }
 
-        /* CHECKBOX DE METRÔNOMO */
         .metronome-toggle {
             display: flex;
             align-items: center;
@@ -1360,7 +1317,6 @@
             font-weight: bold;
         }
 
-        /* CONTROLES DE METRÔNOMO */
         .metronome-controls {
             display: none;
             margin-top: 15px;
@@ -1382,7 +1338,6 @@
             border-color: #9b59b6;
         }
 
-        /* SELETOR DE CANAL */
         .channel-selector {
             display: flex;
             gap: 10px;
@@ -1414,7 +1369,6 @@
             color: white;
         }
 
-        /* VOLUME NO MODAL */
         .modal-volume-group {
             margin-top: 20px;
             padding: 15px;
@@ -1464,7 +1418,70 @@
             box-shadow: 0 0 5px rgba(0, 210, 255, 0.5);
         }
 
-        /* SELETOR DE SOM METRÔNOMO */
+        /* 🆕 NOVO: Slider de Tonalidade do Cowbell */
+        .cowbell-pitch-group {
+            margin-top: 15px;
+            padding: 15px;
+            background: #1a0a1a;
+            border-radius: 6px;
+            border: 1px solid #9b59b6;
+            display: none;
+        }
+        .cowbell-pitch-group.active {
+            display: block;
+        }
+        .cowbell-pitch-label {
+            color: #bb8fce;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+        .cowbell-pitch-value {
+            color: #9b59b6;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .cowbell-pitch-slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: linear-gradient(to right, #6c3483, #9b59b6, #bb8fce);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            cursor: pointer;
+        }
+        .cowbell-pitch-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid #9b59b6;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(155, 89, 182, 0.6);
+        }
+        .cowbell-pitch-slider::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid #9b59b6;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(155, 89, 182, 0.6);
+        }
+        .cowbell-pitch-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 10px;
+            color: #888;
+        }
+
         .metronome-sound-selector {
             display: flex;
             gap: 10px;
@@ -1498,7 +1515,6 @@
             color: white;
         }
 
-        /* CONTROLE DE VOLUME */
         .volume-control {
             display: flex;
             align-items: center;
@@ -1542,7 +1558,6 @@
         }
         .btn-save:hover { background-color: #74b9ff; }
 
-        /* RESPONSIVIDADE DO MODAL */
         @media (max-width: 768px) {
             .modal-content {
                 width: 95%;
@@ -1657,7 +1672,6 @@
             }
         }
 
-        /* BOTÃO DE MAPEAMENTO DE TECLA */
         .btn-map-key {
             background-color: rgba(0,0,0,0.6);
             color: white;
@@ -1821,7 +1835,7 @@
             </p>
             <div class="version-info">
                 <div data-i18n="version-label">Versão:</div>
-                <div>1.14 - LIVE SHOW Professional</div>
+                <div>1.16 - LIVE SHOW Professional</div>
                 <div style="margin-top: 10px;" data-i18n="developed-by">Desenvolvido por:</div>
                 <div>🎵 Viver de Som Studios</div>
                 <div style="margin-top: 10px; font-style: italic;" data-i18n="tagline">Sua música, nosso palco, seu show!</div>
@@ -1919,6 +1933,22 @@
                             </button>
                         </div>
                     </div>
+
+                    <!-- 🆕 NOVO: Slider de Tonalidade do Cowbell -->
+                    <div class="cowbell-pitch-group" id="cowbellPitchGroup">
+                        <div class="cowbell-pitch-label">
+                            <span>🎚️ Tonalidade do Cowbell</span>
+                            <span class="cowbell-pitch-value" id="cowbellPitchValue">50%</span>
+                        </div>
+                        <input type="range" id="cowbellPitchSlider" class="cowbell-pitch-slider" 
+                               min="0" max="100" value="50" 
+                               oninput="updateCowbellPitchDisplay(this.value)">
+                        <div class="cowbell-pitch-labels">
+                            <span>🔊 Grave</span>
+                            <span>Médio</span>
+                            <span>🔔 Agudo</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-actions">
@@ -1945,7 +1975,6 @@
         const metronomeControls = document.getElementById('metronomeControls');
         const inputFile = document.getElementById('inputFile');
         const inputName = document.getElementById('inputName');
-        const volumeSlider = document.getElementById('volumeSlider');
 
         let trackList = [];
         let currentLoadedTrackId = null;
@@ -1964,14 +1993,40 @@
         let clickBuffer = null;
         let bellBuffer = null;
         let selectedChannel = 'left';
-        let selectedMetronomeSound = 'click'; // 'click' ou 'bell'
+        let selectedMetronomeSound = 'click';
+        let selectedCowbellPitch = 50; // 🆕 NOVO: Tonalidade do Cowbell (0-100, padrão 50 = médio)
         
         let isMetronomePlaying = false;
         let currentBPM = 120;
         let nextNoteTime = 0.0;
         let metronomeTimerID = null;
-        const lookahead = 25.0; // ms de intervalo do scheduler
-        const scheduleAheadTime = 0.1; // Segundos agendados no futuro
+        const lookahead = 25.0;
+        const scheduleAheadTime = 0.1;
+
+        // Controle de Blob URLs para evitar vazamento de memória
+        let activeBlobUrls = new Set();
+        let memoryStats = {
+            totalUrlsCreated: 0,
+            totalUrlsRevoked: 0,
+            lastCleanup: null
+        };
+
+        // ==========================================
+        // 🆕 NOVO: Controle de Tonalidade do Cowbell
+        // ==========================================
+        function updateCowbellPitchDisplay(value) {
+            document.getElementById('cowbellPitchValue').innerText = value + '%';
+            selectedCowbellPitch = parseInt(value);
+        }
+
+        function showCowbellPitchSlider(show) {
+            const pitchGroup = document.getElementById('cowbellPitchGroup');
+            if (show) {
+                pitchGroup.classList.add('active');
+            } else {
+                pitchGroup.classList.remove('active');
+            }
+        }
 
         // ==========================================
         // PREENCHIMENTO AUTOMÁTICO DE NOME
@@ -2006,7 +2061,6 @@
         };
 
         function saveTrackToDB(track) {
-            // Guardamos apenas a estrutura, se houver url, ignoramos no DB pois geramos na hora a partir do blob
             const trackToSave = { ...track };
             delete trackToSave.url; 
             const transaction = db.transaction(['tracks'], 'readwrite');
@@ -2028,12 +2082,16 @@
                 request.onsuccess = () => {
                     const allTracks = request.result;
                     const filtered = allTracks.filter(t => t.setlistId === setlistId).map(t => {
-                        // Gera a URL do blob salvo na base
                         if (t.blob) {
-                            t.url = URL.createObjectURL(t.blob);
+                            const url = URL.createObjectURL(t.blob);
+                            t.url = url;
+                            activeBlobUrls.add(url);
+                            memoryStats.totalUrlsCreated++;
                         }
                         return t;
                     });
+                    
+                    console.log(`📊 Memória: ${activeBlobUrls.size} Blob URLs ativas | Total criadas: ${memoryStats.totalUrlsCreated} | Revogadas: ${memoryStats.totalUrlsRevoked}`);
                     resolve(filtered);
                 };
             });
@@ -2061,6 +2119,70 @@
         }
 
         // ==========================================
+        // GERENCIAMENTO DE MEMÓRIA (LIMPEZA DE BLOB URLs)
+        // ==========================================
+        function revokeBlobUrlsSafely(tracksToClean, protectedId = null) {
+            let revokedCount = 0;
+            
+            tracksToClean.forEach(track => {
+                if (track.url && track.id !== protectedId) {
+                    if (activeBlobUrls.has(track.url)) {
+                        URL.revokeObjectURL(track.url);
+                        activeBlobUrls.delete(track.url);
+                        track.url = null;
+                        revokedCount++;
+                    }
+                }
+            });
+            
+            if (revokedCount > 0) {
+                memoryStats.totalUrlsRevoked += revokedCount;
+                memoryStats.lastCleanup = new Date().toLocaleTimeString();
+                console.log(`🧹 Limpeza: ${revokedCount} Blob URLs revogadas | ${activeBlobUrls.size} restantes | Hora: ${memoryStats.lastCleanup}`);
+            }
+            
+            return revokedCount;
+        }
+
+        function cleanupSetlistBlobUrls(tracksFromSetlist) {
+            const protectedId = currentLoadedTrackId;
+            
+            if (currentLoadedTrackId) {
+                const currentTrack = tracksFromSetlist.find(t => t.id === currentLoadedTrackId);
+                if (currentTrack) {
+                    if (currentTrack.isMetronome && isMetronomePlaying) {
+                        console.log('🛡️ Metrônomo tocando - limpando apenas outras URLs');
+                    } else if (!currentTrack.isMetronome && !player.paused) {
+                        console.log('🛡️ Música tocando - limpando apenas outras URLs');
+                    }
+                }
+            }
+            
+            return revokeBlobUrlsSafely(tracksFromSetlist, protectedId);
+        }
+
+        function revokeAllBlobUrls() {
+            const count = activeBlobUrls.size;
+            activeBlobUrls.forEach(url => {
+                URL.revokeObjectURL(url);
+            });
+            activeBlobUrls.clear();
+            memoryStats.totalUrlsRevoked += count;
+            console.log(`🧹 Limpeza total: ${count} Blob URLs revogadas | Memória liberada`);
+            return count;
+        }
+
+        function showMemoryStats() {
+            console.log('📊 === ESTATÍSTICAS DE MEMÓRIA ===');
+            console.log(`🔗 Blob URLs ativas: ${activeBlobUrls.size}`);
+            console.log(`✅ Total criadas: ${memoryStats.totalUrlsCreated}`);
+            console.log(`🗑️ Total revogadas: ${memoryStats.totalUrlsRevoked}`);
+            console.log(`🕐 Última limpeza: ${memoryStats.lastCleanup || 'Nunca'}`);
+            console.log(`🎵 Faixa atual: ${currentLoadedTrackId || 'Nenhuma'}`);
+            console.log('================================');
+        }
+
+        // ==========================================
         // GERENCIAMENTO DE SETLISTS
         // ==========================================
         async function loadSetlists() {
@@ -2074,7 +2196,6 @@
             const lastUsed = localStorage.getItem('lastSetlistId');
             currentSetlistId = lastUsed ? parseFloat(lastUsed) : setlists[0].id;
             
-            // Garantir que a id existe
             if (!setlists.find(s => s.id === currentSetlistId)) {
                 currentSetlistId = setlists[0].id;
             }
@@ -2097,7 +2218,6 @@
                 if (sl.id === currentSetlistId) opt.selected = true;
                 setlistSelect.appendChild(opt);
                 
-                // Sincronizar mobile
                 if (setlistSelectMobile) {
                     const optMobile = document.createElement('option');
                     optMobile.value = sl.id;
@@ -2110,19 +2230,29 @@
 
         setlistSelect.addEventListener('change', async (e) => {
             stopAudio();
+            
+            if (trackList.length > 0) {
+                console.log('🔄 Trocando setlist - limpando memória da setlist anterior...');
+                cleanupSetlistBlobUrls(trackList);
+            }
+            
             currentSetlistId = parseFloat(e.target.value);
             localStorage.setItem('lastSetlistId', currentSetlistId);
             
-            // Sincronizar mobile
             const setlistSelectMobile = document.getElementById('setlistSelectMobile');
             if (setlistSelectMobile) {
                 setlistSelectMobile.value = currentSetlistId;
             }
             
             await loadCurrentSetlist();
+            showMemoryStats();
         });
 
         async function loadCurrentSetlist() {
+            if (trackList.length > 0) {
+                cleanupSetlistBlobUrls(trackList);
+            }
+            
             trackList = await loadTracksFromDB(currentSetlistId);
             renderGrid();
         }
@@ -2153,14 +2283,13 @@
             if (confirm(`ATENÇÃO!\n\nTem certeza que deseja excluir a Setlist "${currentName}" e todas as suas músicas?`)) {
                 stopAudio();
                 
-                // Remove as músicas dessa setlist do banco
+                cleanupSetlistBlobUrls(trackList);
+                
                 const tracks = await loadTracksFromDB(currentSetlistId);
                 tracks.forEach(t => deleteTrackFromDB(t.id));
                 
-                // Remove a Setlist
                 deleteSetlistFromDB(currentSetlistId);
                 
-                // Atualiza o estado
                 setlists = setlists.filter(s => s.id !== currentSetlistId);
                 currentSetlistId = setlists[0].id;
                 localStorage.setItem('lastSetlistId', currentSetlistId);
@@ -2171,7 +2300,7 @@
         }
 
         // ==========================================
-        // GERAÇÃO DE SOM DE CLICK PARA METRÔNOMO
+        // 🆕 MODIFICADO: GERAÇÃO DE SOM COM TONALIDADE AJUSTÁVEL
         // ==========================================
         function initAudioContext() {
             if (!audioContext) {
@@ -2184,7 +2313,7 @@
         function createClickSound() {
             if (!audioContext) return;
             const sampleRate = audioContext.sampleRate;
-            const duration = 0.05; // 50ms
+            const duration = 0.05;
             const length = sampleRate * duration;
             clickBuffer = audioContext.createBuffer(2, length, sampleRate);
             
@@ -2196,40 +2325,40 @@
             }
         }
 
+        // 🆕 MODIFICADO: createBellSound agora usa selectedCowbellPitch
         function createBellSound() {
             if (!audioContext) return;
             const sampleRate = audioContext.sampleRate;
-            const duration = 0.25; // 250ms para cowbell
+            const duration = 0.25;
             const length = sampleRate * duration;
             bellBuffer = audioContext.createBuffer(2, length, sampleRate);
             
             const channelData = bellBuffer.getChannelData(selectedChannel === 'left' ? 0 : 1);
             
-            // Cowbell - som de instrumento de percussão metálico
-            // Combinação de frequências para som metálico característico
-            const freq1 = 540;   // Frequência fundamental (tom baixo)
-            const freq2 = 800;   // Frequência principal (tom médio)
-            const freq3 = 1350;  // Frequência alta (brilho metálico)
-            const freq4 = 2100;  // Harmônico muito alto (claridade)
+            // 🆕 Fator de pitch: 0.5 (grave) a 1.5 (agudo)
+            const pitchFactor = 0.5 + (selectedCowbellPitch / 100);
+            
+            const freq1 = 540 * pitchFactor;
+            const freq2 = 800 * pitchFactor;
+            const freq3 = 1350 * pitchFactor;
+            const freq4 = 2100 * pitchFactor;
             
             for (let i = 0; i < length; i++) {
                 const t = i / sampleRate;
                 
-                // Envelope rápido e agressivo para soar como percussão
-                // Ataque rápido, decaimento exponencial
                 const envelope = Math.exp(-13 * t) * (1 - Math.cos(2 * Math.PI * 50 * t * 0.01)) * 0.5;
                 
-                // Combinação de senos para som metálico rico
                 const wave = Math.sin(2 * Math.PI * freq1 * t) * 0.3 +
                             Math.sin(2 * Math.PI * freq2 * t) * 0.4 +
                             Math.sin(2 * Math.PI * freq3 * t) * 0.25 +
                             Math.sin(2 * Math.PI * freq4 * t) * 0.15;
                 
-                // Adiciona um pouco de ruído branco para mais "brilho" metálico
                 const noise = (Math.random() * 2 - 1) * 0.1;
                 
                 channelData[i] = (wave + noise) * envelope * 0.8;
             }
+            
+            console.log(`🔔 Cowbell gerado com pitch: ${selectedCowbellPitch}% (fator: ${pitchFactor.toFixed(2)})`);
         }
 
         function scheduleNote(time) {
@@ -2259,7 +2388,7 @@
         }
 
         // ==========================================
-        // SELEÇÃO DE CANAL
+        // SELEÇÃO DE CANAL E SOM
         // ==========================================
         function selectChannel(channel) {
             selectedChannel = channel;
@@ -2272,11 +2401,15 @@
             }
         }
 
+        // 🆕 MODIFICADO: selectMetronomeSound agora controla visibilidade do slider
         function selectMetronomeSound(sound) {
             selectedMetronomeSound = sound;
             document.querySelectorAll('.sound-btn').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.sound === sound);
             });
+            
+            // Mostra/oculta slider de tonalidade conforme o som selecionado
+            showCowbellPitchSlider(sound === 'bell');
         }
 
         // ==========================================
@@ -2303,9 +2436,17 @@
             metronomeControls.classList.remove('active');
             document.getElementById('inputBPM').value = 120;
             selectChannel('left');
+            selectMetronomeSound('click');
+            
+            // 🆕 Resetar slider de tonalidade para padrão
+            document.getElementById('cowbellPitchSlider').value = 50;
+            updateCowbellPitchDisplay(50);
+            showCowbellPitchSlider(false);
+            
             modal.classList.add('open');
         }
 
+        // 🆕 MODIFICADO: openEditModal restaura tonalidade do Cowbell
         function openEditModal(id) {
             const track = trackList.find(t => t.id === id);
             if (!track) return;
@@ -2316,7 +2457,6 @@
             inputFile.required = false;
             document.getElementById('currentFileInfo').style.display = 'block';
             
-            // Restaura volume
             const volume = Math.round((track.volume || 1) * 100);
             document.getElementById('inputVolume').value = volume;
             document.getElementById('volumeValueDisplay').innerText = volume + '%';
@@ -2327,12 +2467,20 @@
                 document.getElementById('inputBPM').value = track.bpm;
                 selectChannel(track.channel);
                 selectMetronomeSound(track.metronomeSound || 'click');
+                
+                // 🆕 Restaurar tonalidade do Cowbell
+                const savedPitch = track.cowbellPitch !== undefined ? track.cowbellPitch : 50;
+                document.getElementById('cowbellPitchSlider').value = savedPitch;
+                updateCowbellPitchDisplay(savedPitch);
+                showCowbellPitchSlider(track.metronomeSound === 'bell');
+                
                 inputFile.disabled = true;
                 document.getElementById('currentFileInfo').textContent = `⚙️ Metrônomo: ${track.bpm} BPM no canal ${track.channel === 'left' ? 'Esquerdo' : 'Direito'} (${track.metronomeSound === 'bell' ? 'Cowbell' : 'Click'})`;
             } else {
                 checkMetronome.checked = false;
                 metronomeControls.classList.remove('active');
                 inputFile.disabled = false;
+                showCowbellPitchSlider(false);
                 const fileMsg = translations[currentLanguage]['current-file-audio'] || '📁 Áudio atual carregado. Selecione outro para substituir.';
                 document.getElementById('currentFileInfo').textContent = fileMsg;
             }
@@ -2345,37 +2493,31 @@
         }
 
         function openSettingsModal() {
-            const settingsModal = document.getElementById('settingsModal');
-            settingsModal.classList.add('open');
+            document.getElementById('settingsModal').classList.add('open');
         }
 
         function closeSettingsModal() {
-            const settingsModal = document.getElementById('settingsModal');
-            settingsModal.classList.remove('open');
+            document.getElementById('settingsModal').classList.remove('open');
         }
 
         function openAboutModal() {
-            const aboutModal = document.getElementById('aboutModal');
-            aboutModal.classList.add('open');
+            document.getElementById('aboutModal').classList.add('open');
         }
 
         function closeAboutModal() {
-            const aboutModal = document.getElementById('aboutModal');
-            aboutModal.classList.remove('open');
+            document.getElementById('aboutModal').classList.remove('open');
         }
 
         function openDonateModal() {
-            const donateModal = document.getElementById('donateModal');
-            donateModal.classList.add('open');
+            document.getElementById('donateModal').classList.add('open');
         }
 
         function closeDonateModal() {
-            const donateModal = document.getElementById('donateModal');
-            donateModal.classList.remove('open');
+            document.getElementById('donateModal').classList.remove('open');
         }
 
         function copyPixKey() {
-            const pixKey = "seu.email@exemplo.com"; // Substitua com sua chave Pix real
+            const pixKey = "seu.email@exemplo.com";
             navigator.clipboard.writeText(pixKey).then(() => {
                 alert(translations[currentLanguage]['pix-copied'] || 'Chave Pix copiada para a área de transferência!');
             }).catch(err => {
@@ -2387,6 +2529,7 @@
             document.getElementById('volumeValueDisplay').innerText = value + '%';
         }
 
+        // 🆕 MODIFICADO: trackForm salva cowbellPitch
         trackForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const name = inputName.value.trim();
@@ -2399,22 +2542,28 @@
                 setlistId: currentSetlistId,
                 isMetronome: isMetronome,
                 keyBinding: null,
-                volume: parseInt(document.getElementById('inputVolume').value) / 100 // Salva volume
+                volume: parseInt(document.getElementById('inputVolume').value) / 100
             };
 
             if (isMetronome) {
                 trackData.bpm = parseInt(document.getElementById('inputBPM').value);
                 trackData.channel = selectedChannel;
-                trackData.metronomeSound = selectedMetronomeSound; // Salva o som escolhido
+                trackData.metronomeSound = selectedMetronomeSound;
+                trackData.cowbellPitch = selectedCowbellPitch; // 🆕 Salva tonalidade
                 trackData.blob = null;
                 trackData.url = null;
             } else {
                 if (editingTrackId) {
                     const existing = trackList.find(t => t.id === editingTrackId);
                     if (inputFile.files.length > 0) {
+                        if (existing.url && activeBlobUrls.has(existing.url)) {
+                            URL.revokeObjectURL(existing.url);
+                            activeBlobUrls.delete(existing.url);
+                            memoryStats.totalUrlsRevoked++;
+                        }
                         trackData.blob = inputFile.files[0];
                     } else {
-                        trackData.blob = existing.blob; // Mantém o Blob atual
+                        trackData.blob = existing.blob;
                     }
                 } else {
                     if (inputFile.files.length === 0) {
@@ -2424,9 +2573,11 @@
                     trackData.blob = inputFile.files[0];
                 }
                 
-                // Gera a URL para tocar imediatamente na tela
                 if(trackData.blob) {
-                    trackData.url = URL.createObjectURL(trackData.blob);
+                    const newUrl = URL.createObjectURL(trackData.blob);
+                    trackData.url = newUrl;
+                    activeBlobUrls.add(newUrl);
+                    memoryStats.totalUrlsCreated++;
                 }
             }
 
@@ -2485,6 +2636,14 @@
             const btn = document.getElementById('btnEditMode');
             btn.classList.toggle('active', isEditMode);
             
+            const btnMobile = document.getElementById('btnEditModeMobile');
+            if (btnMobile) {
+                btnMobile.classList.toggle('active', isEditMode);
+                btnMobile.innerText = isEditMode ? 
+                    (translations[currentLanguage]['exit-edit-mode'] || 'Sair do Modo Edição') : 
+                    (translations[currentLanguage]['edit-mode'] || 'Modo Edição');
+            }
+            
             const mapStopBtn = document.getElementById('mapStopKeyBtn');
             const mapPlayBtn = document.getElementById('mapPlayKeyBtn');
             
@@ -2503,6 +2662,23 @@
 
         function renderGrid() {
             const container = document.getElementById('botoeira');
+            
+            const savedState = {
+                currentTrackId: currentLoadedTrackId,
+                isPlaying: false
+            };
+            
+            if (currentLoadedTrackId) {
+                const currentTrack = trackList.find(t => t.id === currentLoadedTrackId);
+                if (currentTrack) {
+                    if (currentTrack.isMetronome) {
+                        savedState.isPlaying = isMetronomePlaying;
+                    } else {
+                        savedState.isPlaying = !player.paused && player.src !== '';
+                    }
+                }
+            }
+            
             container.innerHTML = '';
 
             trackList.forEach(track => {
@@ -2519,7 +2695,6 @@
                     btn.addEventListener('drop', handleDrop);
                     btn.addEventListener('dragend', handleDragEnd);
                     
-                    // Touch events para mobile
                     btn.addEventListener('touchstart', handleTouchStart);
                     btn.addEventListener('touchmove', handleTouchMove);
                     btn.addEventListener('touchend', handleTouchEnd);
@@ -2531,7 +2706,6 @@
                 nameSpan.innerText = track.name;
                 btn.appendChild(nameSpan);
 
-                // Ícone de reorder em modo edição
                 if (isEditMode) {
                     const reorderIcon = document.createElement('div');
                     reorderIcon.className = 'reorder-icon';
@@ -2542,8 +2716,12 @@
                 if (track.isMetronome) {
                     const metroIcon = document.createElement('div');
                     metroIcon.className = 'metronome-icon';
-                    metroIcon.innerText = `♩ ${track.bpm}`;
-                    metroIcon.title = `Metrônomo ${track.bpm} BPM - Canal ${track.channel === 'left' ? 'L' : 'R'}`;
+                    // 🆕 Mostra informação da tonalidade no ícone
+                    const pitchInfo = track.metronomeSound === 'bell' && track.cowbellPitch !== undefined 
+                        ? ` Pitch:${track.cowbellPitch}%` 
+                        : '';
+                    metroIcon.innerText = `♩ ${track.bpm}${pitchInfo}`;
+                    metroIcon.title = `Metrônomo ${track.bpm} BPM - Canal ${track.channel === 'left' ? 'L' : 'R'}${pitchInfo}`;
                     btn.appendChild(metroIcon);
                 }
 
@@ -2580,19 +2758,19 @@
                     btn.appendChild(controls);
                 }
 
-                if (currentLoadedTrackId === track.id) {
-                    if ((track.isMetronome && !isMetronomePlaying) || (!track.isMetronome && player.paused)) {
-                        btn.classList.add('paused');
-                    } else {
+                if (track.id === savedState.currentTrackId) {
+                    if (savedState.isPlaying) {
                         btn.classList.add('playing');
+                    } else {
+                        btn.classList.add('paused');
                     }
+                    currentButton = btn;
                 }
 
                 container.appendChild(btn);
             });
             
             if (isEditMode) {
-                // Atualiza ordens no DB
                 trackList.forEach((track, idx) => {
                     if(track.order !== idx) {
                         track.order = idx;
@@ -2606,6 +2784,14 @@
             event.stopPropagation();
             const confirmMsg = translations[currentLanguage]['confirm-delete'] || 'Tem certeza que deseja remover este botão?';
             if(confirm(confirmMsg)) {
+                const trackToRemove = trackList.find(t => t.id === id);
+                if (trackToRemove && trackToRemove.url && activeBlobUrls.has(trackToRemove.url)) {
+                    URL.revokeObjectURL(trackToRemove.url);
+                    activeBlobUrls.delete(trackToRemove.url);
+                    memoryStats.totalUrlsRevoked++;
+                    console.log(`🧹 URL revogada ao remover track: ${trackToRemove.name}`);
+                }
+                
                 trackList = trackList.filter(t => t.id !== id);
                 deleteTrackFromDB(id);
                 if (currentLoadedTrackId === id) stopAudio(); 
@@ -2827,6 +3013,7 @@
             togglePlayPause();
         }
 
+        // 🆕 MODIFICADO: selectOrPlayTrack usa selectedCowbellPitch ao iniciar metrônomo
         function selectOrPlayTrack(track, btnElement) {
             if (track.isMetronome) {
                 if (currentLoadedTrackId === track.id) {
@@ -2847,7 +3034,8 @@
 
                 initAudioContext();
                 selectedChannel = track.channel;
-                selectedMetronomeSound = track.metronomeSound || 'click'; // Carrega som escolhido
+                selectedMetronomeSound = track.metronomeSound || 'click';
+                selectedCowbellPitch = track.cowbellPitch !== undefined ? track.cowbellPitch : 50; // 🆕 Carrega tonalidade
                 createClickSound();
                 createBellSound();
 
@@ -2867,7 +3055,6 @@
                 return;
             }
 
-            // Áudio Normal
             if (currentLoadedTrackId === track.id) {
                 togglePlayPause(); 
                 return;
@@ -2876,7 +3063,7 @@
             stopAudio();
 
             player.src = track.url;
-            player.volume = track.volume || 1; // Aplica volume individual
+            player.volume = track.volume || 1;
             currentLoadedTrackId = track.id;
             document.getElementById('currentTrackName').innerText = track.name;
             
@@ -2981,7 +3168,7 @@
             
             if(currentButton) {
                 currentButton.classList.remove('playing');
-                currentButton.classList.add('paused'); 
+                currentButton.classList.remove('paused'); 
             }
             
             setMainButtonState('paused');
@@ -3037,6 +3224,8 @@
             document.getElementById('timeRemaining').innerText = "-00:00";
             document.getElementById('timeTotal').innerText = "00:00";
             document.getElementById('currentTrackName').innerText = "Parado";
+            
+            showMemoryStats();
         });
 
         // ==========================================
@@ -3327,23 +3516,18 @@
                 const text = translations[currentLanguage]?.[key] || translations['pt-BR'][key];
                 
                 if (el.tagName === 'LABEL') {
-                    // Para labels que envolvem inputs
                     if (el.querySelector('input')) {
                         el.childNodes[0].textContent = text + ' ';
                     } else {
-                        // Para labels simples
                         el.innerText = text;
                     }
                 } else if (el.tagName === 'BUTTON') {
-                    // Para botões
                     el.innerText = text;
                 } else {
-                    // Para outros elementos
                     el.innerText = text;
                 }
             });
             
-            // Atualizar atributos de placeholder e title
             document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
                 const key = el.getAttribute('data-i18n-placeholder');
                 const text = translations[currentLanguage]?.[key] || translations['pt-BR'][key];
@@ -3377,26 +3561,27 @@
             toggle.classList.remove('active');
         }
 
-        // Sincronizar Setlist entre desktop e mobile
         const setlistSelectMobile = document.getElementById('setlistSelectMobile');
         if(setlistSelectMobile) {
             setlistSelectMobile.addEventListener('change', (e) => {
                 document.getElementById('setlistSelect').value = e.target.value;
-                // Dispara o change event do desktop
                 document.getElementById('setlistSelect').dispatchEvent(new Event('change'));
             });
         }
 
-        // Sincronizar checkboxes
         document.getElementById('checkAutoPlayMobile')?.addEventListener('change', (e) => {
             document.getElementById('checkAutoPlay').checked = e.target.checked;
         });
 
         document.getElementById('checkShowKeysMobile')?.addEventListener('change', (e) => {
             document.getElementById('checkShowKeys').checked = e.target.checked;
-            renderGrid(); // Re-renderiza para mostrar/esconder badges de teclas
+            renderGrid();
             updateGlobalBadges();
         });
+        
+        console.log('✅ LIVE SHOW v1.16 carregado com sucesso!');
+        console.log('🎚️ Novo: Slider de tonalidade do Cowbell (Grave ↔ Agudo)');
+        console.log('💡 Dica: Digite showMemoryStats() no console para ver o uso de memória');
     </script>
 </body>
 </html>
