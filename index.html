@@ -177,14 +177,14 @@
         </div>
         <div class="setlist-manager" id="desktopSetlist">
             <select id="setlistSelect"></select>
-            <button class="btn-new-setlist" onclick="createNewSetlist()" data-i18n="new-setlist">+ Nova Setlist</button>
+            <button class="btn-new-setlist" onclick="createNewSetlist()">+ Nova Setlist</button>
             <button class="btn-del-setlist" onclick="removeCurrentSetlist()" title="Excluir Setlist atual">- Excluir</button>
         </div>
         <div class="setup-controls">
-            <label class="toggle-label"><input type="checkbox" id="checkAutoPlay"><span data-i18n="auto-play">Auto-play</span></label>
-            <label class="toggle-label"><input type="checkbox" id="checkShowKeys"><span data-i18n="show-keys">Mostrar Teclas</span></label>
-            <button class="btn-add" onclick="openAddModal()" data-i18n="add-button">+ Adicionar</button>
-            <button class="btn-edit" id="btnEditMode" onclick="toggleEditMode()" data-i18n="edit-mode">Modo Edição</button>
+            <label class="toggle-label"><input type="checkbox" id="checkAutoPlay"><span>Auto-play</span></label>
+            <label class="toggle-label"><input type="checkbox" id="checkShowKeys"><span>Mostrar Teclas</span></label>
+            <button class="btn-add" onclick="openAddModal()">+ Adicionar</button>
+            <button class="btn-edit" id="btnEditMode" onclick="toggleEditMode()">Modo Edição</button>
         </div>
         <button class="settings-icon" id="settingsDesktop" onclick="openSettingsModal()" title="Configurações">
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -201,17 +201,17 @@
         <div class="menu-section"><div class="menu-section-title">Setlist</div>
             <div class="setlist-manager mobile">
                 <select id="setlistSelectMobile"></select>
-                <button class="btn-new-setlist" onclick="createNewSetlist(); closeMenu();" data-i18n="new-setlist">+ Nova Setlist</button>
+                <button class="btn-new-setlist" onclick="createNewSetlist(); closeMenu();">+ Nova Setlist</button>
                 <button class="btn-del-setlist" onclick="removeCurrentSetlist(); closeMenu();" title="Excluir Setlist atual">- Excluir</button>
             </div>
         </div>
         <div class="menu-section"><div class="menu-section-title">Controles</div>
-            <label class="menu-item"><input type="checkbox" id="checkAutoPlayMobile"><span data-i18n="auto-play">Auto-play</span></label>
-            <label class="menu-item"><input type="checkbox" id="checkShowKeysMobile"><span data-i18n="show-keys">Mostrar Teclas</span></label>
+            <label class="menu-item"><input type="checkbox" id="checkAutoPlayMobile"><span>Auto-play</span></label>
+            <label class="menu-item"><input type="checkbox" id="checkShowKeysMobile"><span>Mostrar Teclas</span></label>
         </div>
         <div class="menu-section"><div class="menu-section-title">Ações</div>
-            <button class="menu-button primary" onclick="openAddModal(); closeMenu();" data-i18n="add-button">+ Adicionar Música</button>
-            <button class="menu-button secondary" id="btnEditModeMobile" onclick="toggleEditMode(); closeMenu();" data-i18n="edit-mode">✏️ Modo Edição</button>
+            <button class="menu-button primary" onclick="openAddModal(); closeMenu();">+ Adicionar Música</button>
+            <button class="menu-button secondary" id="btnEditModeMobile" onclick="toggleEditMode(); closeMenu();">✏️ Modo Edição</button>
         </div>
         <div class="menu-section"><div class="menu-section-title">App</div>
             <button class="menu-button primary" onclick="openSettingsModal(); closeMenu();">⚙️ Configurações</button>
@@ -221,20 +221,20 @@
     <div class="display-container">
         <div class="track-name" id="currentTrackName">Parado</div>
         <div class="time-block">
-            <div class="time-item"><div class="time-label" data-i18n="current-time">Tempo Atual</div><div class="time-value large" id="timeCurrent">00:00</div></div>
-            <div class="time-item"><div class="time-label" data-i18n="total-time">Total</div><div class="time-value small" id="timeTotal">00:00</div></div>
-            <div class="time-item"><div class="time-label" data-i18n="remaining-time">Restante</div><div class="time-value large remaining" id="timeRemaining">-00:00</div></div>
+            <div class="time-item"><div class="time-label">Tempo Atual</div><div class="time-value large" id="timeCurrent">00:00</div></div>
+            <div class="time-item"><div class="time-label">Total</div><div class="time-value small" id="timeTotal">00:00</div></div>
+            <div class="time-item"><div class="time-label">Restante</div><div class="time-value large remaining" id="timeRemaining">-00:00</div></div>
         </div>
     </div>
 
     <div class="controls">
         <div class="control-wrapper">
-            <button class="btn-control btn-stop" id="btnStop" onclick="handleStopClick()" data-i18n="stop-btn">PARAR</button>
+            <button class="btn-control btn-stop" id="btnStop" onclick="handleStopClick()">PARAR</button>
             <div class="key-badge-global" id="stopKeyBadge" style="display:none;"></div>
             <button class="btn-map-key" id="mapStopKeyBtn" onclick="startKeyMapping('stop')" style="display:none; margin-top: 5px; padding: 5px 10px; font-size: 12px;">Mapear Tecla</button>
         </div>
         <div class="control-wrapper">
-            <button class="btn-control btn-play-pause" id="btnPlayPause" onclick="handlePlayPauseClick()" data-i18n="play-pause-btn">TOCAR</button>
+            <button class="btn-control btn-play-pause" id="btnPlayPause" onclick="handlePlayPauseClick()">TOCAR</button>
             <div class="key-badge-global" id="playPauseKeyBadge" style="display:none;"></div>
             <button class="btn-map-key" id="mapPlayKeyBtn" onclick="startKeyMapping('playpause')" style="display:none; margin-top: 5px; padding: 5px 10px; font-size: 12px;">Mapear Tecla</button>
         </div>
@@ -244,7 +244,7 @@
 
     <div class="settings-modal" id="settingsModal">
         <div class="settings-content">
-            <h2 data-i18n="settings-title">⚙️ Configurações</h2>
+            <h2>⚙️ Configurações</h2>
             <div class="settings-group"><label>🌐 Idioma:</label><select id="languageSelect" onchange="changeLanguage(this.value)"><option value="pt-BR">Português (BR)</option><option value="en-US">English (US)</option><option value="es-ES">Español</option><option value="fr-FR">Français</option></select></div>
             <div class="settings-actions">
                 <button class="btn-about-action btn-donate" onclick="openDonateModal()">❤️ Doação</button>
@@ -259,7 +259,7 @@
             <h2>ℹ️ Sobre o LIVE SHOW</h2>
             <p>O LIVE SHOW é um aplicativo web profissional desenvolvido para músicos, bandas e produtores de shows ao vivo. Oferece controle preciso de áudio durante apresentações, com suporte a metrônomo sincronizado e múltiplas setlists.</p>
             <p><strong>Recursos principais:</strong> Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e dados salvos localmente (sem depender de internet).</p>
-            <div class="version-info"><div>Versão:</div><div>1.18 - LIVE SHOW Professional</div><div style="margin-top: 10px;">Desenvolvido por:</div><div>🎵 Viver de Som Studios</div><div style="margin-top: 10px; font-style: italic;">Sua música, nosso palco, seu show!</div></div>
+            <div class="version-info"><div>Versão:</div><div>1.19 - LIVE SHOW Professional</div><div style="margin-top: 10px;">Desenvolvido por:</div><div>🎵 Viver de Som Studios</div><div style="margin-top: 10px; font-style: italic;">Sua música, nosso palco, seu show!</div></div>
             <div class="about-actions">
                 <button class="btn-about-action btn-donate" onclick="openDonateModal()">❤️ Doação</button>
                 <button class="btn-about-action btn-close-about" onclick="closeAboutModal()">Fechar</button>
@@ -267,7 +267,6 @@
         </div>
     </div>
 
-    <!-- 🆕 MODAL DE DOAÇÃO SIMPLIFICADO -->
     <div class="donate-modal" id="donateModal">
         <div class="donate-content">
             <h2>❤️ Apoie o LIVE SHOW</h2>
@@ -347,6 +346,7 @@
         let globalKeys = { stop: null, playpause: null };
         let setlists = [];
         let currentSetlistId = null;
+        let isMetronomeNameAuto = true; // 🔧 NOVO: Controla se o nome do metrônomo é automático
 
         // METRÔNOMO
         let audioContext = null;
@@ -367,12 +367,91 @@
         let activeBlobUrls = new Set();
         let memoryStats = { totalUrlsCreated: 0, totalUrlsRevoked: 0, lastCleanup: null };
 
+        // 🔧 NOVO: Desbloqueio de áudio para iOS
+        let audioUnlocked = false;
+
         // ==========================================
-        // PREVIEW COWBELL
+        // 🔧 CORRIGIDO: PREENCHIMENTO AUTOMÁTICO DO NOME
+        // ==========================================
+        inputFile.addEventListener('change', function(e) {
+            if (e.target.files.length > 0 && inputName.value.trim() === '') {
+                inputName.value = e.target.files[0].name.replace(/\.[^/.]+$/, "");
+                isMetronomeNameAuto = false;
+            }
+        });
+
+        // 🔧 NOVO: Preenchimento automático para metrônomo
+        function updateMetronomeName() {
+            if (!checkMetronome.checked) return;
+            if (!isMetronomeNameAuto && inputName.value.trim() !== '') return; // Respeita nome personalizado
+            
+            const bpm = document.getElementById('inputBPM').value;
+            const soundName = selectedMetronomeSound === 'bell' ? 'Cowbell' : 'Click';
+            inputName.value = soundName + ' ' + bpm + ' BPM';
+        }
+
+        // 🔧 NOVO: Força o nome quando ativa o metrônomo
+        function forceMetronomeName() {
+            isMetronomeNameAuto = true;
+            updateMetronomeName();
+        }
+
+        // 🔧 NOVO: Quando usuário digita, desativa auto-nome
+        inputName.addEventListener('input', function() {
+            if (checkMetronome.checked) {
+                isMetronomeNameAuto = false;
+            }
+        });
+
+        // ==========================================
+        // 🔧 CORRIGIDO: DESBLOQUEIO DE ÁUDIO iOS
+        // ==========================================
+        function unlockAudio() {
+            if (audioUnlocked) return;
+            
+            // Cria um AudioContext silencioso para "acordar" o sistema de áudio
+            const tempCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const buffer = tempCtx.createBuffer(1, 1, 22050);
+            const source = tempCtx.createBufferSource();
+            source.buffer = buffer;
+            source.connect(tempCtx.destination);
+            source.start(0);
+            
+            if (tempCtx.state === 'suspended') {
+                tempCtx.resume();
+            }
+            
+            audioUnlocked = true;
+            console.log('🔓 Áudio desbloqueado para iOS');
+            
+            // Limpa depois
+            setTimeout(() => {
+                source.disconnect();
+                tempCtx.close().catch(() => {});
+            }, 100);
+        }
+
+        // Desbloqueia áudio no primeiro toque em qualquer lugar
+        document.addEventListener('touchstart', unlockAudio, { once: true });
+        document.addEventListener('click', unlockAudio, { once: true });
+
+        // ==========================================
+        // PREVIEW COWBELL (compatível com iOS)
         // ==========================================
         function previewCowbell() {
             try {
-                if (!previewAudioContext) previewAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+                // Garante que o áudio está desbloqueado
+                unlockAudio();
+                
+                if (!previewAudioContext) {
+                    previewAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                
+                // 🔧 CORRIGIDO: Resume o contexto se estiver suspenso (iOS)
+                if (previewAudioContext.state === 'suspended') {
+                    previewAudioContext.resume();
+                }
+                
                 const ctx = previewAudioContext;
                 const sampleRate = ctx.sampleRate;
                 const duration = 0.2;
@@ -384,6 +463,7 @@
                 const freq1 = 587 * pitchFactor;
                 const freq2 = 880 * pitchFactor;
                 const freq3 = 1175 * pitchFactor;
+                
                 for (let i = 0; i < length; i++) {
                     const t = i / sampleRate;
                     const attack = Math.min(t * 500, 1);
@@ -392,13 +472,16 @@
                     const wave = Math.sin(2 * Math.PI * freq1 * t) * 0.6 + Math.sin(2 * Math.PI * freq2 * t) * 0.3 + Math.sin(2 * Math.PI * freq3 * t) * 0.1;
                     channelData[i] = wave * envelope;
                 }
+                
                 const source = ctx.createBufferSource();
                 source.buffer = buffer;
                 source.connect(ctx.destination);
                 source.start(0);
+                
                 const btn = document.getElementById('btnTestCowbell');
                 btn.style.backgroundColor = '#7d3c98'; btn.innerText = '🔔 Tocando...';
                 setTimeout(() => { btn.style.backgroundColor = '#9b59b6'; btn.innerText = '▶️ Testar Som'; }, 200);
+                
             } catch (err) { console.error('Erro ao tocar preview:', err); }
         }
 
@@ -497,7 +580,18 @@
         // ==========================================
         // GERAÇÃO DE SOM
         // ==========================================
-        function initAudioContext() { if (!audioContext) { audioContext = new (window.AudioContext || window.webkitAudioContext)(); createClickSound(); createBellSound(); } }
+        function initAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                createClickSound();
+                createBellSound();
+            }
+            // 🔧 CORRIGIDO: Resume contexto se suspenso (iOS)
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }
+        
         function createClickSound() {
             if (!audioContext) return;
             const sr = audioContext.sampleRate, dur = 0.05, len = Math.floor(sr * dur);
@@ -523,39 +617,93 @@
         function metronomeScheduler() { while (nextNoteTime < audioContext.currentTime + scheduleAheadTime) { scheduleNote(nextNoteTime); nextNote(); } metronomeTimerID = setTimeout(metronomeScheduler, lookahead); }
 
         // ==========================================
-        // SELEÇÃO
+        // 🔧 MODIFICADO: SELEÇÃO COM AUTO-NOME
         // ==========================================
-        function selectChannel(ch) { selectedChannel = ch; document.querySelectorAll('.channel-btn').forEach(b => b.classList.toggle('active', b.dataset.channel === ch)); if (audioContext) { createClickSound(); createBellSound(); } }
-        function selectMetronomeSound(s) { selectedMetronomeSound = s; document.querySelectorAll('.sound-btn').forEach(b => b.classList.toggle('active', b.dataset.sound === s)); showCowbellPitchSlider(s === 'bell'); }
+        function selectChannel(ch) {
+            selectedChannel = ch;
+            document.querySelectorAll('.channel-btn').forEach(b => b.classList.toggle('active', b.dataset.channel === ch));
+            if (audioContext) { createClickSound(); createBellSound(); }
+        }
+        
+        function selectMetronomeSound(s) {
+            selectedMetronomeSound = s;
+            document.querySelectorAll('.sound-btn').forEach(b => b.classList.toggle('active', b.dataset.sound === s));
+            showCowbellPitchSlider(s === 'bell');
+            updateMetronomeName(); // 🔧 Atualiza nome ao trocar som
+        }
 
         // ==========================================
         // MODAL
         // ==========================================
-        checkMetronome.addEventListener('change', (e) => { metronomeControls.classList.toggle('active', e.target.checked); inputFile.disabled = e.target.checked; inputFile.required = !e.target.checked && !editingTrackId; });
+        checkMetronome.addEventListener('change', (e) => {
+            metronomeControls.classList.toggle('active', e.target.checked);
+            inputFile.disabled = e.target.checked;
+            inputFile.required = !e.target.checked && !editingTrackId;
+            
+            if (e.target.checked) {
+                forceMetronomeName(); // 🔧 Preenche nome ao ativar metrônomo
+            } else {
+                isMetronomeNameAuto = false;
+            }
+        });
+        
+        // 🔧 NOVO: Atualiza nome ao mudar BPM
+        document.getElementById('inputBPM').addEventListener('input', updateMetronomeName);
+        
         function openAddModal() {
-            editingTrackId = null; document.getElementById('modalTitle').innerText = 'Adicionar Nova Música';
-            inputName.value = ''; inputFile.value = ''; inputFile.required = true; inputFile.disabled = false;
-            document.getElementById('currentFileInfo').style.display = 'none'; checkMetronome.checked = false;
-            metronomeControls.classList.remove('active'); document.getElementById('inputBPM').value = 120;
-            selectChannel('left'); selectMetronomeSound('click');
-            document.getElementById('cowbellPitchSlider').value = 50; updateCowbellPitchDisplay(50); showCowbellPitchSlider(false);
+            editingTrackId = null;
+            document.getElementById('modalTitle').innerText = 'Adicionar Nova Música';
+            inputName.value = '';
+            inputFile.value = '';
+            inputFile.required = true;
+            inputFile.disabled = false;
+            document.getElementById('currentFileInfo').style.display = 'none';
+            checkMetronome.checked = false;
+            metronomeControls.classList.remove('active');
+            document.getElementById('inputBPM').value = 120;
+            selectChannel('left');
+            selectMetronomeSound('click');
+            document.getElementById('cowbellPitchSlider').value = 50;
+            updateCowbellPitchDisplay(50);
+            showCowbellPitchSlider(false);
+            isMetronomeNameAuto = false; // Reset
             modal.classList.add('open');
         }
+        
         function openEditModal(id) {
             const track = trackList.find(t => t.id === id); if (!track) return;
-            editingTrackId = id; document.getElementById('modalTitle').innerText = 'Editar Música';
-            inputName.value = track.name; inputFile.required = false; document.getElementById('currentFileInfo').style.display = 'block';
+            editingTrackId = id;
+            document.getElementById('modalTitle').innerText = 'Editar Música';
+            inputName.value = track.name;
+            inputFile.required = false;
+            document.getElementById('currentFileInfo').style.display = 'block';
             document.getElementById('inputVolume').value = Math.round((track.volume || 1) * 100);
             document.getElementById('volumeValueDisplay').innerText = Math.round((track.volume || 1) * 100) + '%';
+            
             if (track.isMetronome) {
-                checkMetronome.checked = true; metronomeControls.classList.add('active');
-                document.getElementById('inputBPM').value = track.bpm; selectChannel(track.channel); selectMetronomeSound(track.metronomeSound || 'click');
+                checkMetronome.checked = true;
+                metronomeControls.classList.add('active');
+                document.getElementById('inputBPM').value = track.bpm;
+                selectChannel(track.channel);
+                selectMetronomeSound(track.metronomeSound || 'click');
                 const sp = track.cowbellPitch !== undefined ? track.cowbellPitch : 50;
-                document.getElementById('cowbellPitchSlider').value = sp; updateCowbellPitchDisplay(sp); showCowbellPitchSlider(track.metronomeSound === 'bell');
-                inputFile.disabled = true; document.getElementById('currentFileInfo').textContent = `⚙️ Metrônomo: ${track.bpm} BPM - ${track.metronomeSound === 'bell' ? 'Cowbell' : 'Click'}`;
-            } else { checkMetronome.checked = false; metronomeControls.classList.remove('active'); inputFile.disabled = false; showCowbellPitchSlider(false); document.getElementById('currentFileInfo').textContent = '📁 Áudio atual carregado.'; }
+                document.getElementById('cowbellPitchSlider').value = sp;
+                updateCowbellPitchDisplay(sp);
+                showCowbellPitchSlider(track.metronomeSound === 'bell');
+                inputFile.disabled = true;
+                document.getElementById('currentFileInfo').textContent = `⚙️ Metrônomo: ${track.bpm} BPM - ${track.metronomeSound === 'bell' ? 'Cowbell' : 'Click'}`;
+                isMetronomeNameAuto = false; // Na edição, respeita o nome salvo
+            } else {
+                checkMetronome.checked = false;
+                metronomeControls.classList.remove('active');
+                inputFile.disabled = false;
+                showCowbellPitchSlider(false);
+                document.getElementById('currentFileInfo').textContent = '📁 Áudio atual carregado.';
+                isMetronomeNameAuto = false;
+            }
             modal.classList.add('open');
         }
+        
         function closeModal() { modal.classList.remove('open'); }
         function openSettingsModal() { document.getElementById('settingsModal').classList.add('open'); }
         function closeSettingsModal() { document.getElementById('settingsModal').classList.remove('open'); }
@@ -658,26 +806,140 @@
         function handleDrop(e) { if (!isEditMode) return; e.preventDefault(); e.stopPropagation(); this.classList.remove('drag-over'); const tid = parseFloat(this.dataset.id); if (draggedItemId === tid) return; const di = trackList.findIndex(t => t.id === draggedItemId); const ti = trackList.findIndex(t => t.id === tid); if (di !== -1 && ti !== -1) { const [item] = trackList.splice(di, 1); trackList.splice(ti, 0, item); renderGrid(); } draggedItemId = null; }
 
         // ==========================================
-        // PLAYER
+        // 🔧 CORRIGIDO: PLAYER COM SUPORTE iOS
         // ==========================================
         function handleStopClick() { if (!isEditMode) stopAudio(); }
         function handlePlayPauseClick() { if (!isEditMode) togglePlayPause(); }
+        
         function selectOrPlayTrack(track, btnElement) {
-            if (track.isMetronome) { if (currentLoadedTrackId === track.id) { toggleMetronome(); return; } stopAudio(); currentLoadedTrackId = track.id; document.getElementById('currentTrackName').innerText = `♩ ${track.name} (${track.bpm} BPM)`; document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('playing', 'paused')); currentButton = btnElement; initAudioContext(); selectedChannel = track.channel; selectedMetronomeSound = track.metronomeSound || 'click'; selectedCowbellPitch = track.cowbellPitch !== undefined ? track.cowbellPitch : 50; createClickSound(); createBellSound(); if (checkAutoPlay.checked) { startMetronome(track.bpm); btnElement.classList.add('playing'); setMainButtonState('playing'); } else { btnElement.classList.add('paused'); setMainButtonState('paused'); } document.getElementById('timeCurrent').innerText = '--:--'; document.getElementById('timeRemaining').innerText = '---'; document.getElementById('timeTotal').innerText = '--:--'; return; }
+            if (track.isMetronome) {
+                if (currentLoadedTrackId === track.id) { toggleMetronome(); return; }
+                stopAudio();
+                currentLoadedTrackId = track.id;
+                document.getElementById('currentTrackName').innerText = `♩ ${track.name} (${track.bpm} BPM)`;
+                document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('playing', 'paused'));
+                currentButton = btnElement;
+                
+                // 🔧 CORRIGIDO: Garante áudio desbloqueado e contexto resumido
+                unlockAudio();
+                initAudioContext();
+                if (audioContext.state === 'suspended') {
+                    audioContext.resume().then(() => {
+                        console.log('✅ AudioContext resumido');
+                    });
+                }
+                
+                selectedChannel = track.channel;
+                selectedMetronomeSound = track.metronomeSound || 'click';
+                selectedCowbellPitch = track.cowbellPitch !== undefined ? track.cowbellPitch : 50;
+                createClickSound();
+                createBellSound();
+                
+                if (checkAutoPlay.checked) {
+                    startMetronome(track.bpm);
+                    btnElement.classList.add('playing');
+                    setMainButtonState('playing');
+                } else {
+                    btnElement.classList.add('paused');
+                    setMainButtonState('paused');
+                }
+                
+                document.getElementById('timeCurrent').innerText = '--:--';
+                document.getElementById('timeRemaining').innerText = '---';
+                document.getElementById('timeTotal').innerText = '--:--';
+                return;
+            }
+            
             if (currentLoadedTrackId === track.id) { togglePlayPause(); return; }
-            stopAudio(); player.src = track.url; player.volume = track.volume || 1; currentLoadedTrackId = track.id;
-            document.getElementById('currentTrackName').innerText = track.name; document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('playing', 'paused')); currentButton = btnElement;
-            if (checkAutoPlay.checked) { player.play().catch(e => console.error(e)); btnElement.classList.add('playing'); setMainButtonState('playing'); } else { btnElement.classList.add('paused'); setMainButtonState('paused'); }
+            stopAudio();
+            player.src = track.url;
+            player.volume = track.volume || 1;
+            currentLoadedTrackId = track.id;
+            document.getElementById('currentTrackName').innerText = track.name;
+            document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('playing', 'paused'));
+            currentButton = btnElement;
+            
+            if (checkAutoPlay.checked) {
+                player.play().catch(e => console.error(e));
+                btnElement.classList.add('playing');
+                setMainButtonState('playing');
+            } else {
+                btnElement.classList.add('paused');
+                setMainButtonState('paused');
+            }
             updateTimeDisplay();
         }
-        function togglePlayPause() { if (!currentLoadedTrackId) return; const ct = trackList.find(t => t.id === currentLoadedTrackId); if (ct && ct.isMetronome) { toggleMetronome(); return; } if (!player.src) return; if (player.paused) { player.play(); if (currentButton) { currentButton.classList.remove('paused'); currentButton.classList.add('playing'); } setMainButtonState('playing'); } else { player.pause(); if (currentButton) { currentButton.classList.remove('playing'); currentButton.classList.add('paused'); } setMainButtonState('paused'); } }
-        function startMetronome(bpm) { currentBPM = bpm; if (isMetronomePlaying) return; initAudioContext(); if (audioContext.state === 'suspended') audioContext.resume(); isMetronomePlaying = true; nextNoteTime = audioContext.currentTime + 0.05; metronomeScheduler(); }
+        
+        function togglePlayPause() {
+            if (!currentLoadedTrackId) return;
+            const ct = trackList.find(t => t.id === currentLoadedTrackId);
+            if (ct && ct.isMetronome) { toggleMetronome(); return; }
+            if (!player.src) return;
+            
+            if (player.paused) {
+                player.play();
+                if (currentButton) { currentButton.classList.remove('paused'); currentButton.classList.add('playing'); }
+                setMainButtonState('playing');
+            } else {
+                player.pause();
+                if (currentButton) { currentButton.classList.remove('playing'); currentButton.classList.add('paused'); }
+                setMainButtonState('paused');
+            }
+        }
+        
+        function startMetronome(bpm) {
+            currentBPM = bpm;
+            if (isMetronomePlaying) return;
+            
+            initAudioContext();
+            
+            // 🔧 CORRIGIDO: Resume contexto se suspenso (iOS)
+            if (audioContext.state === 'suspended') {
+                audioContext.resume().then(() => {
+                    console.log('✅ AudioContext resumido para metrônomo');
+                    isMetronomePlaying = true;
+                    nextNoteTime = audioContext.currentTime + 0.05;
+                    metronomeScheduler();
+                });
+            } else {
+                isMetronomePlaying = true;
+                nextNoteTime = audioContext.currentTime + 0.05;
+                metronomeScheduler();
+            }
+        }
+        
         function stopMetronome() { isMetronomePlaying = false; if (metronomeTimerID) { clearTimeout(metronomeTimerID); metronomeTimerID = null; } }
-        function toggleMetronome() { const ct = trackList.find(t => t.id === currentLoadedTrackId); if (!ct || !ct.isMetronome) return; if (isMetronomePlaying) { stopMetronome(); if (currentButton) { currentButton.classList.remove('playing'); currentButton.classList.add('paused'); } setMainButtonState('paused'); } else { startMetronome(ct.bpm); if (currentButton) { currentButton.classList.remove('paused'); currentButton.classList.add('playing'); } setMainButtonState('playing'); } }
-        function stopAudio() { if (!currentLoadedTrackId) return; const ct = trackList.find(t => t.id === currentLoadedTrackId); if (ct && ct.isMetronome) stopMetronome(); else { player.pause(); player.currentTime = 0; } if (currentButton) currentButton.classList.remove('playing', 'paused'); setMainButtonState('paused'); if (ct && ct.isMetronome) { document.getElementById('timeCurrent').innerText = '--:--'; document.getElementById('timeRemaining').innerText = '---'; document.getElementById('timeTotal').innerText = '--:--'; } else updateTimeDisplay(); }
+        
+        function toggleMetronome() {
+            const ct = trackList.find(t => t.id === currentLoadedTrackId);
+            if (!ct || !ct.isMetronome) return;
+            
+            if (isMetronomePlaying) {
+                stopMetronome();
+                if (currentButton) { currentButton.classList.remove('playing'); currentButton.classList.add('paused'); }
+                setMainButtonState('paused');
+            } else {
+                startMetronome(ct.bpm);
+                if (currentButton) { currentButton.classList.remove('paused'); currentButton.classList.add('playing'); }
+                setMainButtonState('playing');
+            }
+        }
+        
+        function stopAudio() {
+            if (!currentLoadedTrackId) return;
+            const ct = trackList.find(t => t.id === currentLoadedTrackId);
+            if (ct && ct.isMetronome) stopMetronome();
+            else { player.pause(); player.currentTime = 0; }
+            if (currentButton) currentButton.classList.remove('playing', 'paused');
+            setMainButtonState('paused');
+            if (ct && ct.isMetronome) { document.getElementById('timeCurrent').innerText = '--:--'; document.getElementById('timeRemaining').innerText = '---'; document.getElementById('timeTotal').innerText = '--:--'; }
+            else updateTimeDisplay();
+        }
+        
         function setMainButtonState(s) { if (s === 'playing') { btnPlayPause.innerText = 'PAUSAR'; btnPlayPause.classList.add('playing-state'); } else { btnPlayPause.innerText = 'TOCAR'; btnPlayPause.classList.remove('playing-state'); } }
         function formatTime(s) { if (isNaN(s) || !isFinite(s)) return '00:00'; return `${Math.floor(s/60).toString().padStart(2,'0')}:${Math.floor(s%60).toString().padStart(2,'0')}`; }
         function updateTimeDisplay() { document.getElementById('timeCurrent').innerText = formatTime(player.currentTime); const t = player.duration || 0; document.getElementById('timeTotal').innerText = formatTime(t); document.getElementById('timeRemaining').innerText = '-' + formatTime(t > 0 ? t - player.currentTime : 0); }
+        
         player.addEventListener('timeupdate', updateTimeDisplay);
         player.addEventListener('loadedmetadata', updateTimeDisplay);
         player.addEventListener('ended', () => { if (currentButton) currentButton.classList.remove('playing', 'paused'); currentLoadedTrackId = null; setMainButtonState('paused'); document.getElementById('timeCurrent').innerText = '00:00'; document.getElementById('timeRemaining').innerText = '-00:00'; document.getElementById('timeTotal').innerText = '00:00'; document.getElementById('currentTrackName').innerText = 'Parado'; showMemoryStats(); });
@@ -699,8 +961,8 @@
         document.getElementById('checkAutoPlayMobile')?.addEventListener('change', (e) => { document.getElementById('checkAutoPlay').checked = e.target.checked; });
         document.getElementById('checkShowKeysMobile')?.addEventListener('change', (e) => { document.getElementById('checkShowKeys').checked = e.target.checked; renderGrid(); updateGlobalBadges(); });
 
-        console.log('✅ LIVE SHOW v1.18 carregado!');
-        console.log('❤️ Doação: PayPal + Pix | Mensagem personalizada');
+        console.log('✅ LIVE SHOW v1.19 carregado!');
+        console.log('🔧 Correções: Nome automático, Auto-nome metrônomo, iOS audio');
         console.log('💡 Dica: showMemoryStats() para ver uso de memória');
     </script>
 </body>
