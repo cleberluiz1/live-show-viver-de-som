@@ -117,11 +117,13 @@
         .modal-volume-label { color: #00d2ff; font-weight: bold; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; } .modal-volume-value { color: #00d2ff; font-size: 14px; }
         .modal-volume-slider { width: 100%; height: 6px; border-radius: 3px; background: #444; outline: none; -webkit-appearance: none; appearance: none; cursor: pointer; }
         .modal-volume-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%; background: #00d2ff; cursor: pointer; box-shadow: 0 0 5px rgba(0,210,255,0.5); }
-        .continue-compact { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
-        .continue-compact-label { color: #aaa; font-size: 12px; font-weight: bold; margin-right: 5px; white-space: nowrap; }
-        .continue-btn-compact { padding: 8px 14px; background: #1a0a1a; border: 2px solid #555; color: #aaa; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; font-size: 14px; white-space: nowrap; }
+        /* 🆕 CORRIGIDO: Botões compactos responsivos */
+        .continue-compact { display: flex; align-items: center; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+        .continue-compact-label { color: #aaa; font-size: 12px; font-weight: bold; white-space: nowrap; }
+        .continue-btn-compact { padding: 8px 12px; background: #1a0a1a; border: 2px solid #555; color: #aaa; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; font-size: 13px; white-space: nowrap; flex: 1; min-width: 100px; text-align: center; }
         .continue-btn-compact:hover { background: #2a1a2a; border-color: #9b59b6; color: #bb8fce; }
         .continue-btn-compact.active { background: #2a1a2a; border-color: #9b59b6; color: #bb8fce; box-shadow: 0 0 8px rgba(155,89,182,0.4); }
+        @media (max-width: 480px) { .continue-compact-label { width: 100%; margin-bottom: 4px; } .continue-btn-compact { font-size: 12px; padding: 8px 6px; min-width: 80px; } }
         .cowbell-pitch-group { margin-top: 15px; padding: 15px; background: #1a0a1a; border-radius: 6px; border: 1px solid #9b59b6; display: none; } .cowbell-pitch-group.active { display: block; }
         .cowbell-pitch-label { color: #bb8fce; font-weight: bold; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; } .cowbell-pitch-value { color: #9b59b6; font-size: 14px; font-weight: bold; }
         .cowbell-pitch-slider { width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(to right, #6c3483, #9b59b6, #bb8fce); outline: none; -webkit-appearance: none; appearance: none; cursor: pointer; }
@@ -132,6 +134,7 @@
         .sound-btn { flex: 1; padding: 10px; background: #222; border: 2px solid #555; color: #aaa; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; font-size: 13px; } .sound-btn:hover { background: #333; } .sound-btn.active { background: #9b59b6; border-color: #9b59b6; color: white; }
         .modal-actions { display: flex; gap: 15px; margin-top: 25px; } .modal-actions button { flex: 1; padding: 12px; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
         .btn-cancel { background-color: #555; color: white; } .btn-cancel:hover { background-color: #777; } .btn-save { background-color: #0984e3; color: white; } .btn-save:hover { background-color: #74b9ff; }
+        @media (max-width: 480px) { .modal-actions { flex-direction: row; gap: 8px; } .modal-actions button { font-size: 14px; padding: 10px; } }
         .btn-map-key { background-color: rgba(0,0,0,0.6); color: white; border: 1px solid #555; padding: 8px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; font-weight: bold; transition: 0.2s; } .btn-map-key:hover { background-color: rgba(0,0,0,0.9); } .btn-map-key.waiting { background-color: #0984e3; animation: pulse 1s infinite; }
     </style>
 </head>
@@ -225,9 +228,9 @@
     <div class="about-modal" id="aboutModal">
         <div class="about-content">
             <h2 data-i18n="about-title">ℹ️ Sobre o LIVE SHOW</h2>
-            <p data-i18n="about-description">O LIVE SHOW é um aplicativo web profissional desenvolvido para músicos, bandas e produtores de shows ao vivo. Oferece controle preciso de áudio durante apresentações, com suporte a metrônomo sincronizado e múltiplas setlists.</p>
-            <p data-i18n="about-features"><strong>Recursos principais:</strong> Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e dados salvos localmente (sem depender de internet).</p>
-            <div class="version-info"><div data-i18n="version-label">Versão:</div><div>1.26 - LIVE SHOW Professional</div><div style="margin-top: 10px;" data-i18n="developed-by">Desenvolvido por:</div><div>🎵 Viver de Som Studios</div><div style="margin-top: 10px; font-style: italic;" data-i18n="tagline">Sua música, nosso palco, seu show!</div></div>
+            <p data-i18n="about-description">O LIVE SHOW é um aplicativo web profissional desenvolvido para músicos, bandas e produtores de shows ao vivo.</p>
+            <p data-i18n="about-features"><strong>Recursos principais:</strong> Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e dados salvos localmente.</p>
+            <div class="version-info"><div data-i18n="version-label">Versão:</div><div>1.27 - LIVE SHOW Professional</div><div style="margin-top: 10px;" data-i18n="developed-by">Desenvolvido por:</div><div>🎵 Viver de Som Studios</div><div style="margin-top: 10px; font-style: italic;" data-i18n="tagline">Sua música, nosso palco, seu show!</div></div>
             <div class="about-actions">
                 <button class="btn-about-action btn-donate" onclick="openDonateModal()" data-i18n="donate-btn">❤️ Doação</button>
                 <button class="btn-about-action btn-close-about" onclick="closeAboutModal()" data-i18n="close-btn">Fechar</button>
@@ -243,7 +246,7 @@
                 <button class="donate-btn" onclick="window.open('https://www.paypal.com/donate/?hosted_button_id=CUMGN7FGJX3UU', '_blank')" data-i18n="paypal-donate">💳 PayPal</button>
                 <button class="donate-btn" onclick="copyPixKey()" data-i18n="pix-donate">🔑 Pix (BR)</button>
             </div>
-            <p class="donate-thanks" data-i18n="donate-thanks">Muito obrigado por apoiar o projeto! 🙏</p>
+            <p class="donate-thanks" data-i18n="donate-thanks">Muito obrigado por apoiar! 🙏</p>
             <div class="donate-actions"><button class="btn-close-donate" onclick="closeDonateModal()" data-i18n="close-btn">Fechar</button></div>
         </div>
     </div>
@@ -319,96 +322,24 @@
         let activeBlobUrls = new Set(), memoryStats = { totalUrlsCreated: 0, totalUrlsRevoked: 0, lastCleanup: null };
         let audioUnlocked = false;
 
-        // 🆕 TRADUÇÕES COMPLETAS
         const translations = {
-            'pt-BR': {
-                'new-setlist': '+ Nova Setlist', 'del-setlist': '- Excluir', 'auto-play': 'Auto-play', 'show-keys': 'Mostrar Teclas',
-                'add-button': '+ Adicionar', 'edit-mode': 'Modo Edição', 'exit-edit-mode': 'Sair do Modo Edição',
-                'menu-setlist': 'Setlist', 'menu-controls': 'Controles', 'menu-actions': 'Ações', 'menu-app': 'App',
-                'add-music-btn': '+ Adicionar Música', 'settings-btn': '⚙️ Configurações',
-                'stopped': 'Parado', 'current-time': 'Tempo Atual', 'total-time': 'Total', 'remaining-time': 'Restante',
-                'exit-edit-btn': '✕ Sair da Edição', 'stop-btn': 'PARAR', 'play-pause-btn': 'TOCAR', 'pause-btn': 'PAUSAR',
-                'map-stop-key': 'Mapear Tecla', 'map-play-key': 'Mapear Tecla',
-                'settings-title': '⚙️ Configurações', 'language': '🌐 Idioma:', 'donate-btn': '❤️ Doação', 'about-btn': 'ℹ️ Sobre', 'close-btn': 'Fechar',
-                'about-title': 'ℹ️ Sobre o LIVE SHOW', 'about-description': 'O LIVE SHOW é um aplicativo web profissional desenvolvido para músicos, bandas e produtores de shows ao vivo.',
-                'about-features': 'Recursos principais: Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e dados salvos localmente.',
-                'version-label': 'Versão:', 'developed-by': 'Desenvolvido por:', 'tagline': 'Sua música, nosso palco, seu show!',
-                'donate-title': '❤️ Apoie o LIVE SHOW', 'donate-message': '"Apoie o LIVE SHOW! Sua doação mantém este projeto gratuito e em evolução para músicos. ❤️"',
-                'paypal-donate': '💳 PayPal', 'pix-donate': '🔑 Pix (BR)', 'donate-thanks': 'Muito obrigado por apoiar! 🙏',
-                'add-music-modal': 'Adicionar Nova Música', 'edit-music-modal': 'Editar Música',
-                'music-name': 'Nome da Música:', 'audio-file': 'Arquivo de Áudio:', 'music-volume': '🔊 Volume:',
-                'metronome-mode': '🎵 Modo Metrônomo (sem áudio)', 'bpm-label': 'BPM (batidas por minuto):',
-                'output-channel': 'Canal de Saída:', 'left-channel': 'Esquerdo (L)', 'right-channel': 'Direito (R)',
-                'metronome-sound-label': '🔊 Som do Metrônomo:', 'click-sound': '🔔 Click', 'cowbell-sound': '🔗 Cowbell',
-                'cowbell-pitch': '🎚️ Tonalidade do Cowbell', 'cowbell-low': '🔊 Grave', 'cowbell-mid': 'Médio', 'cowbell-high': '🔔 Agudo',
-                'test-sound': '▶️ Testar Som', 'cancel-btn': 'Cancelar', 'save-btn': 'Salvar',
-                'continue-label': 'Ao finalizar:', 'continue-stop': '=>| Parar', 'continue-next': '>> Continuar',
-                'new-setlist-name': 'Nome da nova setlist:', 'cant-delete-last': 'Não pode excluir!',
-                'confirm-delete-setlist': 'Excluir Setlist', 'confirm-delete': 'Remover este botão?',
-                'waiting-key': 'Aguardando... (ESC)', 'select-audio': 'Selecione um arquivo!',
-                'pix-copied': 'Chave Pix copiada! 📋', 'current-file-audio': '📁 Áudio carregado.',
-                'edit-btn': 'Editar', 'map-key-btn': 'Mapear Tecla'
-            },
-            'en-US': {
-                'new-setlist': '+ New Setlist', 'del-setlist': '- Delete', 'auto-play': 'Auto-play', 'show-keys': 'Show Keys',
-                'add-button': '+ Add', 'edit-mode': 'Edit Mode', 'exit-edit-mode': 'Exit Edit Mode',
-                'stopped': 'Stopped', 'current-time': 'Current', 'total-time': 'Total', 'remaining-time': 'Remaining',
-                'stop-btn': 'STOP', 'play-pause-btn': 'PLAY', 'pause-btn': 'PAUSE', 'close-btn': 'Close',
-                'add-music-modal': 'Add New Music', 'edit-music-modal': 'Edit Music', 'cancel-btn': 'Cancel', 'save-btn': 'Save',
-                'continue-label': 'When finished:', 'continue-stop': '=>| Stop', 'continue-next': '>> Continue',
-                'confirm-delete': 'Remove this button?', 'waiting-key': 'Waiting... (ESC)', 'select-audio': 'Select a file!',
-                'pix-copied': 'Pix key copied! 📋'
-            },
-            'es-ES': {
-                'new-setlist': '+ Nueva', 'del-setlist': '- Eliminar', 'auto-play': 'Auto', 'show-keys': 'Teclas',
-                'add-button': '+ Añadir', 'edit-mode': 'Edición', 'exit-edit-mode': 'Salir',
-                'stopped': 'Detenido', 'current-time': 'Actual', 'total-time': 'Total', 'remaining-time': 'Restante',
-                'stop-btn': 'PARAR', 'play-pause-btn': 'REPRODUCIR', 'pause-btn': 'PAUSAR', 'close-btn': 'Cerrar',
-                'add-music-modal': 'Añadir Música', 'edit-music-modal': 'Editar', 'cancel-btn': 'Cancelar', 'save-btn': 'Guardar',
-                'continue-label': 'Al finalizar:', 'continue-stop': '=>| Parar', 'continue-next': '>> Continuar',
-                'confirm-delete': '¿Eliminar?', 'waiting-key': 'Esperando...', 'select-audio': '¡Seleccione!',
-                'pix-copied': '¡Clave copiada! 📋'
-            },
-            'fr-FR': {
-                'new-setlist': '+ Nouvelle', 'del-setlist': '- Suppr.', 'auto-play': 'Auto', 'show-keys': 'Touches',
-                'add-button': '+ Ajouter', 'edit-mode': 'Édition', 'exit-edit-mode': 'Quitter',
-                'stopped': 'Arrêté', 'current-time': 'Actuel', 'total-time': 'Total', 'remaining-time': 'Restant',
-                'stop-btn': 'ARRÊTER', 'play-pause-btn': 'LIRE', 'pause-btn': 'PAUSE', 'close-btn': 'Fermer',
-                'add-music-modal': 'Ajouter', 'edit-music-modal': 'Éditer', 'cancel-btn': 'Annuler', 'save-btn': 'Enregistrer',
-                'continue-label': 'Quand fini:', 'continue-stop': '=>| Arrêter', 'continue-next': '>> Continuer',
-                'confirm-delete': 'Supprimer?', 'waiting-key': 'En attente...', 'select-audio': 'Sélectionnez!',
-                'pix-copied': 'Clé copiée! 📋'
-            }
+            'pt-BR': { 'new-setlist': '+ Nova Setlist', 'del-setlist': '- Excluir', 'auto-play': 'Auto-play', 'show-keys': 'Mostrar Teclas', 'add-button': '+ Adicionar', 'edit-mode': 'Modo Edição', 'exit-edit-mode': 'Sair do Modo Edição', 'menu-setlist': 'Setlist', 'menu-controls': 'Controles', 'menu-actions': 'Ações', 'menu-app': 'App', 'add-music-btn': '+ Adicionar Música', 'settings-btn': '⚙️ Configurações', 'stopped': 'Parado', 'current-time': 'Tempo Atual', 'total-time': 'Total', 'remaining-time': 'Restante', 'exit-edit-btn': '✕ Sair da Edição', 'stop-btn': 'PARAR', 'play-pause-btn': 'TOCAR', 'pause-btn': 'PAUSAR', 'map-stop-key': 'Mapear Tecla', 'map-play-key': 'Mapear Tecla', 'settings-title': '⚙️ Configurações', 'language': '🌐 Idioma:', 'donate-btn': '❤️ Doação', 'about-btn': 'ℹ️ Sobre', 'close-btn': 'Fechar', 'about-title': 'ℹ️ Sobre o LIVE SHOW', 'about-description': 'O LIVE SHOW é um aplicativo web profissional desenvolvido para músicos, bandas e produtores de shows ao vivo.', 'about-features': 'Recursos principais: Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e dados salvos localmente.', 'version-label': 'Versão:', 'developed-by': 'Desenvolvido por:', 'tagline': 'Sua música, nosso palco, seu show!', 'donate-title': '❤️ Apoie o LIVE SHOW', 'donate-message': '"Apoie o LIVE SHOW! Sua doação mantém este projeto gratuito e em evolução para músicos. ❤️"', 'paypal-donate': '💳 PayPal', 'pix-donate': '🔑 Pix (BR)', 'donate-thanks': 'Muito obrigado por apoiar! 🙏', 'add-music-modal': 'Adicionar Nova Música', 'edit-music-modal': 'Editar Música', 'music-name': 'Nome da Música:', 'audio-file': 'Arquivo de Áudio:', 'music-volume': '🔊 Volume:', 'metronome-mode': '🎵 Modo Metrônomo (sem áudio)', 'bpm-label': 'BPM (batidas por minuto):', 'output-channel': 'Canal de Saída:', 'left-channel': 'Esquerdo (L)', 'right-channel': 'Direito (R)', 'metronome-sound-label': '🔊 Som do Metrônomo:', 'click-sound': '🔔 Click', 'cowbell-sound': '🔗 Cowbell', 'cowbell-pitch': '🎚️ Tonalidade do Cowbell', 'cowbell-low': '🔊 Grave', 'cowbell-mid': 'Médio', 'cowbell-high': '🔔 Agudo', 'test-sound': '▶️ Testar Som', 'cancel-btn': 'Cancelar', 'save-btn': 'Salvar', 'continue-label': 'Ao finalizar:', 'continue-stop': '=>| Parar', 'continue-next': '>> Continuar', 'new-setlist-name': 'Nome da nova setlist:', 'cant-delete-last': 'Não pode excluir!', 'confirm-delete-setlist': 'Excluir Setlist', 'confirm-delete': 'Remover este botão?', 'waiting-key': 'Aguardando... (ESC)', 'select-audio': 'Selecione um arquivo!', 'pix-copied': 'Chave Pix copiada! 📋', 'current-file-audio': '📁 Áudio carregado.', 'edit-btn': 'Editar', 'map-key-btn': 'Mapear Tecla' },
+            'en-US': { 'new-setlist': '+ New Setlist', 'del-setlist': '- Delete', 'auto-play': 'Auto-play', 'show-keys': 'Show Keys', 'add-button': '+ Add', 'edit-mode': 'Edit Mode', 'exit-edit-mode': 'Exit Edit', 'stopped': 'Stopped', 'current-time': 'Current', 'total-time': 'Total', 'remaining-time': 'Remaining', 'stop-btn': 'STOP', 'play-pause-btn': 'PLAY', 'pause-btn': 'PAUSE', 'close-btn': 'Close', 'add-music-modal': 'Add Music', 'edit-music-modal': 'Edit Music', 'cancel-btn': 'Cancel', 'save-btn': 'Save', 'continue-label': 'When finished:', 'continue-stop': '=>| Stop', 'continue-next': '>> Continue', 'confirm-delete': 'Remove?', 'waiting-key': 'Waiting... (ESC)', 'select-audio': 'Select file!', 'pix-copied': 'Key copied! 📋' },
+            'es-ES': { 'new-setlist': '+ Nueva', 'del-setlist': '- Eliminar', 'auto-play': 'Auto', 'show-keys': 'Teclas', 'add-button': '+ Añadir', 'edit-mode': 'Edición', 'exit-edit-mode': 'Salir', 'stopped': 'Detenido', 'current-time': 'Actual', 'total-time': 'Total', 'remaining-time': 'Restante', 'stop-btn': 'PARAR', 'play-pause-btn': 'REPRODUCIR', 'pause-btn': 'PAUSAR', 'close-btn': 'Cerrar', 'add-music-modal': 'Añadir', 'edit-music-modal': 'Editar', 'cancel-btn': 'Cancelar', 'save-btn': 'Guardar', 'continue-label': 'Al finalizar:', 'continue-stop': '=>| Parar', 'continue-next': '>> Continuar', 'confirm-delete': '¿Eliminar?', 'waiting-key': 'Esperando...', 'select-audio': '¡Seleccione!', 'pix-copied': '¡Clave copiada! 📋' },
+            'fr-FR': { 'new-setlist': '+ Nouvelle', 'del-setlist': '- Suppr.', 'auto-play': 'Auto', 'show-keys': 'Touches', 'add-button': '+ Ajouter', 'edit-mode': 'Édition', 'exit-edit-mode': 'Quitter', 'stopped': 'Arrêté', 'current-time': 'Actuel', 'total-time': 'Total', 'remaining-time': 'Restant', 'stop-btn': 'ARRÊTER', 'play-pause-btn': 'LIRE', 'pause-btn': 'PAUSE', 'close-btn': 'Fermer', 'add-music-modal': 'Ajouter', 'edit-music-modal': 'Éditer', 'cancel-btn': 'Annuler', 'save-btn': 'Enregistrer', 'continue-label': 'Quand fini:', 'continue-stop': '=>| Arrêter', 'continue-next': '>> Continuer', 'confirm-delete': 'Supprimer?', 'waiting-key': 'En attente...', 'select-audio': 'Sélectionnez!', 'pix-copied': 'Clé copiée! 📋' }
         };
         let currentLanguage = localStorage.getItem('language') || 'pt-BR';
-
         function changeLanguage(lang) { currentLanguage = lang; localStorage.setItem('language', lang); updateLanguage(); }
-        function updateLanguage() {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                const text = translations[currentLanguage]?.[key] || translations['pt-BR'][key] || key;
-                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = text;
-                else if (!(el.tagName === 'LABEL' && el.querySelector('input'))) el.innerText = text;
-            });
-            if (currentLoadedTrackId) {
-                const ct = trackList.find(t => t.id === currentLoadedTrackId);
-                if (ct && ct.isMetronome) setMainButtonState(isMetronomePlaying ? 'playing' : 'paused');
-                else setMainButtonState(!player.paused && player.src ? 'playing' : 'paused');
-            }
-            if (!currentLoadedTrackId) document.getElementById('currentTrackName').innerText = translations[currentLanguage]['stopped'] || 'Parado';
-        }
-        document.getElementById('languageSelect').value = currentLanguage;
-        updateLanguage();
+        function updateLanguage() { document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); const text = translations[currentLanguage]?.[key] || translations['pt-BR'][key] || key; if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = text; else if (!(el.tagName === 'LABEL' && el.querySelector('input'))) el.innerText = text; }); if (currentLoadedTrackId) { const ct = trackList.find(t => t.id === currentLoadedTrackId); setMainButtonState(ct && ct.isMetronome ? (isMetronomePlaying ? 'playing' : 'paused') : (!player.paused && player.src ? 'playing' : 'paused')); } if (!currentLoadedTrackId) document.getElementById('currentTrackName').innerText = translations[currentLanguage]['stopped'] || 'Parado'; }
+        document.getElementById('languageSelect').value = currentLanguage; updateLanguage();
 
         function selectContinueMode(mode) { selectedContinueMode = mode; document.querySelectorAll('.continue-btn-compact').forEach(b => b.classList.toggle('active', b.dataset.continue === mode)); }
         inputFile.addEventListener('change', function(e) { if (e.target.files.length > 0 && inputName.value.trim() === '') { inputName.value = e.target.files[0].name.replace(/\.[^/.]+$/, ""); isMetronomeNameAuto = false; } });
         function updateMetronomeName() { if (!checkMetronome.checked || (!isMetronomeNameAuto && inputName.value.trim() !== '')) return; inputName.value = (selectedMetronomeSound === 'bell' ? 'Cowbell ' : 'Click ') + document.getElementById('inputBPM').value + ' BPM'; }
         function forceMetronomeName() { isMetronomeNameAuto = true; updateMetronomeName(); }
         inputName.addEventListener('input', () => { if (checkMetronome.checked) isMetronomeNameAuto = false; });
-
         function unlockAudio() { if (audioUnlocked) return; const tc = new (window.AudioContext || window.webkitAudioContext)(), buf = tc.createBuffer(1, 1, 22050), src = tc.createBufferSource(); src.buffer = buf; src.connect(tc.destination); src.start(0); if (tc.state === 'suspended') tc.resume(); audioUnlocked = true; setTimeout(() => { src.disconnect(); tc.close().catch(() => {}); }, 100); }
         document.addEventListener('touchstart', unlockAudio, { once: true }); document.addEventListener('click', unlockAudio, { once: true });
-
         function previewCowbell() { try { unlockAudio(); if (!previewAudioContext) previewAudioContext = new (window.AudioContext || window.webkitAudioContext)(); if (previewAudioContext.state === 'suspended') previewAudioContext.resume(); const ctx = previewAudioContext, sr = ctx.sampleRate, len = Math.floor(sr * 0.2), buf = ctx.createBuffer(2, len, sr), cd = buf.getChannelData(selectedChannel === 'left' ? 0 : 1), pf = 0.5 + (selectedCowbellPitch / 100); for (let i = 0; i < len; i++) { const t = i / sr, env = Math.min(t * 500, 1) * Math.exp(-20 * t) * 0.6; cd[i] = (Math.sin(2 * Math.PI * 587 * pf * t) * 0.6 + Math.sin(2 * Math.PI * 880 * pf * t) * 0.3 + Math.sin(2 * Math.PI * 1175 * pf * t) * 0.1) * env; } const src = ctx.createBufferSource(); src.buffer = buf; src.connect(ctx.destination); src.start(0); const btn = document.getElementById('btnTestCowbell'); btn.style.backgroundColor = '#7d3c98'; btn.innerText = '🔔 Tocando...'; setTimeout(() => { btn.style.backgroundColor = '#9b59b6'; btn.innerText = '▶️ Testar Som'; }, 200); } catch (err) { console.error(err); } }
         function updateCowbellPitchDisplay(v) { document.getElementById('cowbellPitchValue').innerText = v + '%'; selectedCowbellPitch = parseInt(v); }
         function showCowbellPitchSlider(s) { document.getElementById('cowbellPitchGroup').classList.toggle('active', s); }
@@ -438,10 +369,8 @@
         function scheduleNote(time) { const s = audioContext.createBufferSource(); s.buffer = (selectedMetronomeSound === 'bell' && bellBuffer) ? bellBuffer : clickBuffer; s.connect(audioContext.destination); s.start(time); }
         function nextNote() { nextNoteTime += 60.0 / currentBPM; }
         function metronomeScheduler() { while (nextNoteTime < audioContext.currentTime + scheduleAheadTime) { scheduleNote(nextNoteTime); nextNote(); } metronomeTimerID = setTimeout(metronomeScheduler, lookahead); }
-
         function selectChannel(ch) { selectedChannel = ch; document.querySelectorAll('.channel-btn').forEach(b => b.classList.toggle('active', b.dataset.channel === ch)); if (audioContext) { createClickSound(); createBellSound(); } }
         function selectMetronomeSound(s) { selectedMetronomeSound = s; document.querySelectorAll('.sound-btn').forEach(b => b.classList.toggle('active', b.dataset.sound === s)); showCowbellPitchSlider(s === 'bell'); updateMetronomeName(); }
-
         checkMetronome.addEventListener('change', (e) => { metronomeControls.classList.toggle('active', e.target.checked); inputFile.disabled = e.target.checked; inputFile.required = !e.target.checked && !editingTrackId; if (e.target.checked) forceMetronomeName(); else isMetronomeNameAuto = false; });
         document.getElementById('inputBPM').addEventListener('input', updateMetronomeName);
 
@@ -504,7 +433,7 @@
         document.getElementById('checkAutoPlayMobile')?.addEventListener('change', e => { document.getElementById('checkAutoPlay').checked = e.target.checked; });
         document.getElementById('checkShowKeysMobile')?.addEventListener('change', e => { document.getElementById('checkShowKeys').checked = e.target.checked; renderGrid(); updateGlobalBadges(); });
 
-        console.log('✅ LIVE SHOW v1.26 carregado! 🌐 Tradução OK | >> Continuar | Sem ícone = Parar');
+        console.log('✅ LIVE SHOW v1.27 carregado! 📱 Modal responsivo corrigido');
     </script>
 </body>
 </html>
