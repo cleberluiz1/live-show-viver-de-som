@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+    <!-- Fundo escuro com bordas arredondadas -->
+    <rect width="512" height="512" rx="100" fill="#0a0a0a"/>
+    
+    <!-- Triângulo Play MAIOR com cantos arredondados -->
+    <path d="M140,70 
+             Q140,55 155,55 
+             L440,230 
+             Q460,242 460,256 
+             Q460,270 440,282 
+             L155,457 
+             Q140,457 140,442 
+             Z" 
+          fill="#00d2ff" stroke="#00d2ff" stroke-width="4" stroke-linejoin="round"/>
+    
+    <!-- LS MAIOR em preto sobre o play -->
+    <text x="280" y="315" text-anchor="middle" fill="#0a0a0a" font-family="Arial, Helvetica, sans-serif" font-size="160" font-weight="900">LS</text>
+    
+    <!-- Detalhe do metrônomo (roxo) -->
+    <line x1="440" y1="445" x2="485" y2="385" stroke="#9b59b6" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="485" cy="385" r="16" fill="#9b59b6"/>
+</svg>
