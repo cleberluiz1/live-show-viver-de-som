@@ -300,6 +300,29 @@
         document.getElementById('checkAutoPlayMobile')?.addEventListener('change', e => { document.getElementById('checkAutoPlay').checked = e.target.checked; });
         document.getElementById('checkShowKeysMobile')?.addEventListener('change', e => { document.getElementById('checkShowKeys').checked = e.target.checked; renderGrid(); updateGlobalBadges(); });
         console.log('✅ LIVE SHOW v2.5 carregado! 📊 Slider + Debug >>');
+        // 🔧 VERIFICAÇÃO DE VERSÃO
+        const APP_VERSION = '2.5';
+        const versionKey = 'live_show_version';
+       // Verifica se a versão mudou
+        const savedVersion = localStorage.getItem(versionKey);
+        if (savedVersion && savedVersion !== APP_VERSION) {
+        console.log('🔄 Nova versão detectada! Atualizando cache...');
+        // Limpa caches antigos
+        if ('caches' in window) {
+            caches.keys().then(names => {
+              names.forEach(name => caches.delete(name));
+          });
+        }
+        // Força refresh nos service workers
+        if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(regs => {
+            regs.forEach(reg => reg.unregister());
+        }).then(() => {
+            window.location.reload(true);
+        });
+        }
+        }
+        localStorage.setItem(versionKey, APP_VERSION);
     </script>
 </body>
 </html>
