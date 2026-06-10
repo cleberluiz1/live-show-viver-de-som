@@ -1,5 +1,5 @@
 // Service Worker para LIVE SHOW
-const CACHE_NAME = 'live-show-v2.6';
+const CACHE_NAME = 'live-show-v3.0';
 const urlsToCache = [
     '/live-show-viver-de-som/',
     '/live-show-viver-de-som/index.html',
