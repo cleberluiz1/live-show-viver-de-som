@@ -98,7 +98,6 @@
     <div class="choice-modal" id="choiceModal"><div class="choice-content"><h2 data-i18n="choice-title">O que deseja adicionar?</h2><div class="choice-options"><button class="choice-btn music" onclick="openMusicModal()"><span class="icon">🎵</span><span class="label" data-i18n="music">Música</span></button><button class="choice-btn metronome" onclick="openMetronomeModal()"><span class="icon">🥁</span><span class="label" data-i18n="metronome">Metrônomo</span></button></div><div class="modal-actions" style="margin-top:20px;"><button class="btn-cancel" onclick="closeChoiceModal()" data-i18n="cancel-btn">Cancelar</button></div></div></div>
 
     <div class="header"><div class="header-left"><button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" title="Menu">☰</button><h1>LIVE SHOW <span>by Viver de Som</span></h1></div><div class="setlist-manager" id="desktopSetlist"><select id="setlistSelect"></select><button class="btn-new-setlist" onclick="createNewSetlist()" data-i18n="new-setlist">+ Nova Setlist</button><button class="btn-del-setlist" onclick="removeCurrentSetlist()" title="Excluir Setlist atual" data-i18n="del-setlist">- Excluir</button></div>
-        <!-- 🆕 BOTÃO IDIOMA DENTRO DA BARRA DE CONFIGURAÇÕES -->
         <div class="setup-controls">
             <label class="toggle-label"><input type="checkbox" id="checkAutoPlay" onchange="syncSettingsFromBar()"><span data-i18n="auto-play">Auto-play</span></label>
             <label class="toggle-label"><input type="checkbox" id="checkShowKeys" onchange="syncSettingsFromBar();renderGrid();updBadges()"><span data-i18n="show-keys">Mostrar Teclas</span></label>
@@ -119,7 +118,7 @@
         <label class="settings-toggle"><span>Mostrar Teclas</span><input type="checkbox" id="chkKeysSettings" onchange="document.getElementById('checkShowKeys').checked=this.checked;renderGrid();updBadges();saveSettings()"></label>
         <label class="settings-toggle"><span>Barra de Progresso</span><input type="checkbox" id="chkProgressSettings" onchange="toggleProgressBar();saveSettings()" checked></label>
         <div class="settings-actions"><button class="btn-install-app" onclick="closeSettingsModal();openInstallModal();" data-i18n="install-app-btn">📱 Instalar App</button><button class="btn-about-action btn-donate" onclick="openDonateModal()" data-i18n="donate-btn">❤️ Doação</button><button class="btn-about-action" onclick="openAboutModal()" data-i18n="about-btn">ℹ️ Sobre</button><button class="btn-close-settings" onclick="closeSettingsModal()" data-i18n="close-btn">Fechar</button></div></div></div>
-    <div class="about-modal" id="aboutModal"><div class="about-content"><h2 data-i18n="about-title">ℹ️ Sobre o LIVE SHOW</h2><p data-i18n="about-description">O LIVE SHOW é um aplicativo web profissional desenvolvido para músicos, bandas e produtores de shows ao vivo.</p><p data-i18n="about-features"><strong>Recursos principais:</strong> Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e dados salvos localmente.</p><div class="version-info"><div data-i18n="version-label">Versão:</div><div>2.6 - LIVE SHOW Professional</div><div style="margin-top: 10px;" data-i18n="developed-by">Desenvolvido por:</div><div>🎵 Viver de Som Studios</div><div style="margin-top: 10px; font-style: italic;" data-i18n="tagline">Sua música, nosso palco, seu show!</div></div><div class="about-actions"><button class="btn-about-action btn-donate" onclick="openDonateModal()" data-i18n="donate-btn">❤️ Doação</button><button class="btn-about-action btn-close-about" onclick="closeAboutModal()" data-i18n="close-btn">Fechar</button></div></div></div>
+    <div class="about-modal" id="aboutModal"><div class="about-content"><h2 data-i18n="about-title">ℹ️ Sobre o LIVE SHOW</h2><p data-i18n="about-description">O LIVE SHOW é um aplicativo web profissional desenvolvido para músicos, bandas e produtores de shows ao vivo.</p><p data-i18n="about-features"><strong>Recursos principais:</strong> Reprodução de múltiplas faixas, metrônomo com BPM ajustável, mapeamento de teclas, interface multilíngue e dados salvos localmente.</p><div class="version-info"><div data-i18n="version-label">Versão:</div><div>3.0 - LIVE SHOW Professional (Sincronia Garantida)</div><div style="margin-top: 10px;" data-i18n="developed-by">Desenvolvido por:</div><div>🎵 Viver de Som Studios</div><div style="margin-top: 10px; font-style: italic;" data-i18n="tagline">Sua música, nosso palco, seu show!</div></div><div class="about-actions"><button class="btn-about-action btn-donate" onclick="openDonateModal()" data-i18n="donate-btn">❤️ Doação</button><button class="btn-about-action btn-close-about" onclick="closeAboutModal()" data-i18n="close-btn">Fechar</button></div></div></div>
     <div class="donate-modal" id="donateModal"><div class="donate-content"><h2 data-i18n="donate-title">❤️ Apoie o LIVE SHOW</h2><p class="donate-message" data-i18n="donate-message">"Apoie o LIVE SHOW! Sua doação mantém este projeto gratuito e em evolução para músicos. ❤️"</p><div class="donate-options"><button class="donate-btn" onclick="window.open('https://www.paypal.com/donate/?hosted_button_id=CUMGN7FGJX3UU', '_blank')" data-i18n="paypal-donate">💳 PayPal</button><button class="donate-btn" onclick="copyPixKey()" data-i18n="pix-donate">🔑 Pix (BR)</button></div><p class="donate-thanks" data-i18n="donate-thanks">Muito obrigado por apoiar! 🙏</p><div class="donate-actions"><button class="btn-close-donate" onclick="closeDonateModal()" data-i18n="close-btn">Fechar</button></div></div></div>
 
     <div class="modal" id="musicModal"><div class="modal-content"><h2 data-i18n="add-music-modal">🎵 Adicionar Música</h2><form id="musicForm"><div class="form-group"><label data-i18n="music-name">Nome da Música:</label><input type="text" id="musicName" maxlength="30" required></div><div class="form-group"><label data-i18n="audio-file">Arquivo de Áudio:</label><input type="file" id="musicFile" accept="audio/*, .mp3, .wav, .m4a, .aac, .ogg"></div><div class="modal-volume-group"><div class="modal-volume-label"><span data-i18n="music-volume">🔊 Volume:</span><span class="modal-volume-value" id="musicVolumeDisplay">100%</span></div><input type="range" id="musicVolume" class="modal-volume-slider" min="0" max="100" value="100" onchange="document.getElementById('musicVolumeDisplay').innerText=this.value+'%'"><div class="continue-compact"><span class="continue-compact-label" data-i18n="continue-label">Ao finalizar:</span><button type="button" class="continue-btn-compact active" data-continue="stop" onclick="selectMusicContinue('stop')" data-i18n="continue-stop">Parar</button><button type="button" class="continue-btn-compact" data-continue="next" onclick="selectMusicContinue('next')" data-i18n="continue-next">Continuar</button></div></div><div class="modal-actions"><button type="button" class="btn-cancel" onclick="closeMusicModal()" data-i18n="cancel-btn">Cancelar</button><button type="submit" class="btn-save" data-i18n="save-btn">Salvar</button></div></form></div></div>
@@ -133,12 +132,28 @@
         const checkAutoPlay = document.getElementById('checkAutoPlay'), checkShowKeys = document.getElementById('checkShowKeys'), setlistSelect = document.getElementById('setlistSelect');
         const choiceModal = document.getElementById('choiceModal'), musicModal = document.getElementById('musicModal'), metronomeModal = document.getElementById('metronomeModal');
 
+        // ========== ESTADOS DO PLAYER (GARANTIA DE SINCRONIA) ==========
+        const PlayerState = {
+            IDLE: 'idle',
+            PLAYING_MUSIC: 'playing_music',
+            PLAYING_METRONOME: 'playing_metronome'
+        };
+
+        let currentState = PlayerState.IDLE;
+        let currentPlayingId = null;     // ID do que está tocando agora
+        let transitionLock = false;       // trava para evitar ações simultâneas
+
         let trackList = [], currentLoadedTrackId = null, currentButton = null, isEditMode = false;
         let editingTrackId = null, waitingForKeyId = null, globalKeys = { stop: null, playpause: null }, setlists = [], currentSetlistId = null;
         let musicContinueMode = 'stop';
         let audioContext = null, clickBuffer = null, bellBuffer = null, selectedChannel = 'left', selectedMetronomeSound = 'click', selectedCowbellPitch = 50;
-        let previewAudioContext = null, isMetronomePlaying = false, currentBPM = 120, nextNoteTime = 0.0, metronomeTimerID = null;
-        const lookahead = 25.0, scheduleAheadTime = 0.1;
+        let previewAudioContext = null, isMetronomePlaying = false, currentBPM = 120;
+        
+        // NOVO: Scheduler preciso com requestAnimationFrame (sem setTimeout)
+        let metronomeRAFId = null;
+        let lastTickTime = 0;
+        let currentMetronomePanner = null;
+        
         let activeBlobUrls = new Set(), memoryStats = { totalUrlsCreated: 0, totalUrlsRevoked: 0, lastCleanup: null };
         let audioUnlocked = false, isTransitioning = false;
         let endedHandled = false;
@@ -174,13 +189,11 @@
             document.getElementById('chkProgressSettings').checked = showProgress;
             document.getElementById('progressBar').style.display = showProgress ? 'block' : 'none';
         }
-        // 🆕 SINCRONIZA CONFIGURAÇÕES DA BARRA → MENU
         function syncSettingsFromBar() {
             document.getElementById('chkAutoSettings').checked = checkAutoPlay.checked;
             document.getElementById('chkKeysSettings').checked = checkShowKeys.checked;
             saveSettings();
         }
-        // 🆕 SINCRONIZA CONFIGURAÇÕES AO ABRIR O MENU
         function syncSettingsToModal() {
             document.getElementById('chkAutoSettings').checked = checkAutoPlay.checked;
             document.getElementById('chkKeysSettings').checked = checkShowKeys.checked;
@@ -257,76 +270,332 @@
         function cleanupSetlistBlobUrls(tracks) { return revokeBlobUrlsSafely(tracks, currentLoadedTrackId); }
         async function loadSetlists() { setlists = await loadSetlistsFromDB(); if (!setlists.length) { const d = { id: Date.now(), name: 'Setlist Principal' }; setlists.push(d); saveSetlistToDB(d); } const last = localStorage.getItem('lastSetlistId'); currentSetlistId = last ? parseFloat(last) : setlists[0].id; if (!setlists.find(s => s.id === currentSetlistId)) currentSetlistId = setlists[0].id; renderSetlistSelector(); await loadCurrentSetlist(); }
         function renderSetlistSelector() { setlistSelect.innerHTML = ''; const m = document.getElementById('setlistSelectMobile'); if (m) m.innerHTML = ''; setlists.forEach(s => { const o = document.createElement('option'); o.value = s.id; o.textContent = s.name; if (s.id === currentSetlistId) o.selected = true; setlistSelect.appendChild(o); if (m) { const om = document.createElement('option'); om.value = s.id; om.textContent = s.name; if (s.id === currentSetlistId) om.selected = true; m.appendChild(om); } }); }
-        setlistSelect.addEventListener('change', async (e) => { stopAudio(); if (trackList.length) cleanupSetlistBlobUrls(trackList); currentSetlistId = parseFloat(e.target.value); localStorage.setItem('lastSetlistId', currentSetlistId); const m = document.getElementById('setlistSelectMobile'); if (m) m.value = currentSetlistId; await loadCurrentSetlist(); });
+        setlistSelect.addEventListener('change', async (e) => { await forceStopEverything(); if (trackList.length) cleanupSetlistBlobUrls(trackList); currentSetlistId = parseFloat(e.target.value); localStorage.setItem('lastSetlistId', currentSetlistId); const m = document.getElementById('setlistSelectMobile'); if (m) m.value = currentSetlistId; await loadCurrentSetlist(); });
         async function loadCurrentSetlist() { if (trackList.length) cleanupSetlistBlobUrls(trackList); trackList = await loadTracksFromDB(currentSetlistId); renderGrid(); }
         function createNewSetlist() { const n = prompt(translations[currentLanguage]['new-setlist-name'] || 'Nome:'); if (!n || !n.trim()) return; const s = { id: Date.now(), name: n.trim() }; setlists.push(s); saveSetlistToDB(s); currentSetlistId = s.id; localStorage.setItem('lastSetlistId', currentSetlistId); renderSetlistSelector(); loadCurrentSetlist(); }
-        async function removeCurrentSetlist() { if (setlists.length <= 1) { alert(translations[currentLanguage]['cant-delete-last'] || 'Não pode!'); return; } const nm = setlists.find(s => s.id === currentSetlistId).name; if (confirm((translations[currentLanguage]['confirm-delete-setlist'] || 'Excluir') + ` "${nm}"?`)) { stopAudio(); cleanupSetlistBlobUrls(trackList); const t = await loadTracksFromDB(currentSetlistId); t.forEach(x => deleteTrackFromDB(x.id)); deleteSetlistFromDB(currentSetlistId); setlists = setlists.filter(s => s.id !== currentSetlistId); currentSetlistId = setlists[0].id; localStorage.setItem('lastSetlistId', currentSetlistId); renderSetlistSelector(); await loadCurrentSetlist(); } }
+        async function removeCurrentSetlist() { if (setlists.length <= 1) { alert(translations[currentLanguage]['cant-delete-last'] || 'Não pode!'); return; } const nm = setlists.find(s => s.id === currentSetlistId).name; if (confirm((translations[currentLanguage]['confirm-delete-setlist'] || 'Excluir') + ` "${nm}"?`)) { await forceStopEverything(); cleanupSetlistBlobUrls(trackList); const t = await loadTracksFromDB(currentSetlistId); t.forEach(x => deleteTrackFromDB(x.id)); deleteSetlistFromDB(currentSetlistId); setlists = setlists.filter(s => s.id !== currentSetlistId); currentSetlistId = setlists[0].id; localStorage.setItem('lastSetlistId', currentSetlistId); renderSetlistSelector(); await loadCurrentSetlist(); } }
+        
         function initAudioContext() { if (!audioContext) { audioContext = new (window.AudioContext || window.webkitAudioContext)(); createClickSound(); createBellSound(); } }
-        function createClickSound() { if (!audioContext) return; const sr = audioContext.sampleRate, len = Math.floor(sr * 0.05); clickBuffer = audioContext.createBuffer(2, len, sr); const cd = clickBuffer.getChannelData(selectedChannel === 'left' ? 0 : 1); for (let i = 0; i < len; i++) cd[i] = (Math.random() * 2 - 1) * Math.exp(-5 * i / len) * 0.5; }
-        function createBellSound() { if (!audioContext) return; const sr = audioContext.sampleRate, len = Math.floor(sr * 0.2); bellBuffer = audioContext.createBuffer(2, len, sr); const cd = bellBuffer.getChannelData(selectedChannel === 'left' ? 0 : 1), pf = 0.5 + (selectedCowbellPitch / 100); for (let i = 0; i < len; i++) { const t = i / sr, env = Math.min(t * 500, 1) * Math.exp(-20 * t) * 0.6; cd[i] = (Math.sin(2 * Math.PI * 587 * pf * t) * 0.5 + Math.sin(2 * Math.PI * 880 * pf * t) * 0.3 + Math.sin(2 * Math.PI * 1175 * pf * t) * 0.15 + Math.sin(2 * Math.PI * 1760 * pf * t) * 0.05) * env; } }
-        function scheduleNote(time) { const s = audioContext.createBufferSource(); s.buffer = (selectedMetronomeSound === 'bell' && bellBuffer) ? bellBuffer : clickBuffer; s.connect(audioContext.destination); s.start(time); }
-        function nextNote() { nextNoteTime += 60.0 / currentBPM; }
-        function metronomeScheduler() { while (nextNoteTime < audioContext.currentTime + scheduleAheadTime) { scheduleNote(nextNoteTime); nextNote(); } metronomeTimerID = setTimeout(metronomeScheduler, lookahead); }
-        function unlockAudio() { if (audioUnlocked) return; try { const tc = new (window.AudioContext || window.webkitAudioContext)(), buf = tc.createBuffer(1, 1, 22050), src = tc.createBufferSource(); src.buffer = buf; src.connect(tc.destination); src.start(0); if (tc.state === 'suspended') tc.resume(); audioUnlocked = true; setTimeout(() => { src.disconnect(); tc.close().catch(() => {}); }, 200); } catch(e) {} }
-        document.addEventListener('touchstart', unlockAudio, { passive: true });
-        document.addEventListener('click', unlockAudio, { passive: true });
-        checkShowKeys.addEventListener('change', () => { renderGrid(); updBadges(); });
-        function updBadges() { const s = checkShowKeys.checked; document.getElementById('stopKeyBadge').style.display = (s && globalKeys.stop) ? 'block' : 'none'; if (s && globalKeys.stop) document.getElementById('stopKeyBadge').innerText = globalKeys.stop; document.getElementById('playPauseKeyBadge').style.display = (s && globalKeys.playpause) ? 'block' : 'none'; if (s && globalKeys.playpause) document.getElementById('playPauseKeyBadge').innerText = globalKeys.playpause; }
-        globalKeys.stop = localStorage.getItem('botoeira_key_stop') || null; globalKeys.playpause = localStorage.getItem('botoeira_key_playpause') || null; updBadges();
-        function toggleEditMode() { isEditMode = !isEditMode; const b = document.getElementById('btnEditMode'); b.classList.toggle('active', isEditMode); b.innerText = isEditMode ? (translations[currentLanguage]['exit-edit-mode'] || 'Sair') : (translations[currentLanguage]['edit-mode'] || 'Edição'); const bm = document.getElementById('btnEditModeMobile'); if (bm) { bm.classList.toggle('active', isEditMode); bm.innerText = b.innerText; } document.getElementById('mapStopKeyBtn').style.display = isEditMode ? 'block' : 'none'; document.getElementById('mapPlayKeyBtn').style.display = isEditMode ? 'block' : 'none'; updateMobileEditButton(); renderGrid(); }
-        function updateMobileEditButton() { const btnM = document.getElementById('btnExitEditMobile'), tti = document.getElementById('timeTotalItem'); if (isEditMode && window.innerWidth <= 768) { btnM.classList.add('show'); if (tti) tti.style.visibility = 'hidden'; } else { btnM.classList.remove('show'); if (tti) tti.style.visibility = 'visible'; } }
-        window.addEventListener('resize', updateMobileEditButton);
-        function renderGrid() { const container = document.getElementById('botoeira'); const saved = { currentTrackId: currentLoadedTrackId, isPlaying: false }; if (currentLoadedTrackId) { const ct = trackList.find(t => t.id === currentLoadedTrackId); if (ct) saved.isPlaying = ct.isMetronome ? isMetronomePlaying : (!player.paused && player.src); } container.innerHTML = ''; trackList.forEach(track => { const btn = document.createElement('div'); btn.className = 'btn-track'; btn.dataset.id = track.id; if (isEditMode) { btn.classList.add('edit-mode'); btn.draggable = true; btn.addEventListener('dragstart', handleDragStart); btn.addEventListener('dragover', handleDragOver); btn.addEventListener('dragleave', handleDragLeave); btn.addEventListener('drop', handleDrop); btn.addEventListener('dragend', handleDragEnd); btn.addEventListener('touchstart', handleTouchStart, { passive: true }); btn.addEventListener('touchmove', handleTouchMove, { passive: true }); btn.addEventListener('touchend', handleTouchEnd); } else btn.addEventListener('click', () => selectOrPlayTrack(track, btn)); const ns = document.createElement('span'); ns.innerText = track.name; btn.appendChild(ns); if (isEditMode) { const ri = document.createElement('div'); ri.className = 'reorder-icon'; ri.innerHTML = '☰'; btn.insertBefore(ri, btn.firstChild); } if (track.isMetronome) { const mi = document.createElement('div'); mi.className = 'metronome-icon'; mi.innerText = `♩ ${track.bpm}`; btn.appendChild(mi); } if (checkShowKeys.checked && track.keyBinding) { const kb = document.createElement('div'); kb.className = 'key-badge'; kb.innerText = track.keyBinding; btn.appendChild(kb); } if (!isEditMode && !track.isMetronome && track.continueMode === 'next') { const cb = document.createElement('div'); cb.className = 'continue-badge'; cb.innerText = '>>'; btn.appendChild(cb); } if (isEditMode) { const ctrls = document.createElement('div'); ctrls.className = 'track-controls'; const be = document.createElement('button'); be.className = 'btn-icon edit'; be.innerText = '✏️ ' + (translations[currentLanguage]['edit-btn'] || 'Editar'); be.onclick = (ev) => { ev.stopPropagation(); openEditModal(track.id); }; const bk = document.createElement('button'); bk.className = 'btn-icon key'; bk.id = `mapKeyBtn_${track.id}`; bk.innerText = translations[currentLanguage]['map-key-btn'] || 'Mapear Tecla'; bk.onclick = (ev) => startKeyMapping(track.id, ev); const bd = document.createElement('button'); bd.className = 'btn-icon delete'; bd.innerText = '🗑️'; bd.onclick = (ev) => removeTrack(track.id, ev); ctrls.appendChild(be); ctrls.appendChild(bk); ctrls.appendChild(bd); btn.appendChild(ctrls); } if (track.id === saved.currentTrackId) { btn.classList.add(saved.isPlaying ? 'playing' : 'paused'); currentButton = btn; } container.appendChild(btn); }); if (isEditMode) trackList.forEach((t, i) => { if (t.order !== i) { t.order = i; saveTrackToDB(t); } }); }
-
-        function playNextTrack() {
-            if (!currentLoadedTrackId) return;
-            const idx = trackList.findIndex(t => t.id === currentLoadedTrackId);
-            if (idx === -1 || idx >= trackList.length - 1) { stopAudio(); return; }
-            const next = trackList[idx + 1], nextBtn = document.querySelector(`.btn-track[data-id="${next.id}"]`);
-            if (next && nextBtn) selectOrPlayTrack(next, nextBtn);
+        
+        function createClickSound() { if (!audioContext) return; const sr = audioContext.sampleRate, len = Math.floor(sr * 0.05); clickBuffer = audioContext.createBuffer(1, len, sr); const cd = clickBuffer.getChannelData(0); for (let i = 0; i < len; i++) cd[i] = (Math.random() * 2 - 1) * Math.exp(-5 * i / len) * 0.5; }
+        
+        function createBellSound() { if (!audioContext) return; const sr = audioContext.sampleRate, len = Math.floor(sr * 0.2); bellBuffer = audioContext.createBuffer(1, len, sr); const cd = bellBuffer.getChannelData(0), pf = 0.5 + (selectedCowbellPitch / 100); for (let i = 0; i < len; i++) { const t = i / sr, env = Math.min(t * 500, 1) * Math.exp(-20 * t) * 0.6; cd[i] = (Math.sin(2 * Math.PI * 587 * pf * t) * 0.5 + Math.sin(2 * Math.PI * 880 * pf * t) * 0.3 + Math.sin(2 * Math.PI * 1175 * pf * t) * 0.15 + Math.sin(2 * Math.PI * 1760 * pf * t) * 0.05) * env; } }
+        
+        // NOVO: Scheduler preciso com requestAnimationFrame (sem setTimeout)
+        function startPreciseMetronome(bpm) {
+            if (metronomeRAFId) cancelAnimationFrame(metronomeRAFId);
+            if (!audioContext) initAudioContext();
+            
+            const intervalSec = 60 / bpm;
+            let nextTick = audioContext.currentTime;
+            
+            function scheduleTicks() {
+                if (!isMetronomePlaying) return;
+                
+                const now = audioContext.currentTime;
+                while (nextTick < now + 0.1) {
+                    scheduleNote(nextTick);
+                    nextTick += intervalSec;
+                }
+                metronomeRAFId = requestAnimationFrame(scheduleTicks);
+            }
+            
+            nextTick = audioContext.currentTime + 0.05;
+            isMetronomePlaying = true;
+            scheduleTicks();
         }
-
-        function removeTrack(id, ev) { ev.stopPropagation(); if (confirm(translations[currentLanguage]['confirm-delete'] || 'Remover?')) { const tr = trackList.find(t => t.id === id); if (tr && tr.url && activeBlobUrls.has(tr.url)) { URL.revokeObjectURL(tr.url); activeBlobUrls.delete(tr.url); memoryStats.totalUrlsRevoked++; } trackList = trackList.filter(t => t.id !== id); deleteTrackFromDB(id); if (currentLoadedTrackId === id) stopAudio(); renderGrid(); } }
-        function startKeyMapping(targetId, ev) { if (ev) ev.stopPropagation(); waitingForKeyId = targetId; document.querySelectorAll('.btn-map-key').forEach(b => b.classList.remove('waiting')); const btn = targetId === 'stop' ? document.getElementById('mapStopKeyBtn') : targetId === 'playpause' ? document.getElementById('mapPlayKeyBtn') : document.getElementById(`mapKeyBtn_${targetId}`); if (btn) { btn.innerText = translations[currentLanguage]['waiting-key'] || 'Aguardando...'; btn.classList.add('waiting'); } }
-        document.addEventListener('keydown', (e) => { if (waitingForKeyId !== null) { e.preventDefault(); const pk = e.key === 'Escape' ? null : (e.key === ' ' ? 'ESPAÇO' : e.key.toUpperCase()); if (waitingForKeyId === 'stop' || waitingForKeyId === 'playpause') { globalKeys[waitingForKeyId] = pk; pk ? localStorage.setItem(`botoeira_key_${waitingForKeyId}`, pk) : localStorage.removeItem(`botoeira_key_${waitingForKeyId}`); updBadges(); } else { const t = trackList.find(x => x.id === waitingForKeyId); if (t) { t.keyBinding = pk; saveTrackToDB(t); renderGrid(); } } waitingForKeyId = null; document.querySelectorAll('.btn-map-key.waiting').forEach(b => b.classList.remove('waiting')); return; } if (!isEditMode && !musicModal.classList.contains('open') && !metronomeModal.classList.contains('open')) { const pk = e.key === ' ' ? 'ESPAÇO' : e.key.toUpperCase(); if (pk === globalKeys.stop) { e.preventDefault(); stopAudio(); return; } if (pk === globalKeys.playpause) { e.preventDefault(); togglePlayPause(); return; } const tp = trackList.find(t => t.keyBinding === pk); if (tp) { e.preventDefault(); selectOrPlayTrack(tp, document.querySelector(`.btn-track[data-id="${tp.id}"]`)); } } });
-        let draggedItemId = null;
-        function handleDragStart(e) { if (!isEditMode) return; draggedItemId = parseFloat(this.dataset.id); this.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
-        function handleDragOver(e) { if (!isEditMode) return; e.preventDefault(); if (draggedItemId !== parseFloat(this.dataset.id)) this.classList.add('drag-over'); e.dataTransfer.dropEffect = 'move'; }
-        function handleDragLeave(e) { if (!isEditMode) return; this.classList.remove('drag-over'); } function handleDragEnd(e) { if (!isEditMode) return; document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('dragging', 'drag-over')); draggedItemId = null; }
-        function handleTouchStart(e) { if (!isEditMode) return; draggedItemId = parseFloat(e.currentTarget.dataset.id); e.currentTarget.classList.add('dragging'); }
-        function handleTouchMove(e) { if (!isEditMode || !draggedItemId) return; e.preventDefault(); const el = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY); if (el && el.classList.contains('btn-track')) document.querySelectorAll('.btn-track').forEach(b => b.classList.toggle('drag-over', parseFloat(b.dataset.id) === parseFloat(el.dataset.id) && parseFloat(el.dataset.id) !== draggedItemId)); }
-        function handleTouchEnd(e) { if (!isEditMode || !draggedItemId) return; const el = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY); if (el && el.classList.contains('btn-track') && parseFloat(el.dataset.id) !== draggedItemId) { const di = trackList.findIndex(t => t.id === draggedItemId), ti = trackList.findIndex(t => t.id === parseFloat(el.dataset.id)); if (di !== -1 && ti !== -1) { const [item] = trackList.splice(di, 1); trackList.splice(ti, 0, item); renderGrid(); } } document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('dragging', 'drag-over')); draggedItemId = null; }
-        function handleDrop(e) { if (!isEditMode) return; e.preventDefault(); e.stopPropagation(); this.classList.remove('drag-over'); const tid = parseFloat(this.dataset.id); if (draggedItemId === tid) return; const di = trackList.findIndex(t => t.id === draggedItemId), ti = trackList.findIndex(t => t.id === tid); if (di !== -1 && ti !== -1) { const [item] = trackList.splice(di, 1); trackList.splice(ti, 0, item); renderGrid(); } draggedItemId = null; }
+        
+        function stopPreciseMetronome() {
+            isMetronomePlaying = false;
+            if (metronomeRAFId) {
+                cancelAnimationFrame(metronomeRAFId);
+                metronomeRAFId = null;
+            }
+        }
+        
+        // NOVO: scheduleNote com isolamento de canal (StereoPannerNode)
+        function scheduleNote(time) {
+            if (!audioContext) return;
+            const source = audioContext.createBufferSource();
+            const bufferToUse = (selectedMetronomeSound === 'bell' && bellBuffer) ? bellBuffer : clickBuffer;
+            if (!bufferToUse) return;
+            source.buffer = bufferToUse;
+            
+            // Isolamento de canal usando StereoPannerNode
+            const panner = audioContext.createStereoPanner();
+            panner.pan.value = selectedChannel === 'left' ? -1 : 1;
+            
+            source.connect(panner);
+            panner.connect(audioContext.destination);
+            source.start(time);
+        }
+        
+        // ========== FUNÇÃO QUE PARA TUDO (garantia de sincronia) ==========
+        async function forceStopEverything() {
+            return new Promise((resolve) => {
+                // Para metrônomo
+                if (isMetronomePlaying) {
+                    stopPreciseMetronome();
+                }
+                
+                // Para música
+                if (player && player.src) {
+                    player.pause();
+                    player.currentTime = 0;
+                }
+                
+                // Remove destaque visual de qualquer botão
+                document.querySelectorAll('.btn-track').forEach(btn => {
+                    btn.classList.remove('playing', 'paused');
+                });
+                
+                // Atualiza estado global
+                currentState = PlayerState.IDLE;
+                currentPlayingId = null;
+                currentLoadedTrackId = null;
+                currentButton = null;
+                
+                // Atualiza display
+                document.getElementById('currentTrackName').innerText = translations[currentLanguage]['stopped'] || 'Parado';
+                setMainButtonState('paused');
+                updateTimeDisplay();
+                
+                // Pequeno delay para garantir que tudo parou
+                setTimeout(resolve, 20);
+            });
+        }
+        
+        // ========== FUNÇÃO PARA CARREGAR E TOCAR UMA TRACK ==========
+        async function loadAndPlayTrack(track, btnElement) {
+            unlockAudio();
+            
+            if (track.isMetronome) {
+                // ===== METRÔNOMO =====
+                currentPlayingId = track.id;
+                currentLoadedTrackId = track.id;
+                currentState = PlayerState.PLAYING_METRONOME;
+                
+                document.getElementById('currentTrackName').innerText = `♩ ${track.name} (${track.bpm} BPM)`;
+                
+                // Configura parâmetros do metrônomo
+                selectedChannel = track.channel || 'left';
+                selectedMetronomeSound = track.metronomeSound || 'click';
+                selectedCowbellPitch = track.cowbellPitch ?? 50;
+                
+                // Garante AudioContext
+                initAudioContext();
+                if (audioContext.state === 'suspended') await audioContext.resume();
+                
+                // Recria sons com parâmetros atuais
+                createClickSound();
+                createBellSound();
+                
+                // Inicia metrônomo
+                currentBPM = track.bpm;
+                startPreciseMetronome(currentBPM);
+                
+                btnElement.classList.add('playing');
+                setMainButtonState('playing');
+                
+                // Atualiza display de tempo (metrônomo não tem tempo)
+                document.getElementById('timeCurrent').innerText = '--:--';
+                document.getElementById('timeRemaining').innerText = '---';
+                document.getElementById('timeTotal').innerText = '--:--';
+                
+            } else {
+                // ===== MÚSICA =====
+                if (!track.url) return;
+                
+                currentPlayingId = track.id;
+                currentLoadedTrackId = track.id;
+                currentState = PlayerState.PLAYING_MUSIC;
+                
+                document.getElementById('currentTrackName').innerText = track.name;
+                
+                player.src = track.url;
+                player.volume = track.volume || 1;
+                
+                // Aguarda o áudio carregar
+                await new Promise((resolve) => {
+                    if (player.readyState >= 2) {
+                        resolve();
+                    } else {
+                        const onCanPlay = () => {
+                            player.removeEventListener('canplay', onCanPlay);
+                            resolve();
+                        };
+                        player.addEventListener('canplay', onCanPlay, { once: true });
+                        setTimeout(resolve, 500); // timeout fallback
+                    }
+                });
+                
+                if (checkAutoPlay.checked) {
+                    try {
+                        await player.play();
+                        btnElement.classList.add('playing');
+                        setMainButtonState('playing');
+                    } catch (err) {
+                        console.warn('Auto-play falhou:', err);
+                        btnElement.classList.add('paused');
+                        setMainButtonState('paused');
+                    }
+                } else {
+                    btnElement.classList.add('paused');
+                    setMainButtonState('paused');
+                }
+                updateTimeDisplay();
+            }
+            
+            currentButton = btnElement;
+        }
+        
+        // ========== FUNÇÃO PRINCIPAL: selecionar ou trocar track ==========
+        async function selectOrPlayTrack(track, btnElement) {
+            // TRAVA: impede ações durante transição
+            if (transitionLock) {
+                console.warn('Transição em andamento, aguarde...');
+                return;
+            }
+            
+            const isSameTrack = (currentPlayingId === track.id);
+            const isPlaying = (currentState !== PlayerState.IDLE);
+            
+            // CASO 1: Mesma track já está tocando -> PAUSE
+            if (isSameTrack && isPlaying) {
+                togglePlayPause();
+                return;
+            }
+            
+            // CASO 2: Track diferente ou nada tocando -> TROCA
+            transitionLock = true;
+            
+            try {
+                // Passo 1: PARA TUDO que estiver tocando
+                await forceStopEverything();
+                
+                // Passo 2: Carrega e toca a nova track
+                await loadAndPlayTrack(track, btnElement);
+                
+            } catch (error) {
+                console.error('Erro na transição:', error);
+            } finally {
+                transitionLock = false;
+            }
+        }
+        
+        function togglePlayPause() {
+            if (transitionLock) return;
+            
+            if (currentState === PlayerState.PLAYING_MUSIC) {
+                if (player.paused) {
+                    player.play().catch(e => console.warn('Play falhou:', e));
+                    currentButton?.classList.remove('paused');
+                    currentButton?.classList.add('playing');
+                    setMainButtonState('playing');
+                } else {
+                    player.pause();
+                    currentButton?.classList.remove('playing');
+                    currentButton?.classList.add('paused');
+                    setMainButtonState('paused');
+                }
+            }
+            else if (currentState === PlayerState.PLAYING_METRONOME) {
+                if (isMetronomePlaying) {
+                    stopPreciseMetronome();
+                    currentButton?.classList.remove('playing');
+                    currentButton?.classList.add('paused');
+                    setMainButtonState('paused');
+                } else {
+                    const ct = trackList.find(t => t.id === currentPlayingId);
+                    if (ct && ct.isMetronome) {
+                        startPreciseMetronome(ct.bpm);
+                        currentButton?.classList.remove('paused');
+                        currentButton?.classList.add('playing');
+                        setMainButtonState('playing');
+                    }
+                }
+            }
+        }
+        
+        function toggleMetronome() {
+            if (transitionLock) return;
+            const ct = trackList.find(t => t.id === currentPlayingId);
+            if (!ct || !ct.isMetronome) return;
+            
+            if (isMetronomePlaying) {
+                stopPreciseMetronome();
+                if (currentButton) {
+                    currentButton.classList.remove('playing');
+                    currentButton.classList.add('paused');
+                }
+                setMainButtonState('paused');
+            } else {
+                startPreciseMetronome(ct.bpm);
+                if (currentButton) {
+                    currentButton.classList.remove('paused');
+                    currentButton.classList.add('playing');
+                }
+                setMainButtonState('playing');
+            }
+        }
+        
+        async function stopAudio() {
+            if (transitionLock) return;
+            transitionLock = true;
+            await forceStopEverything();
+            transitionLock = false;
+        }
+        
         function handleStopClick() { if (!isEditMode && !isTransitioning) stopAudio(); }
         function handlePlayPauseClick() { if (!isEditMode && !isTransitioning) togglePlayPause(); }
-        function selectOrPlayTrack(track, btnElement) { if (isTransitioning) return; unlockAudio(); if (track.isMetronome) { if (currentLoadedTrackId === track.id) { toggleMetronome(); return; } stopAudio(); currentLoadedTrackId = track.id; document.getElementById('currentTrackName').innerText = `♩ ${track.name} (${track.bpm} BPM)`; document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('playing', 'paused')); currentButton = btnElement; if (audioContext) { audioContext.close().catch(()=>{}); audioContext = null; } initAudioContext(); const startAfter = () => { selectedChannel = track.channel; selectedMetronomeSound = track.metronomeSound || 'click'; selectedCowbellPitch = track.cowbellPitch !== undefined ? track.cowbellPitch : 50; createClickSound(); createBellSound(); if (checkAutoPlay.checked) { startMetronome(track.bpm); btnElement.classList.add('playing'); setMainButtonState('playing'); } else { btnElement.classList.add('paused'); setMainButtonState('paused'); } }; if (audioContext.state === 'suspended') audioContext.resume().then(startAfter); else startAfter(); document.getElementById('timeCurrent').innerText = '--:--'; document.getElementById('timeRemaining').innerText = '---'; document.getElementById('timeTotal').innerText = '--:--'; return; } if (currentLoadedTrackId === track.id) { togglePlayPause(); return; } stopAudio(); player.src = track.url; player.volume = track.volume || 1; currentLoadedTrackId = track.id; document.getElementById('currentTrackName').innerText = track.name; document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('playing', 'paused')); currentButton = btnElement; if (checkAutoPlay.checked) { player.play().catch(e => {}); btnElement.classList.add('playing'); setMainButtonState('playing'); } else { btnElement.classList.add('paused'); setMainButtonState('paused'); } updateTimeDisplay(); }
-        function togglePlayPause() { if (!currentLoadedTrackId || isTransitioning) return; const ct = trackList.find(t => t.id === currentLoadedTrackId); if (ct && ct.isMetronome) { toggleMetronome(); return; } if (!player.src) return; if (player.paused) { player.play(); if (currentButton) { currentButton.classList.remove('paused'); currentButton.classList.add('playing'); } setMainButtonState('playing'); } else { player.pause(); if (currentButton) { currentButton.classList.remove('playing'); currentButton.classList.add('paused'); } setMainButtonState('paused'); } }
-        function startMetronome(bpm) { if (isMetronomePlaying || isTransitioning) return; currentBPM = bpm; isTransitioning = true; const doStart = () => { isMetronomePlaying = true; nextNoteTime = audioContext.currentTime + 0.05; metronomeScheduler(); isTransitioning = false; }; if (audioContext.state === 'suspended') audioContext.resume().then(doStart).catch(() => { isTransitioning = false; }); else doStart(); }
-        function stopMetronome() { isMetronomePlaying = false; if (metronomeTimerID) { clearTimeout(metronomeTimerID); metronomeTimerID = null; } isTransitioning = false; }
-        function toggleMetronome() { if (isTransitioning) return; const ct = trackList.find(t => t.id === currentLoadedTrackId); if (!ct || !ct.isMetronome) return; if (isMetronomePlaying) { stopMetronome(); if (currentButton) { currentButton.classList.remove('playing'); currentButton.classList.add('paused'); } setMainButtonState('paused'); } else { startMetronome(ct.bpm); if (currentButton) { currentButton.classList.remove('paused'); currentButton.classList.add('playing'); } setMainButtonState('playing'); } }
-        function stopAudio() { if (!currentLoadedTrackId) return; const ct = trackList.find(t => t.id === currentLoadedTrackId); if (ct && ct.isMetronome) stopMetronome(); else { player.pause(); player.currentTime = 0; } if (currentButton) currentButton.classList.remove('playing', 'paused'); setMainButtonState('paused'); isTransitioning = false; if (ct && ct.isMetronome) { document.getElementById('timeCurrent').innerText = '--:--'; document.getElementById('timeRemaining').innerText = '---'; document.getElementById('timeTotal').innerText = '--:--'; } else updateTimeDisplay(); }
-        function setMainButtonState(s) { btnPlayPause.innerText = s === 'playing' ? (translations[currentLanguage]['pause-btn'] || 'PAUSAR') : (translations[currentLanguage]['play-pause-btn'] || 'TOCAR'); btnPlayPause.classList.toggle('playing-state', s === 'playing'); }
+        
+        function setMainButtonState(s) { 
+            btnPlayPause.innerText = s === 'playing' ? (translations[currentLanguage]['pause-btn'] || 'PAUSAR') : (translations[currentLanguage]['play-pause-btn'] || 'TOCAR'); 
+            btnPlayPause.classList.toggle('playing-state', s === 'playing'); 
+        }
+        
         function formatTime(s) { if (isNaN(s) || !isFinite(s)) return '00:00'; return `${Math.floor(s/60).toString().padStart(2,'0')}:${Math.floor(s%60).toString().padStart(2,'0')}`; }
-        function updateTimeDisplay() { document.getElementById('timeCurrent').innerText = formatTime(player.currentTime); const t = player.duration || 0; document.getElementById('timeTotal').innerText = formatTime(t); document.getElementById('timeRemaining').innerText = '-' + formatTime(t > 0 ? t - player.currentTime : 0); const pb = document.getElementById('progressBar'); if (pb && player.duration && !isNaN(player.duration)) { pb.value = (player.currentTime / player.duration) * 1000; } }
+        function updateTimeDisplay() { 
+            document.getElementById('timeCurrent').innerText = formatTime(player.currentTime); 
+            const t = player.duration || 0; 
+            document.getElementById('timeTotal').innerText = formatTime(t); 
+            document.getElementById('timeRemaining').innerText = '-' + formatTime(t > 0 ? t - player.currentTime : 0); 
+            const pb = document.getElementById('progressBar'); 
+            if (pb && player.duration && !isNaN(player.duration)) { 
+                pb.value = (player.currentTime / player.duration) * 1000; 
+            } 
+        }
+        
         player.addEventListener('timeupdate', updateTimeDisplay);
         player.addEventListener('loadedmetadata', updateTimeDisplay);
-        player.addEventListener('ended', () => {
+        player.addEventListener('ended', async () => {
             if (endedHandled) return;
             endedHandled = true;
+            
             if (currentButton) currentButton.classList.remove('playing', 'paused');
-            if (currentLoadedTrackId) {
-                const ft = trackList.find(t => t.id === currentLoadedTrackId);
-                if (ft && ft.continueMode === 'next') { playNextTrack(); endedHandled = false; return; }
+            
+            if (currentPlayingId) {
+                const ft = trackList.find(t => t.id === currentPlayingId);
+                if (ft && ft.continueMode === 'next') {
+                    const currentIndex = trackList.findIndex(t => t.id === currentPlayingId);
+                    const nextTrack = trackList[currentIndex + 1];
+                    if (nextTrack) {
+                        const nextBtn = document.querySelector(`.btn-track[data-id="${nextTrack.id}"]`);
+                        if (nextBtn) {
+                            await selectOrPlayTrack(nextTrack, nextBtn);
+                            endedHandled = false;
+                            return;
+                        }
+                    }
+                }
             }
-            currentLoadedTrackId = null; setMainButtonState('paused');
-            document.getElementById('timeCurrent').innerText = '00:00'; document.getElementById('timeRemaining').innerText = '-00:00';
-            document.getElementById('timeTotal').innerText = '00:00'; document.getElementById('currentTrackName').innerText = translations[currentLanguage]['stopped'] || 'Parado';
-            document.getElementById('progressBar').value = 0;
+            
+            await forceStopEverything();
             endedHandled = false;
         });
+        
         function toggleMenu() { document.getElementById('sidebarMenu').classList.toggle('open'); document.getElementById('menuOverlay').classList.toggle('open'); document.getElementById('menuToggle').classList.toggle('active'); }
         function closeMenu() { document.getElementById('sidebarMenu').classList.remove('open'); document.getElementById('menuOverlay').classList.remove('open'); document.getElementById('menuToggle').classList.remove('active'); }
-        // 🆕 SINCRONIZA AO ABRIR CONFIGURAÇÕES
         function openSettingsModal() { syncSettingsToModal(); document.getElementById('settingsModal').classList.add('open'); }
         function closeSettingsModal() { document.getElementById('settingsModal').classList.remove('open'); }
         function openAboutModal() { document.getElementById('aboutModal').classList.add('open'); }
@@ -334,12 +603,174 @@
         function openDonateModal() { document.getElementById('donateModal').classList.add('open'); }
         function closeDonateModal() { document.getElementById('donateModal').classList.remove('open'); }
         function copyPixKey() { navigator.clipboard.writeText('51997160889').then(() => alert(translations[currentLanguage]['pix-copied'] || 'Chave copiada! 📋')).catch(() => prompt('Pix:', '51997160889')); }
-        const sm = document.getElementById('setlistSelectMobile'); if (sm) sm.addEventListener('change', e => { document.getElementById('setlistSelect').value = e.target.value; document.getElementById('setlistSelect').dispatchEvent(new Event('change')); });
+        
+        function updBadges() { const s = checkShowKeys.checked; document.getElementById('stopKeyBadge').style.display = (s && globalKeys.stop) ? 'block' : 'none'; if (s && globalKeys.stop) document.getElementById('stopKeyBadge').innerText = globalKeys.stop; document.getElementById('playPauseKeyBadge').style.display = (s && globalKeys.playpause) ? 'block' : 'none'; if (s && globalKeys.playpause) document.getElementById('playPauseKeyBadge').innerText = globalKeys.playpause; }
+        
+        globalKeys.stop = localStorage.getItem('botoeira_key_stop') || null; 
+        globalKeys.playpause = localStorage.getItem('botoeira_key_playpause') || null; 
+        updBadges();
+        
+        function toggleEditMode() { 
+            isEditMode = !isEditMode; 
+            const b = document.getElementById('btnEditMode'); 
+            b.classList.toggle('active', isEditMode); 
+            b.innerText = isEditMode ? (translations[currentLanguage]['exit-edit-mode'] || 'Sair') : (translations[currentLanguage]['edit-mode'] || 'Edição'); 
+            const bm = document.getElementById('btnEditModeMobile'); 
+            if (bm) { bm.classList.toggle('active', isEditMode); bm.innerText = b.innerText; } 
+            document.getElementById('mapStopKeyBtn').style.display = isEditMode ? 'block' : 'none'; 
+            document.getElementById('mapPlayKeyBtn').style.display = isEditMode ? 'block' : 'none'; 
+            updateMobileEditButton(); 
+            renderGrid(); 
+        }
+        
+        function updateMobileEditButton() { const btnM = document.getElementById('btnExitEditMobile'), tti = document.getElementById('timeTotalItem'); if (isEditMode && window.innerWidth <= 768) { btnM.classList.add('show'); if (tti) tti.style.visibility = 'hidden'; } else { btnM.classList.remove('show'); if (tti) tti.style.visibility = 'visible'; } }
+        window.addEventListener('resize', updateMobileEditButton);
+        
+        function renderGrid() { 
+            const container = document.getElementById('botoeira'); 
+            const saved = { currentTrackId: currentLoadedTrackId, isPlaying: false }; 
+            if (currentLoadedTrackId) { 
+                const ct = trackList.find(t => t.id === currentLoadedTrackId); 
+                if (ct) saved.isPlaying = ct.isMetronome ? isMetronomePlaying : (!player.paused && player.src); 
+            } 
+            container.innerHTML = ''; 
+            trackList.forEach(track => { 
+                const btn = document.createElement('div'); 
+                btn.className = 'btn-track'; 
+                btn.dataset.id = track.id; 
+                if (isEditMode) { 
+                    btn.classList.add('edit-mode'); 
+                    btn.draggable = true; 
+                    btn.addEventListener('dragstart', handleDragStart); 
+                    btn.addEventListener('dragover', handleDragOver); 
+                    btn.addEventListener('dragleave', handleDragLeave); 
+                    btn.addEventListener('drop', handleDrop); 
+                    btn.addEventListener('dragend', handleDragEnd); 
+                    btn.addEventListener('touchstart', handleTouchStart, { passive: true }); 
+                    btn.addEventListener('touchmove', handleTouchMove, { passive: true }); 
+                    btn.addEventListener('touchend', handleTouchEnd); 
+                } else btn.addEventListener('click', () => selectOrPlayTrack(track, btn)); 
+                const ns = document.createElement('span'); 
+                ns.innerText = track.name; 
+                btn.appendChild(ns); 
+                if (isEditMode) { 
+                    const ri = document.createElement('div'); 
+                    ri.className = 'reorder-icon'; 
+                    ri.innerHTML = '☰'; 
+                    btn.insertBefore(ri, btn.firstChild); 
+                } 
+                if (track.isMetronome) { 
+                    const mi = document.createElement('div'); 
+                    mi.className = 'metronome-icon'; 
+                    mi.innerText = `♩ ${track.bpm}`; 
+                    btn.appendChild(mi); 
+                } 
+                if (checkShowKeys.checked && track.keyBinding) { 
+                    const kb = document.createElement('div'); 
+                    kb.className = 'key-badge'; 
+                    kb.innerText = track.keyBinding; 
+                    btn.appendChild(kb); 
+                } 
+                if (!isEditMode && !track.isMetronome && track.continueMode === 'next') { 
+                    const cb = document.createElement('div'); 
+                    cb.className = 'continue-badge'; 
+                    cb.innerText = '>>'; 
+                    btn.appendChild(cb); 
+                } 
+                if (isEditMode) { 
+                    const ctrls = document.createElement('div'); 
+                    ctrls.className = 'track-controls'; 
+                    const be = document.createElement('button'); 
+                    be.className = 'btn-icon edit'; 
+                    be.innerText = '✏️ ' + (translations[currentLanguage]['edit-btn'] || 'Editar'); 
+                    be.onclick = (ev) => { ev.stopPropagation(); openEditModal(track.id); }; 
+                    const bk = document.createElement('button'); 
+                    bk.className = 'btn-icon key'; 
+                    bk.id = `mapKeyBtn_${track.id}`; 
+                    bk.innerText = translations[currentLanguage]['map-key-btn'] || 'Mapear Tecla'; 
+                    bk.onclick = (ev) => startKeyMapping(track.id, ev); 
+                    const bd = document.createElement('button'); 
+                    bd.className = 'btn-icon delete'; 
+                    bd.innerText = '🗑️'; 
+                    bd.onclick = (ev) => removeTrack(track.id, ev); 
+                    ctrls.appendChild(be); 
+                    ctrls.appendChild(bk); 
+                    ctrls.appendChild(bd); 
+                    btn.appendChild(ctrls); 
+                } 
+                if (track.id === saved.currentTrackId) { 
+                    btn.classList.add(saved.isPlaying ? 'playing' : 'paused'); 
+                    currentButton = btn; 
+                } 
+                container.appendChild(btn); 
+            }); 
+            if (isEditMode) trackList.forEach((t, i) => { if (t.order !== i) { t.order = i; saveTrackToDB(t); } }); 
+        }
+        
+        function removeTrack(id, ev) { ev.stopPropagation(); if (confirm(translations[currentLanguage]['confirm-delete'] || 'Remover?')) { const tr = trackList.find(t => t.id === id); if (tr && tr.url && activeBlobUrls.has(tr.url)) { URL.revokeObjectURL(tr.url); activeBlobUrls.delete(tr.url); memoryStats.totalUrlsRevoked++; } trackList = trackList.filter(t => t.id !== id); deleteTrackFromDB(id); if (currentLoadedTrackId === id) forceStopEverything(); renderGrid(); } }
+        
+        function startKeyMapping(targetId, ev) { if (ev) ev.stopPropagation(); waitingForKeyId = targetId; document.querySelectorAll('.btn-map-key').forEach(b => b.classList.remove('waiting')); const btn = targetId === 'stop' ? document.getElementById('mapStopKeyBtn') : targetId === 'playpause' ? document.getElementById('mapPlayKeyBtn') : document.getElementById(`mapKeyBtn_${targetId}`); if (btn) { btn.innerText = translations[currentLanguage]['waiting-key'] || 'Aguardando...'; btn.classList.add('waiting'); } }
+        
+        document.addEventListener('keydown', (e) => { 
+            if (waitingForKeyId !== null) { 
+                e.preventDefault(); 
+                const pk = e.key === 'Escape' ? null : (e.key === ' ' ? 'ESPAÇO' : e.key.toUpperCase()); 
+                if (waitingForKeyId === 'stop' || waitingForKeyId === 'playpause') { 
+                    globalKeys[waitingForKeyId] = pk; 
+                    pk ? localStorage.setItem(`botoeira_key_${waitingForKeyId}`, pk) : localStorage.removeItem(`botoeira_key_${waitingForKeyId}`); 
+                    updBadges(); 
+                } else { 
+                    const t = trackList.find(x => x.id === waitingForKeyId); 
+                    if (t) { t.keyBinding = pk; saveTrackToDB(t); renderGrid(); } 
+                } 
+                waitingForKeyId = null; 
+                document.querySelectorAll('.btn-map-key.waiting').forEach(b => b.classList.remove('waiting')); 
+                return; 
+            } 
+            if (!isEditMode && !musicModal.classList.contains('open') && !metronomeModal.classList.contains('open')) { 
+                const pk = e.key === ' ' ? 'ESPAÇO' : e.key.toUpperCase(); 
+                if (pk === globalKeys.stop) { e.preventDefault(); stopAudio(); return; } 
+                if (pk === globalKeys.playpause) { e.preventDefault(); togglePlayPause(); return; } 
+                const tp = trackList.find(t => t.keyBinding === pk); 
+                if (tp) { e.preventDefault(); selectOrPlayTrack(tp, document.querySelector(`.btn-track[data-id="${tp.id}"]`)); } 
+            } 
+        });
+        
+        let draggedItemId = null;
+        function handleDragStart(e) { if (!isEditMode) return; draggedItemId = parseFloat(this.dataset.id); this.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; }
+        function handleDragOver(e) { if (!isEditMode) return; e.preventDefault(); if (draggedItemId !== parseFloat(this.dataset.id)) this.classList.add('drag-over'); e.dataTransfer.dropEffect = 'move'; }
+        function handleDragLeave(e) { if (!isEditMode) return; this.classList.remove('drag-over'); } 
+        function handleDragEnd(e) { if (!isEditMode) return; document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('dragging', 'drag-over')); draggedItemId = null; }
+        function handleTouchStart(e) { if (!isEditMode) return; draggedItemId = parseFloat(e.currentTarget.dataset.id); e.currentTarget.classList.add('dragging'); }
+        function handleTouchMove(e) { if (!isEditMode || !draggedItemId) return; e.preventDefault(); const el = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY); if (el && el.classList.contains('btn-track')) document.querySelectorAll('.btn-track').forEach(b => b.classList.toggle('drag-over', parseFloat(b.dataset.id) === parseFloat(el.dataset.id) && parseFloat(el.dataset.id) !== draggedItemId)); }
+        function handleTouchEnd(e) { if (!isEditMode || !draggedItemId) return; const el = document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY); if (el && el.classList.contains('btn-track') && parseFloat(el.dataset.id) !== draggedItemId) { const di = trackList.findIndex(t => t.id === draggedItemId), ti = trackList.findIndex(t => t.id === parseFloat(el.dataset.id)); if (di !== -1 && ti !== -1) { const [item] = trackList.splice(di, 1); trackList.splice(ti, 0, item); renderGrid(); } } document.querySelectorAll('.btn-track').forEach(b => b.classList.remove('dragging', 'drag-over')); draggedItemId = null; }
+        function handleDrop(e) { if (!isEditMode) return; e.preventDefault(); e.stopPropagation(); this.classList.remove('drag-over'); const tid = parseFloat(this.dataset.id); if (draggedItemId === tid) return; const di = trackList.findIndex(t => t.id === draggedItemId), ti = trackList.findIndex(t => t.id === tid); if (di !== -1 && ti !== -1) { const [item] = trackList.splice(di, 1); trackList.splice(ti, 0, item); renderGrid(); } draggedItemId = null; }
+        
+        function unlockAudio() { 
+            if (audioUnlocked) return; 
+            try { 
+                const tc = new (window.AudioContext || window.webkitAudioContext)(); 
+                const buf = tc.createBuffer(1, 1, 22050); 
+                const src = tc.createBufferSource(); 
+                src.buffer = buf; 
+                src.connect(tc.destination); 
+                src.start(0); 
+                if (tc.state === 'suspended') tc.resume(); 
+                audioUnlocked = true; 
+                setTimeout(() => { src.disconnect(); tc.close().catch(() => {}); }, 200); 
+            } catch(e) {} 
+        }
+        
+        document.addEventListener('touchstart', unlockAudio, { passive: true });
+        document.addEventListener('click', unlockAudio, { passive: true });
+        checkShowKeys.addEventListener('change', () => { renderGrid(); updBadges(); });
+        
+        const sm = document.getElementById('setlistSelectMobile'); 
+        if (sm) sm.addEventListener('change', e => { document.getElementById('setlistSelect').value = e.target.value; document.getElementById('setlistSelect').dispatchEvent(new Event('change')); });
         document.getElementById('checkAutoPlayMobile')?.addEventListener('change', e => { document.getElementById('checkAutoPlay').checked = e.target.checked; syncSettingsFromBar(); });
         document.getElementById('checkShowKeysMobile')?.addEventListener('change', e => { document.getElementById('checkShowKeys').checked = e.target.checked; syncSettingsFromBar(); renderGrid(); updBadges(); });
-        console.log('✅ LIVE SHOW v2.6 carregado! 🎨 Idioma na barra + Sincronização');
         
-        const APP_VERSION = '2.6';
+        const APP_VERSION = '3.0';
         const versionKey = 'live_show_version';
         const savedVersion = localStorage.getItem(versionKey);
         if (savedVersion && savedVersion !== APP_VERSION) {
@@ -347,6 +778,8 @@
             if ('serviceWorker' in navigator) { navigator.serviceWorker.getRegistrations().then(regs => { regs.forEach(reg => reg.unregister()); }).then(() => { window.location.reload(true); }); }
         }
         localStorage.setItem(versionKey, APP_VERSION);
+        
+        console.log('✅ LIVE SHOW v3.0 carregado! Sincronia garantida, metrônomo preciso, canais isolados!');
     </script>
 </body>
 </html>
